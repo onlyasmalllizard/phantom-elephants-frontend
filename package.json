@@ -26,8 +26,7 @@
     "build": "npm run build:tailwind && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "npm:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "yarn:clean": "rm -rf node_modules/ && rm -rf package-lock.json && yarn install && yarn start"
+    "npm:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
   "eslintConfig": {
     "extends": [
