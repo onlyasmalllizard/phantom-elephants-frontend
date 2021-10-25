@@ -825,6 +825,9 @@ video {
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.pl-5{
+	padding-left: 1.25rem;
+}
 .pt-8{
 	padding-top: 2rem;
 }
@@ -833,6 +836,9 @@ video {
 }
 .pl-4{
 	padding-left: 1rem;
+}
+.pl-3{
+	padding-left: 0.75rem;
 }
 .pt-14{
 	padding-top: 3.5rem;
