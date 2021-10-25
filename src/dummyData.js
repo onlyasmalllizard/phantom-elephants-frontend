@@ -364,8 +364,8 @@ const quizes = [
   "Quiz 60",
 ];
 
-const BOOTCAMP_SIZE = 12;
-const NUM_OF_BOOTCAMPS = 2;
+const BOOTCAMP_SIZE = 5;
+const NUM_OF_BOOTCAMPS = 4;
 // Generating a gaussian distrobution of students starting weights
 function randn_bm() {
   let u = 0,
@@ -390,8 +390,10 @@ let startingPercentage = 0;
 function genQuizScore(studentID) {
   let genQuizSize = () => getRandomInt(8, 16);
   let quizSize = genQuizSize();
-  let quizResult = Math.ceil(quizSize * c[studentID]);
-  let percentage = Math.floor((quizResult / quizSize) * 100);
+  let quizResult = Math.ceil(
+    (quizSize * getRandomInt(c[studentID] * 100, c[studentID] * 100 + 10)) / 100
+  );
+  let percentage = Math.ceil((quizResult / quizSize) * 100);
   if (c[studentID] < 0.4) {
     percentage > startingPercentage
       ? (c[studentID] += 0.05)
@@ -418,8 +420,13 @@ function genQuizScore(studentID) {
   };
 }
 const workColors = ["red", "amber", "green"];
-const genColorScore = (studentID) =>
-  workColors[Math.floor((getRandomInt(0, 380) * c[studentID]) / 100)];
+const genColorScore = (studentID) => {
+  let colorNum = Math.floor((getRandomInt(100, 380) * c[studentID]) / 100);
+  if (colorNum >= 3) {
+    colorNum = 2;
+  }
+  return workColors[colorNum];
+};
 
 function genRecapTask(day, studentID) {
   return { title: recapTask[day - 1], score: genColorScore(studentID) };
@@ -471,7 +478,7 @@ function genFeedback(day, studentID) {
   return { morning, afternoon };
 }
 const day = {
-  recapTasks: { title: "basic javascript", score: "amber" },
+  recapTask: { title: "basic javascript", score: "amber" },
   workshops: [{ title: "objects and classes", score: "amber" }],
   quiz: { title: "array methods", score: "5/12" },
   didAttend: true,
@@ -575,7 +582,7 @@ const legends = [
 ];
 
 // GEN BOOTCAMP/S (NumOfBootcamps, BootcampSize, StartWeek, EndWeek)
-const bootcamps = genBootcamps(2, BOOTCAMP_SIZE, 1, 12);
+const bootcamps = genBootcamps(NUM_OF_BOOTCAMPS, BOOTCAMP_SIZE, 1, 12);
 const quizScores1 = bootcamps[0].students[0].work.map((work) =>
   work.quiz === null ? 0 : work.quiz.percentage
 );
