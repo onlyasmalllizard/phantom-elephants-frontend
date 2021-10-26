@@ -364,72 +364,130 @@ const quizes = [
   "Quiz 60",
 ];
 
+const BOOTCAMP_SIZE = 5;
+const NUM_OF_BOOTCAMPS = 4;
+// Generating a gaussian distrobution of students starting weights
+function randn_bm() {
+  let u = 0,
+    v = 0;
+  while (u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+  while (v === 0) v = Math.random();
+  let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  num = num / 10.0 + 0.5; // Translate to 0 -> 1
+  if (num > 1 || num < 0) return randn_bm(); // resample between 0 and 1
+  return num;
+}
+function gaussArray(n) {
+  return n.map((el) => (el = randn_bm()));
+}
+// engagement, happiness and craft
+const e = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
+const h = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
+const c = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
+
+let startingPercentage = 0;
 // GENERATING SCORES FOR WORK TASKS
-function genQuizScoreAsString() {
+function genQuizScore(studentID) {
   let genQuizSize = () => getRandomInt(8, 16);
   let quizSize = genQuizSize();
+  let quizResult = Math.ceil(
+    (quizSize * getRandomInt(c[studentID] * 110, c[studentID] * 100 + 10)) / 100
+  );
+  let percentage = Math.ceil((quizResult / quizSize) * 100);
+  if (c[studentID] < 0.4) {
+    percentage > startingPercentage
+      ? (c[studentID] += 0.05)
+      : (c[studentID] -= 0.005);
+  } else if (c[studentID] < 0.6) {
+    percentage > startingPercentage
+      ? (c[studentID] += 0.03)
+      : (c[studentID] -= 0.01);
+  } else if (c[studentID] < 0.8) {
+    percentage > startingPercentage
+      ? (c[studentID] += 0.02)
+      : (c[studentID] -= 0.015);
+  } else {
+    percentage > startingPercentage
+      ? (c[studentID] += 0.01)
+      : (c[studentID] -= 0.005);
+  }
 
-  let quizScore = getRandomInt(Math.floor(quizSize / 2), quizSize);
+  // console.log(studentID, "=>", startingPercentage, percentage, c[studentID]);
+  startingPercentage = percentage;
   return {
-    scoreAsString: `${quizScore}/${quizSize}`,
-    percentage: Math.floor((quizScore / quizSize) * 100),
+    score: `${quizResult}/${quizSize}`,
+    percentage: percentage,
   };
 }
 const workColors = ["red", "amber", "green"];
-const genColorScore = () => workColors[getRandomInt(0, 3)];
+const genColorScore = (studentID) => {
+  let colorNum = Math.floor((getRandomInt(100, 380) * c[studentID]) / 100);
+  if (colorNum >= 3) {
+    colorNum = 2;
+  }
+  return workColors[colorNum];
+};
 
-function genRecapTask(day) {
-  return { title: recapTask[day - 1], score: genColorScore() };
+function genRecapTask(day, studentID) {
+  return {
+    title: recapTask[day - 1],
+    score: genColorScore(studentID),
+    type: "recap",
+  };
 }
-function genWorkshopTasks(day) {
+function genWorkshopTasks(day, studentID) {
   let workshopsCompleted = [];
   let numCompleted = getRandomInt(0, 3);
   for (let i = 0; i < numCompleted; i++) {
     workshopsCompleted.push({
+      type: "workshop",
       title: workshops[+day + i - 1],
-      score: genColorScore(),
+      score: genColorScore(studentID),
     });
   }
   return workshopsCompleted;
 }
-function genQuiz(day) {
-  return { title: quizes[day - 1], ...genQuizScoreAsString() };
+function genQuiz(day, studentID) {
+  return { title: quizes[day - 1], ...genQuizScore(studentID), type: "quiz" };
 }
-function genAttend(cf) {
-  let chance = getRandomInt(0, 11);
-  return chance < 1 ? false : true;
+let prevDay = false;
+function genAttend() {
+  let chance = getRandomInt(0, 15);
+  if (prevDay) {
+    chance = getRandomInt(0, 5);
+  }
+  if (chance < 1) {
+    prevDay = true;
+    return false;
+  } else {
+    return true;
+  }
 }
-function genFeedback(day) {
+function genFeedback(day, studentID) {
   let morning = {};
   let afternoon = {};
   let chance1 = getRandomInt(0, 2);
   if (chance1 > 0) {
     morning = {
-      experienceRating: getRandomInt(1, 6),
+      type: "feedback",
+      timeOfDay: "morning",
+      experienceRating: Math.ceil((getRandomInt(10, 51) * h[studentID]) / 10),
       comment: faker.lorem.sentence(),
     };
   }
   let chance2 = getRandomInt(0, 2);
   if (chance2 > 0) {
     afternoon = {
-      experienceRating: getRandomInt(1, 6),
+      type: "feedback",
+      timeOfDay: "afternoon",
+      experienceRating: Math.ceil((getRandomInt(10, 51) * h[studentID]) / 10),
       comment: faker.lorem.sentence(),
     };
   }
-  return { morning, afternoon };
+  return [morning, afternoon];
 }
-const day = {
-  recapTasks: { title: "basic javascript", score: "amber" },
-  workshops: [{ title: "objects and classes", score: "amber" }],
-  quiz: { title: "array methods", score: "5/12" },
-  didAttend: true,
-  feedback: {
-    morning: { experienceRating: 4, comment: "skkkkkkkkreesh" },
-    afternoon: { experienceRating: 4, comment: "skkkkraap" },
-  },
-};
 
-function genDay(day) {
+function genDay(day, g) {
   let attendance = genAttend();
   return attendance
     ? {
@@ -437,18 +495,21 @@ function genDay(day) {
         week: Math.ceil(day / 5),
         day: day,
         didAttend: true,
-        recapTasks:
+        recapTask:
           day === 1
             ? null
             : (day - 1) % 5 === 0
-            ? genRecapTask(Math.ceil(day / 5))
+            ? genRecapTask(Math.ceil(day / 5), g)
             : null,
-        workshops: genWorkshopTasks(day),
-        quiz: genQuiz(day),
+        workshops: genWorkshopTasks(day, g),
+        quiz: genQuiz(day, g),
         feedback: {
-          ...genFeedback(day),
+          ...genFeedback(day, g),
         },
-        reflection: faker.lorem.sentences(getRandomInt(2, 5)),
+        reflection: {
+          type: "reflection",
+          content: faker.lorem.sentences(getRandomInt(2, 5)),
+        },
       }
     : {
         date: genDate(day),
@@ -458,17 +519,14 @@ function genDay(day) {
         recapTasks: null,
         workshops: null,
         quiz: null,
-        feedback: {
-          morning: null,
-          afternoon: null,
-        },
+        feedback: null,
         reflection: faker.lorem.sentences(getRandomInt(2, 5)),
       };
 }
-function genWeekRange(startWeek, endWeek) {
+function genWeekRange(startWeek, endWeek, studentID) {
   let wk = [];
   for (let i = 5 * startWeek - 4; i <= 5 * endWeek; i++) {
-    wk.push(genDay(i));
+    wk.push(genDay(i, studentID));
   }
   return wk;
 }
@@ -481,11 +539,11 @@ function genStudent(id, startWeek, endWeek) {
       username: faker.internet.userName(),
       avatar: faker.internet.avatar(),
     },
-    work: genWeekRange(startWeek, endWeek),
+    work: genWeekRange(startWeek, endWeek, id - 1),
   };
 }
 
-const bootcamps = [
+const bootcampRegions = [
   "West Midlands",
   "East Midlands",
   "North West",
@@ -501,7 +559,7 @@ function genBootcamps(numOfBootcamps, bootcampSize, startWeek, endWeek) {
       bootcampsList.push({
         id: ++bootcampID,
         name: `Bootcamp${bootcampID}`,
-        region: bootcamps[bootcampID - 1],
+        region: bootcampRegions[bootcampID - 1],
         startDate: genDate(1),
         students: students,
       });
@@ -510,9 +568,6 @@ function genBootcamps(numOfBootcamps, bootcampSize, startWeek, endWeek) {
   }
   return bootcampsList;
 }
-// GEN BOOTCAMP/S (NumOfBootcamps, BootcampSize, StartWeek, EndWeek)
-const cohortsTest = genBootcamps(3, 20, 1, 12);
-console.log(cohortsTest[0].students[0]);
 
 const legends = [
   "Liz Kaufman",
@@ -521,15 +576,23 @@ const legends = [
   "Mohit Sharma",
   "James Perrett",
   "Arshi",
-  "Loz",
+  "Loz Meah",
+  "Hamza",
 ];
+
+// GEN BOOTCAMP/S (NumOfBootcamps, BootcampSize, StartWeek, EndWeek)
+const bootcamps = genBootcamps(NUM_OF_BOOTCAMPS, BOOTCAMP_SIZE, 1, 12);
+const quizScores1 = bootcamps[0].students[0].work.map((work) =>
+  work.quiz === null ? 0 : work.quiz.percentage
+);
+// console.log(JSON.stringify(dummyData, null, 4));
 
 function genUsers() {
   let users = [];
   legends.forEach((leg, index) => {
     let user = {
       name: leg,
-      bootcampID: getRandomInt(1, cohortsTest.length + 1),
+      bootcampID: getRandomInt(1, bootcamps.length + 1),
       watchList: [],
       menteeID: null,
     };
@@ -538,4 +601,5 @@ function genUsers() {
   return users;
 }
 
-console.log(genUsers());
+console.log(bootcamps[0].students[0].work.slice(5, 7));
+module.exports = bootcamps;
