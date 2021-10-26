@@ -479,6 +479,16 @@ video {
 	--tw-ring-offset-shadow: 0 0 #0000;
 	--tw-ring-shadow: 0 0 #0000;
 	--tw-shadow: 0 0 #0000;
+	--tw-blur: var(--tw-empty,/*!*/ /*!*/);
+	--tw-brightness: var(--tw-empty,/*!*/ /*!*/);
+	--tw-contrast: var(--tw-empty,/*!*/ /*!*/);
+	--tw-grayscale: var(--tw-empty,/*!*/ /*!*/);
+	--tw-hue-rotate: var(--tw-empty,/*!*/ /*!*/);
+	--tw-invert: var(--tw-empty,/*!*/ /*!*/);
+	--tw-saturate: var(--tw-empty,/*!*/ /*!*/);
+	--tw-sepia: var(--tw-empty,/*!*/ /*!*/);
+	--tw-drop-shadow: var(--tw-empty,/*!*/ /*!*/);
+	--tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .container{
 	width: 100%;
@@ -601,12 +611,6 @@ video {
 .mb-0{
 	margin-bottom: 0px;
 }
-.mr-2{
-	margin-right: 0.5rem;
-}
-.-ml-4{
-	margin-left: -1rem;
-}
 .mb-14{
 	margin-bottom: 3.5rem;
 }
@@ -670,8 +674,14 @@ video {
 .w-64{
 	width: 16rem;
 }
+.w-32{
+	width: 8rem;
+}
 .w-10{
 	width: 2.5rem;
+}
+.w-6{
+	width: 1.5rem;
 }
 .w-56{
 	width: 14rem;
@@ -703,6 +713,9 @@ video {
 .flex-nowrap{
 	flex-wrap: nowrap;
 }
+.content-evenly{
+	align-content: space-evenly;
+}
 .items-center{
 	align-items: center;
 }
@@ -714,6 +727,9 @@ video {
 }
 .justify-between{
 	justify-content: space-between;
+}
+.justify-evenly{
+	justify-content: space-evenly;
 }
 .gap-2{
 	gap: 0.5rem;
@@ -776,6 +792,14 @@ video {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
+.bg-green-500{
+	--tw-bg-opacity: 1;
+	background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+}
+.bg-red-500{
+	--tw-bg-opacity: 1;
+	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
 .bg-gradient-to-tr{
 	background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -824,6 +848,10 @@ video {
 .px-0{
 	padding-left: 0px;
 	padding-right: 0px;
+}
+.px-1{
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
 }
 .pl-5{
 	padding-left: 1.25rem;
@@ -917,6 +945,9 @@ video {
 .shadow-md{
 	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.filter{
+	filter: var(--tw-filter);
 }
 .transition-all{
 	transition-property: all;

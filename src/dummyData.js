@@ -415,7 +415,7 @@ function genQuizScore(studentID) {
   // console.log(studentID, "=>", startingPercentage, percentage, c[studentID]);
   startingPercentage = percentage;
   return {
-    scoreAsString: `${quizResult}/${quizSize}`,
+    score: `${quizResult}/${quizSize}`,
     percentage: percentage,
   };
 }
@@ -429,13 +429,18 @@ const genColorScore = (studentID) => {
 };
 
 function genRecapTask(day, studentID) {
-  return { title: recapTask[day - 1], score: genColorScore(studentID) };
+  return {
+    title: recapTask[day - 1],
+    score: genColorScore(studentID),
+    type: "recap",
+  };
 }
 function genWorkshopTasks(day, studentID) {
   let workshopsCompleted = [];
   let numCompleted = getRandomInt(0, 3);
   for (let i = 0; i < numCompleted; i++) {
     workshopsCompleted.push({
+      type: "workshop",
       title: workshops[+day + i - 1],
       score: genColorScore(studentID),
     });
@@ -443,7 +448,7 @@ function genWorkshopTasks(day, studentID) {
   return workshopsCompleted;
 }
 function genQuiz(day, studentID) {
-  return { title: quizes[day - 1], ...genQuizScore(studentID) };
+  return { title: quizes[day - 1], ...genQuizScore(studentID), type: "quiz" };
 }
 let prevDay = false;
 function genAttend() {
@@ -464,29 +469,23 @@ function genFeedback(day, studentID) {
   let chance1 = getRandomInt(0, 2);
   if (chance1 > 0) {
     morning = {
-      experienceRating: Math.ceil((getRandomInt(0, 51) * h[studentID]) / 10),
+      type: "feedback",
+      timeOfDay: "morning",
+      experienceRating: Math.ceil((getRandomInt(10, 51) * h[studentID]) / 10),
       comment: faker.lorem.sentence(),
     };
   }
   let chance2 = getRandomInt(0, 2);
   if (chance2 > 0) {
     afternoon = {
-      experienceRating: Math.ceil((getRandomInt(0, 51) * h[studentID]) / 10),
+      type: "feedback",
+      timeOfDay: "afternoon",
+      experienceRating: Math.ceil((getRandomInt(10, 51) * h[studentID]) / 10),
       comment: faker.lorem.sentence(),
     };
   }
-  return { morning, afternoon };
+  return [morning, afternoon];
 }
-const day = {
-  recapTask: { title: "basic javascript", score: "amber" },
-  workshops: [{ title: "objects and classes", score: "amber" }],
-  quiz: { title: "array methods", score: "5/12" },
-  didAttend: true,
-  feedback: {
-    morning: { experienceRating: 4, comment: "skkkkkkkkreesh" },
-    afternoon: { experienceRating: 4, comment: "skkkkraap" },
-  },
-};
 
 function genDay(day, g) {
   let attendance = genAttend();
@@ -509,7 +508,7 @@ function genDay(day, g) {
         },
         reflection: {
           type: "reflection",
-          contebt: faker.lorem.sentences(getRandomInt(2, 5)),
+          content: faker.lorem.sentences(getRandomInt(2, 5)),
         },
       }
     : {
@@ -520,10 +519,7 @@ function genDay(day, g) {
         recapTasks: null,
         workshops: null,
         quiz: null,
-        feedback: {
-          morning: null,
-          afternoon: null,
-        },
+        feedback: null,
         reflection: faker.lorem.sentences(getRandomInt(2, 5)),
       };
 }
@@ -605,5 +601,5 @@ function genUsers() {
   return users;
 }
 
-console.log(bootcamps[0].students[0].work[15]);
+console.log(bootcamps[0].students[0].work.slice(5, 7));
 module.exports = bootcamps;

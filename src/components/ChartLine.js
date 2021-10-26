@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import uuid from "react-uuid";
 import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
@@ -8,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import bootcamps from "../dummyData";
+import Dropdown from "./DropDown";
 
 export default function ChartLine() {
   const [bootcampID, setBootcampID] = useState(0);
@@ -159,7 +161,7 @@ export default function ChartLine() {
   }, [bootcampID]);
 
   return (
-    <Card>
+    <Card key={uuid()}>
       <CardHeader color="orange" contentPosition="left">
         <div className="flex">
           <div>
@@ -170,30 +172,19 @@ export default function ChartLine() {
             <h2 className="text-white text-2xl">Quiz Scores</h2>
           </div>
           <div className="pl-5">
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Bootcamp</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={bootcampID}
-                label="Bootcamp"
-                onChange={handleChange}
-              >
-                {bootcamps.map((bootcamp, index) => {
-                  return (
-                    <MenuItem value={index}>
-                      Bootcamp {bootcamp.id}: {bootcamp.region}{" "}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
+            <Dropdown
+              state={bootcampID}
+              setState={setBootcampID}
+              label="Bootcamp"
+              datas={bootcamps}
+              itemOptions={["id", "region"]}
+            />
           </div>
         </div>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">
-          <canvas id="line-chart"></canvas>
+          <canvas key={uuid()} id="line-chart"></canvas>
         </div>
       </CardBody>
     </Card>
