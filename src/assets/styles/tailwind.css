@@ -674,8 +674,8 @@ video {
 .w-64{
 	width: 16rem;
 }
-.w-32{
-	width: 8rem;
+.w-min{
+	width: min-content;
 }
 .w-10{
 	width: 2.5rem;
