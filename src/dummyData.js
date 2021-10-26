@@ -391,7 +391,7 @@ function genQuizScore(studentID) {
   let genQuizSize = () => getRandomInt(8, 16);
   let quizSize = genQuizSize();
   let quizResult = Math.ceil(
-    (quizSize * getRandomInt(c[studentID] * 100, c[studentID] * 100 + 10)) / 100
+    (quizSize * getRandomInt(c[studentID] * 110, c[studentID] * 100 + 10)) / 100
   );
   let percentage = Math.ceil((quizResult / quizSize) * 100);
   if (c[studentID] < 0.4) {
@@ -507,7 +507,10 @@ function genDay(day, g) {
         feedback: {
           ...genFeedback(day, g),
         },
-        reflection: faker.lorem.sentences(getRandomInt(2, 5)),
+        reflection: {
+          type: "reflection",
+          contebt: faker.lorem.sentences(getRandomInt(2, 5)),
+        },
       }
     : {
         date: genDate(day),
@@ -524,10 +527,10 @@ function genDay(day, g) {
         reflection: faker.lorem.sentences(getRandomInt(2, 5)),
       };
 }
-function genWeekRange(startWeek, endWeek, g) {
+function genWeekRange(startWeek, endWeek, studentID) {
   let wk = [];
   for (let i = 5 * startWeek - 4; i <= 5 * endWeek; i++) {
-    wk.push(genDay(i, g));
+    wk.push(genDay(i, studentID));
   }
   return wk;
 }

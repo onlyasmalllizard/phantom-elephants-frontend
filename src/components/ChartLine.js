@@ -79,6 +79,11 @@ export default function ChartLine() {
         // ],
       },
       options: {
+        elements: {
+          point: {
+            pointStyle: "line",
+          },
+        },
         maintainAspectRatio: false,
         responsive: true,
         title: {
