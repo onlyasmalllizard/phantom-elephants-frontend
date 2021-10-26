@@ -438,6 +438,7 @@ function genRecapTask(day, studentID) {
 function genWorkshopTasks(day, studentID) {
   let workshopsCompleted = [];
   let numCompleted = getRandomInt(0, 3);
+
   for (let i = 0; i < numCompleted; i++) {
     workshopsCompleted.push({
       type: "workshop",
@@ -487,7 +488,7 @@ function genFeedback(day, studentID) {
   return [morning, afternoon];
 }
 
-function genDay(day, g) {
+function genDay(day, studentID) {
   let attendance = genAttend();
   return attendance
     ? {
@@ -499,12 +500,12 @@ function genDay(day, g) {
           day === 1
             ? null
             : (day - 1) % 5 === 0
-            ? genRecapTask(Math.ceil(day / 5), g)
+            ? genRecapTask(Math.ceil(day / 5), studentID)
             : null,
-        workshops: genWorkshopTasks(day, g),
-        quiz: genQuiz(day, g),
+        workshops: genWorkshopTasks(day, studentID),
+        quiz: genQuiz(day, studentID),
         feedback: {
-          ...genFeedback(day, g),
+          ...genFeedback(day, studentID),
         },
         reflection: {
           type: "reflection",
@@ -601,5 +602,8 @@ function genUsers() {
   return users;
 }
 
-console.log(bootcamps[0].students[0].work.slice(5, 7));
-module.exports = bootcamps;
+// console.log(bootcamps[0].students[0].work.slice(5, 7));
+bootcamps[0].students.forEach((student) =>
+  student.work.forEach((work) => console.log(work.workshops))
+);
+export default bootcamps;
