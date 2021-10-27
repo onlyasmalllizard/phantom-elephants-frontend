@@ -1,21 +1,23 @@
-import { Switch, Route, Redirect } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
-import Tables from "./pages/Tables";
-import Maps from "./pages/Maps";
-import Footer from "./components/Footer";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import "semantic-ui-css/semantic.min.css";
-import SidebarTest from "components/SidebarTest";
+import { useState } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard';
+import Settings from './pages/Settings';
+import Tables from './pages/Tables';
+import Maps from './pages/Maps';
+import Footer from './components/Footer';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import 'semantic-ui-css/semantic.min.css';
+import SidebarTest from 'components/SidebarTest';
 // Tailwind CSS Style Sheet
-import "assets/styles/tailwind.css";
-import ProfileCard from "components/ProfileCard";
+import 'assets/styles/tailwind.css';
+import ProfileCard from 'components/ProfileCard';
+import { UserProvider } from './contexts/UserContext';
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <SidebarTest />
       <div className="md:ml-64">
         <Switch>
@@ -28,7 +30,7 @@ function App() {
         </Switch>
         <Footer />
       </div>
-    </>
+    </UserProvider>
   );
 }
 

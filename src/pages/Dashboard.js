@@ -1,17 +1,17 @@
-import StatusCard from "../components/StatusCard";
-import ChartLine from "../components/ChartLine";
-import ChartBar from "../components/ChartBar";
-import PageVisitsCard from "../components/PageVisitsCard";
-import TrafficCard from "../components/TrafficCard";
-import StudentDropdown from "../components/StudentDropdownList";
-import InputField from "components/InputField";
-import MessageNotification from "components/MessageBox";
-import CommentsBox from "components/Comments";
+import StatusCard from '../components/StatusCard';
+import ChartLine from '../components/ChartLine';
+import ChartBar from '../components/ChartBar';
+import PageVisitsCard from '../components/PageVisitsCard';
+import TrafficCard from '../components/TrafficCard';
+import StudentDropdown from '../components/StudentDropdownList';
+import InputField from 'components/InputField';
+import MessageNotification from 'components/MessageBox';
+import CommentsBox from 'components/Comments';
 
 export default function Dashboard() {
   return (
     <>
-      <div className={"bg-black px-3 md:px-8 h-40"} />
+      <div className={'bg-black px-3 md:px-8 h-40'} />
 
       <div className="px-3 md:px-10 -mt-24">
         <div className="container mx-auto max-w-full">
