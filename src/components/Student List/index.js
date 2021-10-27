@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function NameSelection({
   names = ["mohit", "lizard", "james", "juweyriya"],
+  setBootcamp,
 }) {
   return (
     <Dropdown
@@ -24,7 +25,12 @@ export default function NameSelection({
 
       {names.map((name) => {
         return (
-          <DropdownItem ripple="light" key={uuidv4()} color="lightBlue">
+          <DropdownItem
+            ripple="light"
+            key={uuidv4()}
+            color="lightBlue"
+            value={name}
+          >
             {name}
           </DropdownItem>
         );

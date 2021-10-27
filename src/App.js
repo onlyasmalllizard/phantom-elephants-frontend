@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
+import SettingsDashboard from "pages/Settings";
 import Tables from "./pages/Tables";
 import Maps from "./pages/StudentPage";
 import Footer from "./components/Footer";
@@ -18,6 +18,12 @@ import "assets/styles/tailwind.css";
 import { UserProvider } from "./contexts/UserContext";
 
 function App() {
+  const [defaultBootcamp, setBootcamp] = useState("");
+  useEffect(() => {
+    // Update the document title using the browser API
+    // place fetch request to API for bootcamp name
+  }, [defaultBootcamp]);
+
   return (
     <UserProvider>
       <SidebarTest />
@@ -34,8 +40,10 @@ function App() {
             <StudentPage student={student} />
           </Route>
 
-          <Route exact path="/settings" component={Settings} />
-          {/* <Route exact path="/profilecard" component={ProfileCard} /> */}
+          <Route exact path="/settings">
+            <SettingsDashboard setBootcamp={setBootcamp} />
+          </Route>
+
           <Redirect from="*" to="/" />
         </Switch>
         <Footer />

@@ -3,10 +3,10 @@ import SettingsForm from "../components/SettingsForm";
 // import ProfileCard from "../pages/ProfileCard";
 import StudentDropdown from "components/Student List";
 
-export default function Dashboard() {
+export default function SettingsDashboard({ setBootcamp }) {
   return (
     <>
-      <StudentDropdown />
+      <StudentDropdown setBootcamp={setBootcamp} />
     </>
   );
 }
