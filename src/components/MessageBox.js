@@ -17,6 +17,8 @@ export default function MessageNotification(props) {
       />
     );
   }
+
+  return <p></p>;
 }
 
 // import React, { Component } from "react";

@@ -76,10 +76,16 @@ import { Button, Comment, Form, Header } from "semantic-ui-react";
 // export default CommentExampleComment;
 
 export default function CommentsBox(props) {
-  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+  const [text, setText] = useState("");
   const submitCommentLine = (e) => {
-    e.preventDefault();
-    setComment();
+    // e.preventDefault();
+    setComments([...comments, text]);
+    setText("");
+  };
+
+  const handleChange = (e) => {
+    setText(e.target.value);
   };
   return (
     <Comment.Group>
@@ -93,14 +99,14 @@ export default function CommentsBox(props) {
           <Comment.Metadata>
             <div>{Date.now}</div>
           </Comment.Metadata>
-          <Comment.Text>{comment}</Comment.Text>
+          <Comment.Text>{comments[0]}</Comment.Text>
           <Comment.Actions>
             <Comment.Action>Reply</Comment.Action>
           </Comment.Actions>
         </Comment.Content>
       </Comment>
       <Form reply>
-        <Form.TextArea onChange={(event) => setComment(event.target.value)} />
+        <Form.TextArea onChange={handleChange} value={text} />
 
         <Button
           onClick={submitCommentLine}
