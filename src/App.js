@@ -20,7 +20,6 @@ import { UserProvider } from "./contexts/UserContext";
 function App() {
   const [defaultBootcamp, setBootcamp] = useState("");
   useEffect(() => {
-    // Update the document title using the browser API
     // place fetch request to API for bootcamp name
   }, [defaultBootcamp]);
 
