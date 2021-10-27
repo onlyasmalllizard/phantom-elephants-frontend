@@ -1,10 +1,12 @@
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from "react-router-dom";
+import Logo from "../Logo/index";
 
 export default function SidebarTest() {
   return (
     <ProSidebar>
+      <Logo />
       <Menu iconShape="square">
         <MenuItem>
           Dashboard
@@ -20,10 +22,10 @@ export default function SidebarTest() {
             Student Dashboard
             <Link to="/studentdashboard" />
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             Profile Card
             <Link to="/profilecard" />
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem>
             Settings
             <Link to="/settings" />

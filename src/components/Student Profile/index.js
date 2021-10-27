@@ -5,11 +5,13 @@ import LeadText from "@material-tailwind/react/LeadText";
 
 export default function StudentProfile(props) {
   return (
-    <Card>
-      <Image src={props.img} />
-      <CardBody>
-        <LeadText>{props.bio}</LeadText>
-      </CardBody>
-    </Card>
+    <>
+      <Card>
+        <Image src={props.img} />
+        <CardBody>
+          <LeadText>{props.bio}</LeadText>
+        </CardBody>
+      </Card>
+    </>
   );
 }

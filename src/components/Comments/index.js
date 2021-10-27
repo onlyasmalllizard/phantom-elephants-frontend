@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useUserContext } from '../contexts/UserContext';
-import { Button, Comment, Form, Header } from 'semantic-ui-react';
-import IndividualComment from './IndividualComment';
+import React, { useState } from "react";
+import { useUserContext } from "../../contexts/UserContext";
+import { Button, Comment, Form, Header } from "semantic-ui-react";
+import IndividualComment from "../Individual Comment/index";
 
-export default function CommentsBox(props) {
-  const [comments, setComments] = useState([]);
-  const [text, setText] = useState('');
+export default function CommentsBox({ existingcomments = [] }) {
+  const [comments, setComments] = useState(existingcomments);
+  const [text, setText] = useState("");
   const user = useUserContext();
 
   const submitCommentLine = () => {
@@ -16,7 +16,7 @@ export default function CommentsBox(props) {
       date: Date.now,
     };
     setComments([...comments, newComment]);
-    setText('');
+    setText("");
   };
 
   const handleChange = (e) => {
