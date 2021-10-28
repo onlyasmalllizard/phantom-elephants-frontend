@@ -5,7 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-function DropDown({ state, setState, label, datas, itemOptions }) {
+function DropDown({ state, setState, label, itemOptions, width }) {
   const handleChange = (event) => {
     console.log(label, ": ", event.target.value);
     setState(event.target.value);
@@ -21,7 +21,7 @@ function DropDown({ state, setState, label, datas, itemOptions }) {
           label={label}
           onChange={handleChange}
         >
-          {datas.map((data, index) => {
+          {itemOptions.map((data, index) => {
             return (
               <MenuItem key={uuid()} value={index}>
                 {itemOptions[index]}

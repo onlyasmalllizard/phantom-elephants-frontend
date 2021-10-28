@@ -168,7 +168,6 @@ export default function ChartLine() {
               state={bootcampID}
               setState={setBootcampID}
               label="Bootcamp"
-              datas={bootcamps}
               itemOptions={bootcamps.map((bootcamp) => {
                 return bootcamp.id + ": " + bootcamp.region;
               })}
