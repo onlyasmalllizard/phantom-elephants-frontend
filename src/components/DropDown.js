@@ -24,12 +24,12 @@ function DropDown({ state, setState, label, datas, itemOptions }) {
           {datas.map((data, index) => {
             return (
               <MenuItem key={uuid()} value={index}>
-                {label}{" "}
-                {itemOptions.map((option, index) =>
+                {itemOptions[index]}
+                {/* {itemOptions.map((option, index) =>
                   index === itemOptions.length - 1
                     ? data[option]
                     : data[option] + ": "
-                )}{" "}
+                )}{" "} */}
               </MenuItem>
             );
           })}

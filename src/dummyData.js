@@ -11,206 +11,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-// array of 12x5 subject list
-// array of 12 recap task titles
-// array of
-// an incremental multplier through each bootcamp
-
-const SoC_EXAMPLE1 = {
-  cohort1: [
-    {
-      info: {
-        id: 1,
-        name: "bootcamp1",
-        region: "West-Midlands",
-        startDate: "12-05-21",
-      },
-      students: [
-        {
-          info: {
-            name: "James Perrett",
-            username: "PerrettJ4",
-            avatar: "./../images/legend",
-          },
-          work: {
-            recapTasks: [
-              [
-                { title: "basic javascript", score: "amber" },
-                { title: "array methods", score: "green" },
-                { title: "basic javascript", score: "amber" },
-                { title: "array methods", score: "green" },
-                { title: "array methods", score: "green" },
-              ],
-              [
-                { title: "basic javascript", score: "amber" },
-                { title: "array methods", score: "green" },
-                { title: "basic javascript", score: "amber" },
-                { title: "array methods", score: "green" },
-                { title: "array methods", score: "green" },
-              ],
-            ],
-            workshops: [
-              [
-                { title: "objects and classes", score: "amber" },
-                { title: "objects", score: "green" },
-              ],
-            ],
-            quiz: [
-              { title: "array methods", score: "amber" },
-              { title: "logic", score: "green" },
-            ],
-          },
-        },
-      ],
-    },
-  ],
-  cohort2: {},
-};
-
-const SoC_EXAMPLE2 = {
-  cohort1: [
-    {
-      info: {
-        name: "bootcamp1",
-        region: "West-Midlands",
-        startDate: "12-05-21",
-      },
-      students: [
-        {
-          info: {
-            name: "James Perrett",
-            username: "PerrettJ4",
-          },
-          work: [
-            [
-              {
-                week: 1,
-                day: 1,
-                recapTasks: { title: "basic javascript", score: "amber" },
-                workshops: [{ title: "objects and classes", score: "amber" }],
-                quiz: { title: "array methods", score: "5/12" },
-                didAttend: true,
-                feedback: {
-                  morning: { experienceRating: 4, comment: "skkkkkkr" },
-                  afternoon: { experienceRating: 3, comment: "skkraaap" },
-                },
-              },
-              {
-                recapTasks: {},
-                workshops: [{}],
-                quiz: {},
-                didAttend: false,
-                feedback: {
-                  morning: { experienceRating: null, comment: null },
-                  afternoon: { experienceRating: null, comment: null },
-                },
-              },
-              {
-                recapTasks: {},
-                workshops: [{ title: "objects and classes", score: "amber" }],
-                quiz: { title: "array methods", score: "5/12" },
-                didAttend: true,
-                feedback: {
-                  morning: { experienceRating: 4, comment: "skkkkkkkkreesh" },
-                  afternoon: { experienceRating: 4, comment: "skkkkraap" },
-                },
-              },
-              {
-                recapTasks: {},
-                workshops: [{}],
-                quiz: {},
-                didAttend: false,
-                feedback: {
-                  morning: { experienceRating: null, comment: null },
-                  afternoon: { experienceRating: null, comment: null },
-                },
-              },
-              {
-                recapTasks: { title: "basic javascript", score: "amber" },
-                workshops: [{ title: "objects and classes", score: "amber" }],
-                quiz: { title: "array methods", score: "5/12" },
-                didAttend: true,
-                feedback: {
-                  morning: { experienceRating: 4, comment: "skkkkkkkkreesh" },
-                  afternoon: { experienceRating: 4, comment: "shheeesh" },
-                },
-              },
-            ],
-            [
-              {
-                recapTasks: { title: "basic javascript", score: "amber" },
-                workshops: { title: "objects and classes", score: "amber" },
-                quiz: { title: "array methods", score: "5/12" },
-                didAttend: true,
-                feedback: {
-                  morning: { experienceRating: 4, comment: "skkkkkkr" },
-                  afternoon: { experienceRating: 3, comment: "skkraaap" },
-                },
-              },
-              {
-                recapTasks: {},
-                workshops: {},
-                quiz: {},
-                didAttend: false,
-                feedback: {
-                  morning: { experienceRating: null, comment: null },
-                  afternoon: { experienceRating: null, comment: null },
-                },
-              },
-              {
-                recapTasks: { title: "basic javascript", score: "amber" },
-                workshops: { title: "objects and classes", score: "amber" },
-                quiz: { title: "array methods", score: "5/12" },
-                didAttend: true,
-                feedback: {
-                  morning: { experienceRating: 4, comment: "skkkkkkkkreesh" },
-                  afternoon: { experienceRating: 4, comment: "skkkkraap" },
-                },
-              },
-              {
-                recapTasks: {},
-                workshops: {},
-                quiz: {},
-                didAttend: false,
-                feedback: {
-                  morning: { experienceRating: null, comment: null },
-                  afternoon: { experienceRating: null, comment: null },
-                },
-              },
-              {
-                recapTasks: { title: "basic javascript", score: "amber" },
-                workshops: { title: "objects and classes", score: "amber" },
-                quiz: { title: "array methods", score: "5/12" },
-                didAttend: true,
-                feedback: {
-                  morning: { experienceRating: 4, comment: "skkkkkkkkreesh" },
-                  afternoon: { experienceRating: 4, comment: "skkkkraap" },
-                },
-              },
-            ],
-          ],
-        },
-      ],
-    },
-  ],
-  cohort2: {},
-};
-function genTaskArrays(weeks) {
-  let dummyRecapTasks = [];
-  let dummyWorkshops = [];
-  let quizes = [];
-  for (let i = 0; i < weeks; i++) {
-    dummyRecapTasks.push(`Recap Task ${i + 1}`);
-  }
-  for (let i = 0; i < weeks * 5; i++) {
-    dummyWorkshops.push(`Workshop ${i + 1}`);
-  }
-  for (let i = 0; i < weeks * 5; i++) {
-    quizes.push(`Quiz ${i + 1}`);
-  }
-  return dummyRecapTasks, dummyWorkshops, quizes;
-}
-
 const recapTask = [
   "Introduction to JS and computational thinking",
   "Advanced JS",
@@ -364,7 +164,7 @@ const quizes = [
   "Quiz 60",
 ];
 
-const BOOTCAMP_SIZE = 5;
+const BOOTCAMP_SIZE = 7;
 const NUM_OF_BOOTCAMPS = 4;
 // Generating a gaussian distrobution of students starting weights
 function randn_bm() {
@@ -559,7 +359,7 @@ function genBootcamps(numOfBootcamps, bootcampSize, startWeek, endWeek) {
     if (students.length % bootcampSize === 0) {
       bootcampsList.push({
         id: ++bootcampID,
-        name: `Bootcamp${bootcampID}`,
+        name: `Bootcamp ${bootcampID}`,
         region: bootcampRegions[bootcampID - 1],
         startDate: genDate(1),
         students: students,
@@ -603,7 +403,7 @@ function genUsers() {
 }
 
 // console.log(bootcamps[0].students[0].work.slice(5, 7));
-bootcamps[0].students.forEach((student) =>
-  student.work.forEach((work) => console.log(work.workshops))
-);
+// bootcamps[0].students.forEach((student) =>
+//   student.work.forEach((work) => console.log(work.workshops))
+// );
 export default bootcamps;
