@@ -611,6 +611,9 @@ video {
 .mb-0{
 	margin-bottom: 0px;
 }
+.mr-10{
+	margin-right: 2.5rem;
+}
 .mb-14{
 	margin-bottom: 3.5rem;
 }
@@ -646,6 +649,9 @@ video {
 }
 .h-screen{
 	height: 100vh;
+}
+.h-20{
+	height: 5rem;
 }
 .h-10{
 	height: 2.5rem;
@@ -907,6 +913,9 @@ video {
 }
 .uppercase{
 	text-transform: uppercase;
+}
+.lowercase{
+	text-transform: lowercase;
 }
 .tracking-wider{
 	letter-spacing: 0.05em;

@@ -4,6 +4,7 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Image from "@material-tailwind/react/Image";
+import NavbarInput from "@material-tailwind/react/NavbarInput";
 import DropDown from "./DropDown";
 import reducer, { FILTER_BY_ID } from "../reducer.js";
 import { filterOptions, filtationMethod, dataSet } from "../lib/tableData";
@@ -19,6 +20,8 @@ export default function CardTable() {
   // heading state, isASC state
   const [heading, setHeading] = useState("name");
   const [isASC, setIsASC] = useState(true);
+  // searchInput value state
+  const [search, setSearch] = useState("");
 
   // {
   //   id: student.info.id,
@@ -63,27 +66,43 @@ export default function CardTable() {
     { display: "Mood Avg /5", id: "avgMood" },
   ];
   const viewOptions = [
+    "All Students",
     ...bootcamps.map((bootcamp) => "Bootcamp " + bootcamp.id),
     ...bootcamps.map((bootcamp) => bootcamp.region),
   ];
-  const ViewOptions2 = [{ display: "All", id: "all" }];
-  // map the select index, to the object key (id), to the display name
 
   function toggleSort(e) {
     setHeading(e);
     setIsASC(!isASC);
   }
+  function handleChange(e) {
+    console.log(e.target.value);
+    setSearch(e.target.value);
+  }
   return (
     <Card>
-      <CardHeader color="purple" contentPosition="left">
+      <CardHeader color="purple" contentPosition="">
         <div className="flex ">
-          <h2 className="text-white text-2xl">Cohort Table</h2>
-          <div className="pl-5">
-            <DropDown
-              state={filter}
-              setState={setFilter}
-              label="Filter By"
-              itemOptions={viewOptions}
+          <div className="mr-10">
+            <h2 className="text-white text-2xl">Cohort Table</h2>
+          </div>
+          <DropDown
+            className=""
+            state={filter}
+            setState={setFilter}
+            label="Filter By"
+            itemOptions={viewOptions}
+          />
+          <div className="-mr-4 ml-6 h-20 p-23">
+            <NavbarInput
+              onChange={handleChange}
+              placeholder="Search"
+              style={{
+                height: "20px",
+                padding: "24px",
+                justifyContent: "center",
+                paddingLeft: "0px",
+              }}
             />
           </div>
         </div>
@@ -111,9 +130,10 @@ export default function CardTable() {
 
             <tbody>
               {dataSet
-                .filter(
-                  (data) =>
-                    data[filterOptions[filter]] === filtationMethod[filter]
+                .filter((data) =>
+                  search.length > 0
+                    ? data.name.toUpperCase().includes(search.toUpperCase())
+                    : data[filterOptions[filter]] === filtationMethod[filter]
                 )
                 .sort(sortFunc(heading, isASC))
                 .map((student) => {

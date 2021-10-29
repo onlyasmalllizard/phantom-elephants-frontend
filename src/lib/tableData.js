@@ -2,16 +2,18 @@ import bootcamps from "../dummyData";
 import { listRecapTasks, tallyScores } from "../functions";
 
 export const filterOptions = {
-  0: "bootcampID",
+  0: "all",
   1: "bootcampID",
   2: "bootcampID",
   3: "bootcampID",
-  4: "bootcampRegion",
+  4: "bootcampID",
   5: "bootcampRegion",
   6: "bootcampRegion",
   7: "bootcampRegion",
+  8: "bootcampRegion",
 };
 export const filtationMethod = [
+  "all",
   1,
   2,
   3,
