@@ -4,19 +4,11 @@ import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import bootcamps from "../dummyData";
 import Dropdown from "./DropDown";
+import bootcamps from "../dummyData";
 
 export default function ChartLine() {
   const [bootcampID, setBootcampID] = useState(0);
-  const handleChange = (event) => {
-    console.log("Bootcamp ID: ", event.target.value);
-    setBootcampID(event.target.value);
-  };
   const days = bootcamps[bootcampID].students[0].work.map((work) => work.day);
   const colors = [
     "#e6194b",
@@ -176,8 +168,9 @@ export default function ChartLine() {
               state={bootcampID}
               setState={setBootcampID}
               label="Bootcamp"
-              datas={bootcamps}
-              itemOptions={["id", "region"]}
+              itemOptions={bootcamps.map((bootcamp) => {
+                return bootcamp.id + ": " + bootcamp.region;
+              })}
             />
           </div>
         </div>
