@@ -381,9 +381,9 @@ function gaussArray(n) {
   return n.map((el) => (el = randn_bm()));
 }
 // engagement, happiness and craft
-const e = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
-const h = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
-const c = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
+const engagement = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
+const happiness = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
+const craft = gaussArray(Array(BOOTCAMP_SIZE * NUM_OF_BOOTCAMPS).fill(0));
 
 let startingPercentage = 0;
 // GENERATING SCORES FOR WORK TASKS
@@ -391,25 +391,27 @@ function genQuizScore(studentID) {
   let genQuizSize = () => getRandomInt(8, 16);
   let quizSize = genQuizSize();
   let quizResult = Math.ceil(
-    (quizSize * getRandomInt(c[studentID] * 110, c[studentID] * 100 + 10)) / 100
+    (quizSize *
+      getRandomInt(craft[studentID] * 110, craft[studentID] * 100 + 10)) /
+      100
   );
   let percentage = Math.ceil((quizResult / quizSize) * 100);
-  if (c[studentID] < 0.4) {
+  if (craft[studentID] < 0.4) {
     percentage > startingPercentage
-      ? (c[studentID] += 0.05)
-      : (c[studentID] -= 0.005);
-  } else if (c[studentID] < 0.6) {
+      ? (craft[studentID] += 0.05)
+      : (craft[studentID] -= 0.005);
+  } else if (craft[studentID] < 0.6) {
     percentage > startingPercentage
-      ? (c[studentID] += 0.03)
-      : (c[studentID] -= 0.01);
-  } else if (c[studentID] < 0.8) {
+      ? (craft[studentID] += 0.03)
+      : (craft[studentID] -= 0.01);
+  } else if (craft[studentID] < 0.8) {
     percentage > startingPercentage
-      ? (c[studentID] += 0.02)
-      : (c[studentID] -= 0.015);
+      ? (craft[studentID] += 0.02)
+      : (craft[studentID] -= 0.015);
   } else {
     percentage > startingPercentage
-      ? (c[studentID] += 0.01)
-      : (c[studentID] -= 0.005);
+      ? (craft[studentID] += 0.01)
+      : (craft[studentID] -= 0.005);
   }
 
   // console.log(studentID, "=>", startingPercentage, percentage, c[studentID]);
@@ -421,7 +423,7 @@ function genQuizScore(studentID) {
 }
 const workColors = ["red", "amber", "green"];
 const genColorScore = (studentID) => {
-  let colorNum = Math.floor((getRandomInt(100, 380) * c[studentID]) / 100);
+  let colorNum = Math.floor((getRandomInt(100, 380) * craft[studentID]) / 100);
   if (colorNum >= 3) {
     colorNum = 2;
   }
@@ -468,19 +470,25 @@ function genFeedback(day, studentID) {
   let afternoon = {};
   let chance1 = getRandomInt(0, 2);
   if (chance1 > 0) {
+    let experienceRating = Math.ceil(
+      (getRandomInt(30, 50) * happiness[studentID]) / 10
+    );
     morning = {
       type: "feedback",
       timeOfDay: "morning",
-      experienceRating: Math.ceil((getRandomInt(10, 51) * h[studentID]) / 10),
+      experienceRating: experienceRating < 6 ? experienceRating : 5,
       comment: faker.lorem.sentence(),
     };
   }
   let chance2 = getRandomInt(0, 2);
   if (chance2 > 0) {
+    let experienceRating = Math.ceil(
+      (getRandomInt(30, 50) * happiness[studentID]) / 10
+    );
     afternoon = {
       type: "feedback",
       timeOfDay: "afternoon",
-      experienceRating: Math.ceil((getRandomInt(10, 51) * h[studentID]) / 10),
+      experienceRating: experienceRating < 6 ? experienceRating : 5,
       comment: faker.lorem.sentence(),
     };
   }
@@ -602,4 +610,5 @@ function genUsers() {
 }
 
 console.log(bootcamps[0].students[0].work.slice(5, 7));
+console.log(happiness);
 module.exports = bootcamps;

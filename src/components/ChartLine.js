@@ -10,7 +10,11 @@ import { lineDataset } from "lib/lineData";
 
 export default function ChartLine() {
   const [bootcampID, setBootcampID] = useState(1);
-  const bootcampFilter = [{ display: "All Bootcamps", id: 0 }];
+  const [chartID, setChartID] = useState("0");
+  const chartFilters = [
+    { display: "Quiz Scores", id: 0, ref: "quizScores" },
+    { display: "Experience Feedback", id: 1, ref: "feedbackEx" },
+  ];
   const days = bootcamps[bootcampID].students[0].work.map((work) => work.day);
   const colors = [
     "#e6194b",
@@ -52,7 +56,7 @@ export default function ChartLine() {
               label: student.name,
               backgroundColor: colors[index],
               borderColor: colors[index],
-              data: student.quizScores,
+              data: student[chartFilters[chartID].ref],
               fill: false,
               spanGaps: true,
             };
@@ -136,7 +140,7 @@ export default function ChartLine() {
     };
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
-  }, [bootcampID]);
+  }, [bootcampID, chartID]);
 
   return (
     <Card key={uuid()}>
@@ -149,7 +153,13 @@ export default function ChartLine() {
             </h6>
             <h2 className="text-white text-2xl">Quiz Scores</h2>
           </div>
-          <div className="pl-5">
+          <div className="pl-5 flex">
+            <Dropdown
+              state={chartID}
+              setState={setChartID}
+              label="Chart Select"
+              itemOptions={chartFilters.map((option) => option.display)}
+            />
             <Dropdown
               state={bootcampID}
               setState={setBootcampID}

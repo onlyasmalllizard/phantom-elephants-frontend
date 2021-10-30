@@ -1,4 +1,5 @@
 import bootcamps from "./../dummyData";
+console.log("all dummyData:", bootcamps);
 export const lineDataset = bootcamps
   .map((bootcamp) =>
     bootcamp.students.map((student) => {
@@ -9,21 +10,17 @@ export const lineDataset = bootcamps
           : student.work.map((work) =>
               work.quiz === null ? null : work.quiz.percentage
             );
-      const moodRatings = notNullWork.map((day) => {
-        let dayFeedback = [
-          day.feedback[0].experienceRating
-            ? day.feedback[0].experienceRating
-            : 0,
-          day.feedback[1].experienceRating
-            ? day.feedback[1].experienceRating
-            : 0,
-        ];
-        return dayFeedback[0]
-          ? dayFeedback[0] +
-              dayFeedback[1] /
-                dayFeedback.filter((rating) => rating !== 0).length
-          : null;
-      });
+      const morningEx = student.work.map((day) =>
+        day.feedback ? day.feedback[0].experienceRating : 0
+      );
+      const afteroonEx = student.work.map((day) =>
+        day.feedback ? day.feedback[1].experienceRating : 0
+      );
+      const feedbackEx = morningEx.map((ex, index) =>
+        morningEx[index] && afteroonEx[index]
+          ? (morningEx[index] + afteroonEx[index]) / 2
+          : morningEx[index] + afteroonEx[index]
+      );
       // day.feedback[0] && day.feedback[1]
       // ? (+day.feedback[0] + +day.feedback[1]) / 2
 
@@ -33,7 +30,7 @@ export const lineDataset = bootcamps
         bootcampID: bootcamp.id,
         bootcampRegion: bootcamp.region,
         quizScores,
-        moodRatings,
+        feedbackEx,
       };
     })
   )
