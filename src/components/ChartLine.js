@@ -6,9 +6,11 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Dropdown from "./DropDown";
 import bootcamps from "../dummyData";
+import { lineDataset } from "lib/lineData";
 
 export default function ChartLine() {
-  const [bootcampID, setBootcampID] = useState(0);
+  const [bootcampID, setBootcampID] = useState(1);
+  const bootcampFilter = [{ display: "All Bootcamps", id: 0 }];
   const days = bootcamps[bootcampID].students[0].work.map((work) => work.day);
   const colors = [
     "#e6194b",
@@ -35,42 +37,26 @@ export default function ChartLine() {
     "#000000",
   ];
 
+  console.log(lineDataset);
   useEffect(() => {
     var config = {
       type: "line",
       data: {
         labels: days,
-        datasets: bootcamps[bootcampID].students.map((student, index) => {
-          return {
-            label: student.info.name,
-            backgroundColor: colors[index],
-            borderColor: colors[index],
-            data:
-              student.work.quiz === null
-                ? null
-                : student.work.map((work) =>
-                    work.quiz === null ? null : work.quiz.percentage
-                  ),
-            fill: false,
-            spanGaps: true,
-          };
-        }),
-        // datasets: [
-        //   {
-        //     label: new Date().getFullYear(),
-        //     backgroundColor: "#03a9f4",
-        //     borderColor: "#03a9f4",
-        //     data: quizScores1,
-        //     fill: false,
-        //   },
-        //   {
-        //     label: new Date().getFullYear() - 1,
-        //     fill: false,
-        //     backgroundColor: "#ff9800",
-        //     borderColor: "#ff9800",
-        //     data: quizScores2,
-        //   },
-        // ],
+        datasets: lineDataset
+          .filter(
+            (bootcamp) => bootcamp.bootcampID === bootcampID || bootcampID === 0
+          )
+          .map((student, index) => {
+            return {
+              label: student.name,
+              backgroundColor: colors[index],
+              borderColor: colors[index],
+              data: student.quizScores,
+              fill: false,
+              spanGaps: true,
+            };
+          }),
       },
       options: {
         elements: {
@@ -168,9 +154,12 @@ export default function ChartLine() {
               state={bootcampID}
               setState={setBootcampID}
               label="Bootcamp"
-              itemOptions={bootcamps.map((bootcamp) => {
-                return bootcamp.id + ": " + bootcamp.region;
-              })}
+              itemOptions={[
+                "All Bootcamps",
+                ...bootcamps.map((bootcamp) => {
+                  return bootcamp.id + ": " + bootcamp.region;
+                }),
+              ]}
             />
           </div>
         </div>
