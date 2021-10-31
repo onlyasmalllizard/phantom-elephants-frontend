@@ -11,11 +11,25 @@ import { lineDataset } from "lib/lineData";
 export default function ChartLine() {
   const [bootcampID, setBootcampID] = useState(1);
   const [chartID, setChartID] = useState("0");
+
   const chartFilters = [
-    { display: "Quiz Scores", id: 0, ref: "quizScores" },
-    { display: "Experience Feedback", id: 1, ref: "feedbackEx" },
+    // used for the first dropdown filter
+    {
+      id: 0,
+      display: "Quiz Scores",
+      ref: "quizScores",
+      spanGaps: true,
+      beginAtZero: false,
+    },
+    {
+      id: 1,
+      display: "Experience Feedback",
+      ref: "feedbackExDayAvg",
+      spanGaps: true,
+      beginAtZero: true,
+    },
   ];
-  const days = bootcamps[bootcampID].students[0].work.map((work) => work.day);
+
   const colors = [
     "#e6194b",
     "#3cb44b",
@@ -46,7 +60,7 @@ export default function ChartLine() {
     var config = {
       type: "line",
       data: {
-        labels: days,
+        labels: lineDataset[0].quizScores.map((score, index) => index + 1),
         datasets: lineDataset
           .filter(
             (bootcamp) => bootcamp.bootcampID === bootcampID || bootcampID === 0
@@ -58,7 +72,7 @@ export default function ChartLine() {
               borderColor: colors[index],
               data: student[chartFilters[chartID].ref],
               fill: false,
-              spanGaps: true,
+              spanGaps: chartFilters[chartID].spanGaps,
             };
           }),
       },
@@ -117,6 +131,7 @@ export default function ChartLine() {
             {
               ticks: {
                 fontColor: "rgba(17,17,17,.7)",
+                beginAtZero: chartFilters[chartID].beginAtZero,
               },
               display: true,
               scaleLabel: {
@@ -151,7 +166,9 @@ export default function ChartLine() {
             <h6 className="uppercase text-gray-200 text-xs font-medium">
               Overview
             </h6>
-            <h2 className="text-white text-2xl">Quiz Scores</h2>
+            <h2 className="text-white text-2xl">
+              {chartFilters[chartID].display}
+            </h2>
           </div>
           <div className="pl-5 flex">
             <Dropdown

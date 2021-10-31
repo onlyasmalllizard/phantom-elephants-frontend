@@ -364,7 +364,7 @@ const quizes = [
   "Quiz 60",
 ];
 
-const BOOTCAMP_SIZE = 5;
+const BOOTCAMP_SIZE = 2;
 const NUM_OF_BOOTCAMPS = 4;
 // Generating a gaussian distrobution of students starting weights
 function randn_bm() {
@@ -465,34 +465,52 @@ function genAttend() {
     return true;
   }
 }
+
+let startingFeedbackEx = 2.5;
 function genFeedback(day, studentID) {
   let morning = {};
   let afternoon = {};
   let chance1 = getRandomInt(0, 2);
+  let genExperienceRating = () =>
+    Math.ceil((getRandomInt(65, 80) * happiness[studentID]) / 10);
   if (chance1 > 0) {
-    let experienceRating = Math.ceil(
-      (getRandomInt(30, 50) * happiness[studentID]) / 10
-    );
+    let experienceRating = genExperienceRating();
     morning = {
       type: "feedback",
       timeOfDay: "morning",
-      experienceRating: experienceRating < 6 ? experienceRating : 5,
+      experienceRating:
+        experienceRating > 5 ? 5 : experienceRating < 1 ? 1 : experienceRating,
       comment: faker.lorem.sentence(),
     };
   }
   let chance2 = getRandomInt(0, 2);
   if (chance2 > 0) {
-    let experienceRating = Math.ceil(
-      (getRandomInt(30, 50) * happiness[studentID]) / 10
-    );
+    let experienceRating = genExperienceRating();
     afternoon = {
       type: "feedback",
       timeOfDay: "afternoon",
-      experienceRating: experienceRating < 6 ? experienceRating : 5,
+      experienceRating:
+        experienceRating > 5 ? 5 : experienceRating < 1 ? 1 : experienceRating,
       comment: faker.lorem.sentence(),
     };
   }
-  return [morning, afternoon];
+  // return feedback if exists
+  if (chance1 > 0 || chance2 > 0) {
+    // modify weights
+    let divisor = chance1 + chance2;
+    let feedbackEx =
+      (morning.experienceRating + afternoon.experienceRating) / divisor;
+    if (happiness[studentID]) {
+      feedbackEx > startingFeedbackEx
+        ? (happiness[studentID] += 0.05)
+        : feedbackEx < startingFeedbackEx
+        ? (happiness[studentID] -= 0.05)
+        : (happiness[studentID] += getRandomInt(-10, 10) / 100);
+    }
+    startingFeedbackEx = feedbackEx;
+    return [morning, afternoon];
+  }
+  return null;
 }
 
 function genDay(day, g) {
@@ -511,9 +529,7 @@ function genDay(day, g) {
             : null,
         workshops: genWorkshopTasks(day, g),
         quiz: genQuiz(day, g),
-        feedback: {
-          ...genFeedback(day, g),
-        },
+        feedback: genFeedback(day, g),
         reflection: {
           type: "reflection",
           content: faker.lorem.sentences(getRandomInt(2, 5)),

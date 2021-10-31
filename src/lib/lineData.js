@@ -10,19 +10,21 @@ export const lineDataset = bootcamps
           : student.work.map((work) =>
               work.quiz === null ? null : work.quiz.percentage
             );
-      const morningEx = student.work.map((day) =>
-        day.feedback ? day.feedback[0].experienceRating : 0
+      // FEEDBACK EXPERIENCE SCORES
+      const feedbackEx = student.work.map((day) =>
+        day.feedback
+          ? [day.feedback[0].experienceRating, day.feedback[1].experienceRating]
+          : [null, null]
       );
-      const afteroonEx = student.work.map((day) =>
-        day.feedback ? day.feedback[1].experienceRating : 0
+      const feedbackExDayAvg = feedbackEx.map((day) =>
+        day[0] && day[1] ? (day[0] + day[1]) / 2 : day[0] || day[1]
       );
-      const feedbackEx = morningEx.map((ex, index) =>
-        morningEx[index] && afteroonEx[index]
-          ? (morningEx[index] + afteroonEx[index]) / 2
-          : morningEx[index] + afteroonEx[index]
+      //   FEEDBACK COMMENTS
+      const feedbackComments = student.work.map((day) =>
+        day.feedback
+          ? [day.feedback[0].comment, day.feedback[1].comment]
+          : [null, null]
       );
-      // day.feedback[0] && day.feedback[1]
-      // ? (+day.feedback[0] + +day.feedback[1]) / 2
 
       return {
         id: student.info.id,
@@ -30,7 +32,9 @@ export const lineDataset = bootcamps
         bootcampID: bootcamp.id,
         bootcampRegion: bootcamp.region,
         quizScores,
+        feedbackExDayAvg,
         feedbackEx,
+        feedbackComments,
       };
     })
   )
