@@ -23,22 +23,29 @@ export const filtationMethod = [
 export const dataSet = bootcamps
   .map((bootcamp) =>
     bootcamp.students.map((student) => {
-      /* creates an recapTask array without nulls, then counts the occurences, output => Object */
+      /* creates an recapTask array ['green', 'amber', 'red', null] & then counts the occurences, output => Object */
       const recapTasks = student.work
         .reduce(listRecapTasks, [])
         .reduce(tallyScores, {});
 
-      /* reduce to only workshop scores ['green', 'amber', 'red'] then reduce into an object of occurences {green : 5, amber: 4, red:2} */
+      /* reduce to only workshop scores ['green', 'amber', 'red', null] & then reduce into an object of occurences {green : 5, amber: 4, red:2} */
       const workshopTasks = student.work
         .reduce(
           (acc, cur) =>
             cur.workshops
               ? [...acc, ...cur.workshops.map((workshop) => workshop.score)]
-              : acc,
+              : [...acc, null],
           []
         )
         .reduce(tallyScores, {});
-
+      /* Workshop average & Recap Task score calculator (null: 0, red :0.33, amber:0.66, green:1*/
+      const RAG_TasksAvgScore = (tasksResultObj) =>
+        tasksResultObj.green * 0.99 +
+        tasksResultObj.amber * 0.67 +
+        tasksResultObj.red * 0.33 +
+        tasksResultObj.null * -0.01;
+      const workshopOverallAvgScore = RAG_TasksAvgScore(workshopTasks);
+      const recapOverallAvgScore = RAG_TasksAvgScore(recapTasks);
       /* filtering out null quiz scores, then calculating average */
       const notNullQuizScores = student.work.filter(
         (work) => work.quiz !== null
@@ -75,7 +82,9 @@ export const dataSet = bootcamps
         bootcampRegion: bootcamp.region,
         trendRating: "placeholder",
         recapTasks: recapTasks,
+        recapOverallAvgScore,
         workshopTasks: workshopTasks,
+        workshopOverallAvgScore,
         avgQuiz: avgQuiz,
         avgMood: avgMood,
       };

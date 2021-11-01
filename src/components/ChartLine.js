@@ -101,7 +101,7 @@ export default function ChartLine() {
           intersect: false,
         },
         hover: {
-          mode: "nearest",
+          mode: "index",
           intersect: true,
         },
         scales: {

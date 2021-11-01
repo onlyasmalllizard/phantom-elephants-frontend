@@ -61,7 +61,7 @@ export default function CardTable() {
     { display: "Bootcamp", id: "bootcampID" },
     { display: "Trend", id: "-" },
     { display: "Recap Tasks", id: "recapTasks" },
-    { display: "Workshops", id: "workshopTasks" },
+    { display: "Workshops", id: "workshopOverallAvgScore" },
     { display: "Quiz Avg %", id: "avgQuiz" },
     { display: "Mood Avg /5", id: "avgMood" },
   ];
@@ -76,7 +76,6 @@ export default function CardTable() {
     setIsASC(!isASC);
   }
   function handleChange(e) {
-    console.log(e.target.value);
     setSearch(e.target.value);
   }
   return (
