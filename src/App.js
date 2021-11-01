@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import AdminNavbar from './components/AdminNavbar';
 import ProfileCard from 'pages/ProfileCard';
 import StudentPage from './pages/StudentPage';
+import { lineDataset } from './lib/lineData';
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
 
@@ -28,15 +29,16 @@ function App() {
       <Sidebar />
       <div className="md:ml-64">
         <Switch>
-          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/">
+            <Dashboard data={lineDataset} />
+          </Route>
 
           <Route exact path="/tables">
-            {' '}
             <Tables />
           </Route>
 
           <Route exact path="/student">
-            <StudentPage student={student} />
+            <StudentPage student={student} data={lineDataset} />
           </Route>
 
           <Route exact path="/settings">
@@ -53,6 +55,7 @@ function App() {
 
 const student = {
   info: {
+    id: 1,
     avatar:
       'https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg',
     name: 'Mohit',
@@ -64,6 +67,34 @@ const student = {
           'https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg',
         date: Date.now,
       },
+    ],
+  },
+  work: {
+    recapTasks: [
+      [
+        { type: 'recap', title: 'basic javascript', score: 'amber' },
+        { type: 'recap', title: 'array methods', score: 'green' },
+        { type: 'recap', title: 'basic javascript', score: 'amber' },
+        { type: 'recap', title: 'array methods', score: 'green' },
+        { type: 'recap', title: 'array methods', score: 'green' },
+      ],
+      [
+        { type: 'recap', title: 'basic javascript', score: 'amber' },
+        { type: 'recap', title: 'array methods', score: 'green' },
+        { type: 'recap', title: 'basic javascript', score: 'amber' },
+        { type: 'recap', title: 'array methods', score: 'green' },
+        { type: 'recap', title: 'array methods', score: 'green' },
+      ],
+    ],
+    workshops: [
+      [
+        { type: 'workshop', title: 'objects and classes', score: 'amber' },
+        { type: 'workshop', title: 'objects', score: 'green' },
+      ],
+    ],
+    quiz: [
+      { type: 'quiz', title: 'array methods', score: 'amber' },
+      { type: 'quiz', title: 'logic', score: 'green' },
     ],
   },
 };

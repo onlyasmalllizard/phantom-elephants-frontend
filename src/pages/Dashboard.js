@@ -8,7 +8,7 @@ import InputField from '../components/InputField/index';
 import MessageNotification from '../components/MessageNotification/index';
 import Comments from '../components/Comments/index';
 
-export default function Dashboard() {
+export default function Dashboard({ data }) {
   return (
     <>
       <div className={'bg-black px-3 md:px-8 h-40'} />
@@ -17,7 +17,7 @@ export default function Dashboard() {
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 xl:grid-cols-100">
             <div className="xl:col-start-1 xl:col-end-6 px-4 mb-14">
-              <ChartLine />
+              <ChartLine data={data} isGroup={true} id={0} />
             </div>
           </div>
         </div>
@@ -29,7 +29,6 @@ export default function Dashboard() {
             <StudentDropdown />
             <InputField />
             <MessageNotification content="hi" />
-            <Comments url="https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg" />
           </div>
         </div>
       </div>

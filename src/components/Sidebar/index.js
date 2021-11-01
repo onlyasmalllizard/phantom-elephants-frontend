@@ -85,10 +85,10 @@ import { NavLink } from 'react-router-dom';
 
 // export default SidebarExampleSidebar;
 
-import AdminNavbar from './AdminNavbar';
+import AdminNavbar from '../AdminNavbar/index';
 import Icon from '@material-tailwind/react/Icon';
 import H6 from '@material-tailwind/react/Heading6';
-import Logo from '../components/Logo/index';
+import Logo from '../Logo';
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState('-left-64');
