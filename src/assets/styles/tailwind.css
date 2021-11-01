@@ -518,6 +518,9 @@ video {
 		max-width: 1536px;
 	}
 }
+.visible{
+	visibility: visible;
+}
 .fixed{
 	position: fixed;
 }
@@ -805,6 +808,10 @@ video {
 .bg-red-500{
 	--tw-bg-opacity: 1;
 	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+.bg-black{
+	--tw-bg-opacity: 1;
+	background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
 }
 .bg-gradient-to-tr{
 	background-image: linear-gradient(to top right, var(--tw-gradient-stops));
@@ -2521,6 +2528,10 @@ video {
 	.md\:px-8{
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+	.md\:px-10{
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
 	}
 	.md\:pr-8{
 		padding-right: 2rem;
