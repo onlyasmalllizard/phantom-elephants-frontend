@@ -28,7 +28,6 @@ export default function Dashboard({ data }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
             <MessageNotification content="hi" />
             <StudentDropdown />
-            <InputField />
           </div>
         </div>
       </div>
