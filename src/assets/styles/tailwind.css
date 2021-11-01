@@ -608,9 +608,6 @@ video {
 .mb-16{
 	margin-bottom: 4rem;
 }
-.mt-14{
-	margin-top: 3.5rem;
-}
 .mt-0{
 	margin-top: 0px;
 }
@@ -2539,22 +2536,10 @@ video {
 	.xl\:col-start-1{
 		grid-column-start: 1;
 	}
-	.xl\:col-start-5{
-		grid-column-start: 5;
-	}
 	.xl\:col-end-6{
 		grid-column-end: 6;
 	}
-	.xl\:col-end-5{
-		grid-column-end: 5;
-	}
-	.xl\:col-end-7{
-		grid-column-end: 7;
-	}
 	.xl\:grid-cols-4{
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-	}
-	.xl\:grid-cols-6{
-		grid-template-columns: repeat(6, minmax(0, 1fr));
 	}
 }
