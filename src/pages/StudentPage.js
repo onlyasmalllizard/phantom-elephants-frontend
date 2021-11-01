@@ -1,7 +1,7 @@
-import StatusCard from "../components/StatusCard";
-import StudentProfile from "../components/Student Profile/index";
-import CommentsBox from "components/Comments";
-import { useState } from "react";
+import StatusCard from '../components/StatusCard';
+import StudentProfile from '../components/StudentProfile/index';
+import CommentsBox from 'components/Comments';
+import { useState } from 'react';
 
 export default function StudentPage({ student }) {
   return (
