@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "semantic-ui-css/semantic.min.css";
+import AdminNavbar from "./components/AdminNavbar";
 import SidebarTest from "./components/SideBar/index";
 import ProfileCard from "pages/ProfileCard";
 import StudentPage from "./pages/StudentPage";
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <UserProvider>
-      <SidebarTest />
+      <Sidebar />
       <div className="md:ml-64">
         <Switch>
           <Route exact path="/" component={Dashboard} />

@@ -1,5 +1,5 @@
-import StatusCard from '../components/StatusCard';
-import TableCard from '../components/TableCard';
+import StatusCard from "../components/StatusCard";
+import TableCard from "../components/TableCard";
 
 export default function Dashboard() {
   return (
@@ -10,7 +10,7 @@ export default function Dashboard() {
             <StatusCard
               color="pink"
               icon="trending_up"
-              title="Traffic"
+              title="Workshop & Recap Performance"
               amount="350,897"
               percentage="3.48"
               percentageIcon="arrow_upward"
@@ -20,7 +20,7 @@ export default function Dashboard() {
             <StatusCard
               color="orange"
               icon="groups"
-              title="New Users"
+              title="Work Completion"
               amount="2,356"
               percentage="3.48"
               percentageIcon="arrow_downward"
@@ -28,9 +28,9 @@ export default function Dashboard() {
               date="Since last week"
             />
             <StatusCard
-              color="purple"
+              color="orange"
               icon="paid"
-              title="Sales"
+              title="Overall Mood"
               amount="924"
               percentage="1.10"
               percentageIcon="arrow_downward"
@@ -40,7 +40,7 @@ export default function Dashboard() {
             <StatusCard
               color="blue"
               icon="poll"
-              title="Performance"
+              title="Attendance"
               amount="49,65%"
               percentage="12"
               percentageIcon="arrow_upward"
