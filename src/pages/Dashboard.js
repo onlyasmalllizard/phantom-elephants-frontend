@@ -26,9 +26,9 @@ export default function Dashboard({ data }) {
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
+            <MessageNotification content="hi" />
             <StudentDropdown />
             <InputField />
-            <MessageNotification content="hi" />
           </div>
         </div>
       </div>
