@@ -15,6 +15,7 @@ import StudentPage from './pages/StudentPage';
 import { lineDataset } from './lib/lineData';
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
+import '@material-tailwind/react/tailwind.css';
 
 import { UserProvider } from './contexts/UserContext';
 import MapExample from 'components/MapExample';

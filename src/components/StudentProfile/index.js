@@ -8,7 +8,7 @@ export default function StudentProfile({ student }) {
   return (
     <>
       <Card>
-        <Image src={avatar} />
+        <Image src={avatar} rounded={true} alt={`Avatar for ${name}`} />
         <CardBody>
           <LeadText>{name}</LeadText>
           <section>
