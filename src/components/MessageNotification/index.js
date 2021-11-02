@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Message } from "semantic-ui-react";
+import React, { useState } from 'react';
+import { Message } from 'semantic-ui-react';
 
-export default function MessageNotification(props) {
+export default function MessageNotification({ content }) {
   const [visible, setVisible] = useState(true);
 
   const handleDismiss = () => {
@@ -13,7 +13,7 @@ export default function MessageNotification(props) {
       <Message
         onDismiss={handleDismiss}
         header="Welcome back!"
-        content={props.content}
+        content={content}
       />
     );
   }

@@ -15,14 +15,14 @@ const SearchByName = ({ handleSubmit }) => {
   };
 
   return (
-    <>
+    <section className="col-span-full">
       <Input
         placeholder="Student Name"
         value={search}
         onChange={handleChange}
       />
       <Button onClick={submit}>Search</Button>
-    </>
+    </section>
   );
 };
 

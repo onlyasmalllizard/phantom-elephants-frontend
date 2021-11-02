@@ -1,10 +1,9 @@
-import StatusCard from '../components/StatusCard';
 import StudentProfile from '../components/StudentProfile/index';
 import MessageNotification from 'components/MessageNotification';
 import CommentsBox from 'components/Comments';
 import ChartLine from '../components/ChartLine';
 import SearchByName from '../components/SearchByName';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 
 export default function StudentPage({ data }) {
@@ -32,16 +31,16 @@ export default function StudentPage({ data }) {
       <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
-            <SearchByName handleSubmit={changeStudent} />
             <MessageNotification />
+            <SearchByName handleSubmit={changeStudent} />
           </div>
         </div>
       </div>
-      <section className="grid grid-rows-3">
+      <section className="grid">
         <StudentProfile student={student} />
         <ChartLine data={data} isGroup={false} />
       </section>
-      <CommentsBox existingcomments={[]} />
+      <CommentsBox />
     </>
   );
 }
