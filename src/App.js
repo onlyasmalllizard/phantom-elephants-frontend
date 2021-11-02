@@ -17,6 +17,7 @@ import { lineDataset } from './lib/lineData';
 import 'assets/styles/tailwind.css';
 
 import { UserProvider } from './contexts/UserContext';
+import MapExample from 'components/MapExample';
 
 function App() {
   const [defaultBootcamp, setBootcamp] = useState('');
@@ -59,6 +60,8 @@ const student = {
     avatar:
       'https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg',
     name: 'Mohit',
+    email: 'example@gmail.com',
+    bootcampId: 1,
     comments: [
       {
         comment: 'Heyy',

@@ -17,12 +17,12 @@ export default function Dashboard({ data }) {
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 xl:grid-cols-100">
             <div className="xl:col-start-1 xl:col-end-6 px-4 mb-14">
-              <ChartLine data={data} isGroup={true} id={0} />
+              <MessageNotification content="hi" />
             </div>
           </div>
         </div>
       </div>
-
+      <ChartLine data={data} isGroup={true} id={0} />
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
