@@ -16,11 +16,13 @@ import { lineDataset } from './lib/lineData';
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
 import '@material-tailwind/react/tailwind.css';
+import { useHistory } from 'react-router';
 
 import { UserProvider } from './contexts/UserContext';
 import MapExample from 'components/MapExample';
 
 function App() {
+  const history = useHistory();
   const [defaultBootcamp, setBootcamp] = useState('');
   useEffect(() => {
     // place fetch request to API for bootcamp name

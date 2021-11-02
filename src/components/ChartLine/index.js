@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import uuid from 'react-uuid';
 import Chart from 'chart.js';
 import Card from '@material-tailwind/react/Card';
@@ -50,11 +51,14 @@ const colors = [
   '#000000',
 ];
 
-export default function ChartLine({ data, id, isGroup }) {
+export default function ChartLine({ data, isGroup }) {
+  const id = Number(useParams().id) || 1;
   const [datasetId, setdatasetId] = useState(id);
   const [chartId, setChartId] = useState('0');
   const [isGroupData] = useState(isGroup);
   const [dataset] = useState(data);
+
+  useEffect(() => setdatasetId(id), [id]);
 
   useEffect(() => {
     let config = {
@@ -166,7 +170,6 @@ export default function ChartLine({ data, id, isGroup }) {
       <CardHeader color="orange" contentPosition="left">
         <div className="flex">
           <div>
-            {' '}
             <h6 className="uppercase text-gray-200 text-xs font-medium">
               Overview
             </h6>
