@@ -13,6 +13,7 @@ import AdminNavbar from './components/AdminNavbar';
 import ProfileCard from 'pages/ProfileCard';
 import StudentPage from './pages/StudentPage';
 import { lineDataset } from './lib/lineData';
+
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
 
@@ -50,6 +51,7 @@ function App() {
         <Footer />
       </div>
     </UserProvider>
+    
   );
 }
 
