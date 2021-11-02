@@ -39,8 +39,12 @@ function App() {
             <Tables />
           </Route>
 
-          <Route exact path="/student">
-            <StudentPage student={student} data={lineDataset} />
+          <Route path="/student/:id">
+            <StudentPage data={lineDataset} />
+          </Route>
+
+          <Route path="/student">
+            <StudentPage data={lineDataset} />
           </Route>
 
           <Route exact path="/settings">

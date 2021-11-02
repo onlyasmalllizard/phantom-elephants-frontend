@@ -4,7 +4,7 @@ import Image from '@material-tailwind/react/Image';
 import LeadText from '@material-tailwind/react/LeadText';
 
 export default function StudentProfile({ student }) {
-  const { name, avatar, email, bootcampId } = student.info;
+  const { name, avatar, email, bootcampId } = student;
   return (
     <>
       <Card>

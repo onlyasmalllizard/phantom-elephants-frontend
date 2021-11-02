@@ -656,9 +656,6 @@ video {
 .h-screen{
 	height: 100vh;
 }
-.max-h-2{
-	max-height: 0.5rem;
-}
 .min-h-full{
 	min-height: 100%;
 }
@@ -700,6 +697,9 @@ video {
 }
 .grid-cols-1{
 	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.grid-rows-3{
+	grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 .flex-row{
 	flex-direction: row;

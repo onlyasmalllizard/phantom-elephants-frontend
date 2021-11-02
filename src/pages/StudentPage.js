@@ -4,8 +4,13 @@ import MessageNotification from 'components/MessageNotification';
 import CommentsBox from 'components/Comments';
 import ChartLine from '../components/ChartLine';
 import { useState } from 'react';
+import { useParams } from 'react-router';
 
-export default function StudentPage({ student, data }) {
+export default function StudentPage({ data }) {
+  const studentId = useParams().id || 1;
+  const student = data.find((item) => {
+    return item.id === Number(studentId);
+  });
   return (
     <>
       <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
@@ -17,9 +22,9 @@ export default function StudentPage({ student, data }) {
       </div>
       <section className="grid grid-rows-3">
         <StudentProfile student={student} />
-        <ChartLine data={data} isGroup={false} id={student.info.id} />
+        <ChartLine data={data} isGroup={false} id={studentId} />
       </section>
-      <CommentsBox existingcomments={student.info.comments} />
+      <CommentsBox existingcomments={[]} />
     </>
   );
 }
