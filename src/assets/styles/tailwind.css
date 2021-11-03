@@ -764,6 +764,9 @@ video {
 .border-2{
 	border-width: 2px;
 }
+.border{
+	border-width: 1px;
+}
 .border-t{
 	border-top-width: 1px;
 }
