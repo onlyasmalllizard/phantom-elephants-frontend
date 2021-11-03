@@ -5,8 +5,8 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import CardFooter from "@material-tailwind/react/CardFooter";
 import InputIcon from "@material-tailwind/react/InputIcon";
-import Button from "@material-tailwind/react/Button";
 import H6 from "@material-tailwind/react/Heading5";
+import Button from "@material-tailwind/react/Button";
 
 export default class CSVReader2 extends Component {
   handleOnDrop = (data) => {
@@ -31,10 +31,10 @@ export default class CSVReader2 extends Component {
       <div style={{ marginLeft: this.props.ml, marginRight: this.props.mr }}>
         <Card className="mx-2">
           <CardHeader color={this.props.headerColor} size="lg">
-            <H6 color="white">{this.props.label}</H6>
+            <h2 className="text-white text-2xl">{this.props.label}</h2>
           </CardHeader>
-          <CardBody>
-            <div style={{ textAlign: "left" }} className="mt-4 mb-8 px-4">
+          <CardBody className="-py-0">
+            <div style={{ textAlign: "left" }} className="mt-4 mb-8 px-4 ">
               <CSVReader
                 onDrop={this.handleOnDrop}
                 onError={this.handleOnError}
@@ -50,7 +50,7 @@ export default class CSVReader2 extends Component {
               <Button
                 color="lightBlue"
                 buttonType="link"
-                size="lg"
+                size="m"
                 ripple="dark"
               >
                 See expected structure...
