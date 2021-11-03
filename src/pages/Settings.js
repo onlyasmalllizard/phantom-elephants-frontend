@@ -1,12 +1,12 @@
-import StatusCard from "../components/StatusCard";
-import SettingsForm from "../components/SettingsForm";
+import StatusCard from '../components/StatusCard';
+import SettingsForm from '../components/SettingsForm';
 // import ProfileCard from "../pages/ProfileCard";
-import StudentDropdown from "components/Student List";
+import NameSelection from 'components/NameSelection';
 
 export default function SettingsDashboard({ setBootcamp }) {
   return (
     <>
-      <StudentDropdown setBootcamp={setBootcamp} />
+      <NameSelection setBootcamp={setBootcamp} />
     </>
   );
 }

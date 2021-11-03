@@ -85,10 +85,10 @@ import { NavLink } from "react-router-dom";
 
 // export default SidebarExampleSidebar;
 
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar/index";
 import Icon from "@material-tailwind/react/Icon";
 import H6 from "@material-tailwind/react/Heading6";
-import Logo from "../components/Logo/index";
+import Logo from "../Logo";
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState("-left-64");
@@ -135,7 +135,7 @@ export default function Sidebar() {
               </li>
               <li className="rounded-lg mb-2 text-gray-700">
                 <NavLink
-                  to="/studentdashboard"
+                  to="/student"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >

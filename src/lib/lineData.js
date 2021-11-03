@@ -1,5 +1,5 @@
-import bootcamps from "./../dummyData";
-console.log("all dummyData:", bootcamps);
+import bootcamps from './../dummyData';
+console.log('all dummyData:', bootcamps);
 export const lineDataset = bootcamps
   .map((bootcamp) =>
     bootcamp.students.map((student) => {
@@ -29,6 +29,9 @@ export const lineDataset = bootcamps
       return {
         id: student.info.id,
         name: student.info.name,
+        email: 'example@gmail.com',
+        avatar:
+          'https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg',
         bootcampID: bootcamp.id,
         bootcampRegion: bootcamp.region,
         quizScores,
