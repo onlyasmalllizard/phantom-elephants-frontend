@@ -46,9 +46,7 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
 
         <div className="flex justify-between items-center w-full">
           <h4 className="uppercase text-white text-sm tracking-wider mt-1">
-            {location === "/"
-              ? "DASHBOARD"
-              : location.toUpperCase().replace("/", "")}
+            Placeholder
           </h4>
 
           <div className="flex">

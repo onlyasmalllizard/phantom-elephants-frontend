@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Tables from "./pages/Tables";
-import Maps from "./pages/Maps";
+import Upload from "./pages/Upload";
 import Footer from "./components/Footer";
 
 // Tailwind CSS Style Sheet
@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/tables" component={Tables} />
-          <Route exact path="/maps" component={Maps} />
+          <Route exact path="/upload" component={Upload} />
           <Redirect from="*" to="/" />
         </Switch>
         <Footer />
