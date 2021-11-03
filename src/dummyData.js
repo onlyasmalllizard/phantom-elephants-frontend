@@ -1,4 +1,5 @@
 const faker = require("faker");
+var fs = require("fs");
 
 function genDate(day) {
   let date = new Date();
@@ -555,13 +556,14 @@ function genWeekRange(startWeek, endWeek, studentID) {
   return wk;
 }
 
-function genStudent(id, startWeek, endWeek) {
+function genStudent(id, startWeek, endWeek, bootcampID) {
   return {
     info: {
       id: id,
       name: faker.name.findName(),
       username: faker.internet.userName(),
       avatar: faker.internet.avatar(),
+      bootcampId: bootcampID + 1,
     },
     work: genWeekRange(startWeek, endWeek, id - 1),
   };
@@ -578,7 +580,7 @@ function genBootcamps(numOfBootcamps, bootcampSize, startWeek, endWeek) {
   let bootcampsList = [];
   let bootcampID = 0;
   for (let i = 1; i <= numOfBootcamps * bootcampSize; i++) {
-    students.push(genStudent(i, startWeek, endWeek));
+    students.push(genStudent(i, startWeek, endWeek, bootcampID));
     if (students.length % bootcampSize === 0) {
       bootcampsList.push({
         id: ++bootcampID,
@@ -627,4 +629,38 @@ function genUsers() {
 
 console.log(bootcamps[0].students[0].work.slice(5, 7));
 console.log(happiness);
+
+const studentsStacked = JSON.stringify(
+  bootcamps
+    .map((bootcamp) => bootcamp.students.map((student) => student.info))
+    .flat()
+);
+
+const students =
+  "id,name,username,avatar,bootcampid\n" +
+  studentsStacked
+    .slice(1, studentsStacked.length - 2)
+    .split("},")
+    .join("\n")
+    .replace(/(?<=,).*?(?=:)/g, "")
+    .replace(/[{":]/g, "")
+    .split("id")
+    .join("");
+console.log(students);
+
+// fs.writeFile(
+//   "new-students.csv",
+//   students,
+
+//   function (err) {
+//     if (err) {
+//       console.log(
+//         "Some error occured - file either not saved or corrupted file saved."
+//       );
+//     } else {
+//       console.log("It's saved!");
+//     }
+//   }
+// );
+
 module.exports = bootcamps;

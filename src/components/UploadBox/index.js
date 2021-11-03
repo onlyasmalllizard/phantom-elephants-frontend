@@ -9,11 +9,24 @@ import H6 from "@material-tailwind/react/Heading5";
 import Button from "@material-tailwind/react/Button";
 
 export default class CSVReader2 extends Component {
+  postcsv = async (data) => {
+    const response = await fetch("http://localhost:3000/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const backData = await response.json();
+    console.log("POST: ", backData);
+  };
+
   handleOnDrop = (data) => {
     console.log("---------------------------");
     // This is the successful data
     console.log(data);
     console.log("---------------------------");
+    this.postcsv(data);
   };
 
   handleOnError = (err, file, inputElem, reason) => {
