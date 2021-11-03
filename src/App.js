@@ -13,16 +13,31 @@ import AdminNavbar from "./components/AdminNavbar";
 import SidebarTest from "./components/SideBar/index";
 import ProfileCard from "pages/ProfileCard";
 import StudentPage from "./pages/StudentPage";
+import Settings from "./pages/Settings";
 // Tailwind CSS Style Sheet
 import "assets/styles/tailwind.css";
 
 import { UserProvider } from "./contexts/UserContext";
 
 function App() {
+  const [cohortData, setCohortData] = useState({});
   const [defaultBootcamp, setBootcamp] = useState("");
   useEffect(() => {
     // place fetch request to API for bootcamp name
   }, [defaultBootcamp]);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("http://localhost:3000/records", {
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      return data.payload;
+    }
+    let data = getData();
+    setCohortData(data);
+  }, []);
+  console.log(cohortData);
 
   return (
     <UserProvider>
