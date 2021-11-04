@@ -3,8 +3,25 @@ import ChartLine from "../components/ChartLine";
 import ChartBar from "../components/ChartBar";
 import PageVisitsCard from "../components/PageVisitsCard";
 import TrafficCard from "../components/TrafficCard";
-import Donut from "../components/Donut";
-export default function Dashboard() {
+import Doughnut from "../components/Doughnut";
+export default function Dashboard({ data }) {
+  const donutDataset = {
+    label: "My First Dataset",
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [
+      {
+        data: [300, 50, 100],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "grey",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+    options: "",
+  };
   return (
     <>
       <div className="bg-light-blue-500 px-3 md:px-8 h-40" />
@@ -16,7 +33,7 @@ export default function Dashboard() {
               <ChartLine />
             </div>
             <div className="xl:col-start-4 xl:col-end-6 px-4 mb-14">
-              <ChartBar />
+              <Doughnut dataset={donutDataset}> </Doughnut>
             </div>
           </div>
         </div>
@@ -24,7 +41,7 @@ export default function Dashboard() {
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
-            <Donut> </Donut>
+            <ChartBar />
 
             <StatusCard
               color="orange"

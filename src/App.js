@@ -11,7 +11,8 @@ import Footer from "./components/Footer";
 import "assets/styles/tailwind.css";
 
 function App() {
-  const [cohortData, setCohortData] = useState({});
+  const [cohortData, setCohortData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
@@ -19,19 +20,20 @@ function App() {
         headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
-      return data.payload;
+      setCohortData(data.payload);
+      setIsLoading(false);
     }
-    let data = getData();
-    setCohortData(data);
+    getData();
   }, []);
   console.log(cohortData);
-
-  return (
+  return isLoading ? (
+    "Loading"
+  ) : (
     <>
       <Sidebar />
       <div className="md:ml-64">
         <Switch>
-          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/" component={Dashboard} data={cohortData} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/tables" component={Tables} />
           <Route exact path="/upload" component={Upload} />
