@@ -85,11 +85,6 @@ const DetailedProgress = ({ student }) => {
           href="tabItem"
         >
           Feedback
-          <H6>Monday</H6>
-          <H6>Tuesday</H6>
-          <H6>Wednesday</H6>
-          <H6>Thursday</H6>
-          <H6>Friday</H6>
         </TabItem>
         <TabItem
           onClick={(e) => {
@@ -113,7 +108,14 @@ const DetailedProgress = ({ student }) => {
         <TabPane active={openTab === 1 ? true : false}>Hello</TabPane>
         <TabPane active={openTab === 2 ? true : false}>Workshops</TabPane>
         <TabPane active={openTab === 3 ? true : false}>Quizzes</TabPane>
-        <TabPane active={openTab === 4 ? true : false}>Feedback</TabPane>
+        <TabPane active={openTab === 4 ? true : false}>
+          Feedback
+          <H6>Monday</H6>
+          <H6>Tuesday</H6>
+          <H6>Wednesday</H6>
+          <H6>Thursday</H6>
+          <H6>Friday</H6>
+        </TabPane>
         <TabPane active={openTab === 5 ? true : false}>Reflections</TabPane>
       </TabContent>
     </Tab>
