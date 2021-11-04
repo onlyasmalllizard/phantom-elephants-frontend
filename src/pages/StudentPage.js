@@ -3,6 +3,7 @@ import MessageNotification from 'components/MessageNotification';
 import CommentsBox from 'components/Comments';
 import ChartLine from '../components/ChartLine';
 import SearchByName from '../components/SearchByName';
+import DetailedProgress from 'components/DetailedProgress';
 import { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 
@@ -39,6 +40,7 @@ export default function StudentPage({ data }) {
       <section className="grid">
         <StudentProfile student={student} />
         <ChartLine data={data} isGroup={false} />
+        <DetailedProgress student={student} />
       </section>
       <CommentsBox />
     </>
