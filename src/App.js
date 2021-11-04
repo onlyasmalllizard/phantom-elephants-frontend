@@ -21,8 +21,9 @@ import { useHistory } from 'react-router';
 import { UserProvider } from './contexts/UserContext';
 
 function App() {
-  const [cohortData, setCohortData] = useState({});
+  const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // place fetch request to API for bootcamp name
@@ -30,98 +31,55 @@ function App() {
 
   useEffect(() => {
     async function getData() {
+      setIsLoading(true);
       const response = await fetch('http://localhost:3001/records', {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
-
       setCohortData(data.payload);
-      console.log('useEffect: ', cohortData);
+      setIsLoading(false);
     }
     getData();
+    console.log('app: ', cohortData);
   }, []);
 
-  console.log('app: ', cohortData);
-
-  return (
+  return cohortData > 0 ? (
+    'Loading'
+  ) : (
     <UserProvider>
       <Sidebar />
       <div className="md:ml-64">
-        <Switch>
-          <Route exact path="/">
-            <Dashboard data={lineDataset} />
-          </Route>
+        {isLoading ? (
+          <h1>Loading</h1>
+        ) : (
+          <Switch>
+            <Route exact path="/">
+              <Dashboard data={cohortData} />
+            </Route>
 
-          <Route exact path="/tables">
-            <Tables />
-          </Route>
+            <Route exact path="/tables">
+              <Tables />
+            </Route>
 
-          <Route path="/student/:id">
-            <StudentPage data={cohortData} />
-          </Route>
+            <Route path="/student/:id">
+              <StudentPage data={cohortData} />
+            </Route>
 
-          <Route path="/student">
-            <StudentPage data={cohortData} />
-          </Route>
+            <Route path="/student">
+              <StudentPage data={cohortData} />
+            </Route>
 
-          <Route exact path="/settings">
-            <SettingsDashboard setBootcamp={setBootcamp} />
-          </Route>
+            <Route exact path="/settings">
+              <SettingsDashboard setBootcamp={setBootcamp} />
+            </Route>
 
-          <Redirect from="*" to="/" />
-        </Switch>
+            <Redirect from="*" to="/" />
+          </Switch>
+        )}
         <Footer />
       </div>
     </UserProvider>
   );
 }
-
-const student = {
-  info: {
-    id: 1,
-    avatar:
-      'https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg',
-    name: 'Mohit',
-    email: 'example@gmail.com',
-    bootcampId: 1,
-    comments: [
-      {
-        comment: 'Heyy',
-        author: 'Heyy',
-        imageUrl:
-          'https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg',
-        date: Date.now,
-      },
-    ],
-  },
-  work: {
-    recapTasks: [
-      [
-        { type: 'recap', title: 'basic javascript', score: 'amber' },
-        { type: 'recap', title: 'array methods', score: 'green' },
-        { type: 'recap', title: 'basic javascript', score: 'amber' },
-        { type: 'recap', title: 'array methods', score: 'green' },
-        { type: 'recap', title: 'array methods', score: 'green' },
-      ],
-      [
-        { type: 'recap', title: 'basic javascript', score: 'amber' },
-        { type: 'recap', title: 'array methods', score: 'green' },
-        { type: 'recap', title: 'basic javascript', score: 'amber' },
-        { type: 'recap', title: 'array methods', score: 'green' },
-        { type: 'recap', title: 'array methods', score: 'green' },
-      ],
-    ],
-    workshops: [
-      [
-        { type: 'workshop', title: 'objects and classes', score: 'amber' },
-        { type: 'workshop', title: 'objects', score: 'green' },
-      ],
-    ],
-    quiz: [
-      { type: 'quiz', title: 'array methods', score: 'amber' },
-      { type: 'quiz', title: 'logic', score: 'green' },
-    ],
-  },
-};
 
 export default App;
