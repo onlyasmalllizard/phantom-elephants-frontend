@@ -24,9 +24,24 @@ import MapExample from 'components/MapExample';
 function App() {
   const history = useHistory();
   const [defaultBootcamp, setBootcamp] = useState('');
+  const [cohortData, setCohortData] = useState({});
+
   useEffect(() => {
     // place fetch request to API for bootcamp name
   }, [defaultBootcamp]);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("http://localhost:3001/records", {
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      return data.payload;
+    }
+    let data = getData();
+    setCohortData(data);
+  }, []);
+  console.log(cohortData);
 
   return (
     <UserProvider>
@@ -42,11 +57,11 @@ function App() {
           </Route>
 
           <Route path="/student/:id">
-            <StudentPage data={lineDataset} />
+            <StudentPage data={cohortData} />
           </Route>
 
           <Route path="/student">
-            <StudentPage data={lineDataset} />
+            <StudentPage data={cohortData} />
           </Route>
 
           <Route exact path="/settings">

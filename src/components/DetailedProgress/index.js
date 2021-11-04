@@ -35,7 +35,7 @@ const viewOptions = [
 ];
 
 const DetailedProgress = (student) => {
-  const [week, setWeek] = useState('Week 1');
+  const [week, setWeek] = useState(1);
   const [openTab, setOpenTab] = useState(1);
 
   return (
@@ -104,9 +104,16 @@ const DetailedProgress = (student) => {
         options={viewOptions}
       />
       <TabContent>
-        <TabPane active={openTab === 1 ? true : false}>Hello</TabPane>
+        <TabPane active ={openTab === 1 ?  true: false}>Hello</TabPane>
+        <TabPane active ={openTab === 2 ? true: false}>Workshops</TabPane>
+        <TabPane active ={openTab === 3 ? true: false}>Quizzes</TabPane>
+        <TabPane active ={openTab === 4 ? true: false}>Feedback</TabPane>
+        <TabPane active ={openTab === 5 ? true: false}>Reflections</TabPane>
       </TabContent>
     </Tab>
+
+
+
   );
 };
 
