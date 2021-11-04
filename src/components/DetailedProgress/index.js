@@ -18,6 +18,7 @@ import TabList from '@material-tailwind/react/TabList';
 import TabItem from '@material-tailwind/react/TabItem';
 import TabContent from '@material-tailwind/react/TabContent';
 import TabPane from '@material-tailwind/react/TabPane';
+import H6 from '@material-tailwind/react/Heading5';
 
 const viewOptions = [
   'Week 1',
@@ -84,6 +85,11 @@ const DetailedProgress = ({ student }) => {
           href="tabItem"
         >
           Feedback
+          <H6>Monday</H6>
+          <H6>Tuesday</H6>
+          <H6>Wednesday</H6>
+          <H6>Thursday</H6>
+          <H6>Friday</H6>
         </TabItem>
         <TabItem
           onClick={(e) => {

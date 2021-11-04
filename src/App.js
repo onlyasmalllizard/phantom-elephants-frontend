@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import AdminNavbar from './components/AdminNavbar';
 import ProfileCard from 'pages/ProfileCard';
 import StudentPage from './pages/StudentPage';
+import Upload from './pages/Upload';
 import Settings from './pages/Settings';
 import { lineDataset } from './lib/lineData';
 // Tailwind CSS Style Sheet
@@ -67,6 +68,10 @@ function App() {
 
             <Route path="/student">
               <StudentPage data={cohortData} />
+            </Route>
+
+            <Route path="/upload">
+              <Upload />
             </Route>
 
             <Route exact path="/settings">

@@ -20,7 +20,7 @@ export default function StudentPage({ data }) {
 
   const changeStudent = (name) => {
     const newStudent = data.find((studentData) =>
-      studentData.name.includes(name)
+      studentData.name.toLowerCase().includes(name.toLowerCase())
     );
 
     if (newStudent) {
