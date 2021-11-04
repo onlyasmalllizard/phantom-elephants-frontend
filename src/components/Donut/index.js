@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import Chart from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 
 import uuid from "react-uuid";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 
-export default function Donut() {
+export default function Donut({ dataSets }) {
   const data = {
-    type: "doughnut",
     labels: ["Red", "Blue", "Yellow"],
     datasets: [
       {
@@ -19,10 +17,20 @@ export default function Donut() {
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
           "rgb(255, 205, 86)",
+          "grey",
         ],
+        hoverOffset: 4,
       },
     ],
   };
+  useEffect(() => {
+    const config = {
+      type: "doughnut",
+      data: data,
+    };
+    let ctx = document.getElementById("donut-chart").getContext("2d");
+    window.myDoughnut = new Chart(ctx, config);
+  }, []);
 
-  return <Doughnut data={data}></Doughnut>;
+  return <canvas id="donut-chart"></canvas>;
 }
