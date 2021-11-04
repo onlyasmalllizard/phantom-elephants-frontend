@@ -5,6 +5,7 @@ import NameSelection from "components/NameSelection";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { CardProfile } from "components/Edit Profile";
 
 export default function SettingsDashboard() {
   const [value, onChange] = useState(new Date());
@@ -12,6 +13,7 @@ export default function SettingsDashboard() {
   return (
     <div>
       <Calendar onChange={onChange} value={value} />
+      <CardProfile />
     </div>
   );
 }
