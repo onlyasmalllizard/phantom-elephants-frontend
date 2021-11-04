@@ -3,7 +3,7 @@ import ChartLine from "../components/ChartLine";
 import ChartBar from "../components/ChartBar";
 import PageVisitsCard from "../components/PageVisitsCard";
 import TrafficCard from "../components/TrafficCard";
-
+import Donut from "../components/Donut";
 export default function Dashboard() {
   return (
     <>
@@ -21,20 +21,11 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
-            <StatusCard
-              color="pink"
-              icon="trending_up"
-              title="Traffic"
-              amount="350,897"
-              percentage="3.48"
-              percentageIcon="arrow_upward"
-              percentageColor="green"
-              date="Since last month"
-            />
+            <Donut> </Donut>
+
             <StatusCard
               color="orange"
               icon="groups"

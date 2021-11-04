@@ -636,6 +636,7 @@ const studentsStacked = JSON.stringify(
     .flat()
 );
 
+/*WRITING A STUDETNS FILE TO CSV*/
 const students =
   "id,name,username,avatar,bootcampid\n" +
   studentsStacked
@@ -646,8 +647,8 @@ const students =
     .replace(/[{":]/g, "")
     .split("id")
     .join("");
-console.log(students);
 
+// console.log(students);
 // fs.writeFile(
 //   "new-students.csv",
 //   students,
