@@ -57,18 +57,18 @@ export default function ChartLine({ data, isGroup }) {
   const [chartId, setChartId] = useState('0');
   const [isGroupData] = useState(isGroup);
   const [dataset] = useState(data);
-
+  console.log('chart: ', dataset);
   useEffect(() => setdatasetId(id), [id]);
 
   useEffect(() => {
     let config = {
       type: 'line',
       data: {
-        labels: dataset[0].quizScores.map((score, index) => index + 1),
+        labels: dataset[0].quizzes.map((quiz, index) => index + 1),
         datasets: dataset
           .filter((dataPoint) => {
             if (isGroupData) {
-              return dataPoint.bootcampID === datasetId || datasetId === 0;
+              return dataPoint.bootcampId === datasetId || datasetId === 0;
             } else {
               return dataPoint.id === datasetId;
             }

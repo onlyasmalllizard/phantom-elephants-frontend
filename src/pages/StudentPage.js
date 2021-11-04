@@ -3,12 +3,16 @@ import MessageNotification from 'components/MessageNotification';
 import CommentsBox from 'components/Comments';
 import ChartLine from '../components/ChartLine';
 import SearchByName from '../components/SearchByName';
+import DetailedProgress from 'components/DetailedProgress';
 import { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 
 export default function StudentPage({ data }) {
+  console.log('student: ', data);
   const history = useHistory();
-  const [studentId, setStudentId] = useState(Number(useParams().id) || 1);
+  const [studentId, setStudentId] = useState(
+    Number(useParams().id) || data[0].id
+  );
   const studentObject = data.find((item) => {
     return item.id === studentId;
   });
@@ -16,7 +20,7 @@ export default function StudentPage({ data }) {
 
   const changeStudent = (name) => {
     const newStudent = data.find((studentData) =>
-      studentData.name.includes(name)
+      studentData.name.toLowerCase().includes(name.toLowerCase())
     );
 
     if (newStudent) {
@@ -38,7 +42,8 @@ export default function StudentPage({ data }) {
       </div>
       <section className="grid">
         <StudentProfile student={student} />
-        <ChartLine data={data} isGroup={false} />
+        <ChartLine data={[student]} isGroup={false} />
+        <DetailedProgress student={student} />
       </section>
       <CommentsBox />
     </>

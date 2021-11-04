@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 // import React from "react";
 // import {
@@ -85,13 +85,13 @@ import { NavLink } from "react-router-dom";
 
 // export default SidebarExampleSidebar;
 
-import AdminNavbar from "../AdminNavbar/index";
-import Icon from "@material-tailwind/react/Icon";
-import H6 from "@material-tailwind/react/Heading6";
-import Logo from "../Logo";
+import AdminNavbar from '../AdminNavbar/index';
+import Icon from '@material-tailwind/react/Icon';
+import H6 from '@material-tailwind/react/Heading6';
+import Logo from '../Logo';
 
 export default function Sidebar() {
-  const [showSidebar, setShowSidebar] = useState("-left-64");
+  const [showSidebar, setShowSidebar] = useState('-left-64');
   return (
     <>
       <AdminNavbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
@@ -105,7 +105,7 @@ export default function Sidebar() {
             rel="noreferrer"
             className="mt-2 text-center w-full inline-block"
           >
-            {" "}
+            {' '}
             <Logo />
           </a>
           <div className="flex flex-col">
@@ -141,6 +141,17 @@ export default function Sidebar() {
                 >
                   <Icon name="map" size="2xl" />
                   Individual Student View
+                </NavLink>
+              </li>
+
+              <li className="rounded-lg mb-2 text-gray-700">
+                <NavLink
+                  to="/upload"
+                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                  activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                >
+                  <Icon name="upload" size="2xl" />
+                  File Upload
                 </NavLink>
               </li>
 
