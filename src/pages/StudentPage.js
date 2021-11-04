@@ -8,8 +8,11 @@ import { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 
 export default function StudentPage({ data }) {
+  console.log('student: ', data);
   const history = useHistory();
-  const [studentId, setStudentId] = useState(Number(useParams().id) || 1);
+  const [studentId, setStudentId] = useState(
+    Number(useParams().id) || data[0].id
+  );
   const studentObject = data.find((item) => {
     return item.id === studentId;
   });
@@ -39,7 +42,7 @@ export default function StudentPage({ data }) {
       </div>
       <section className="grid">
         <StudentProfile student={student} />
-        <ChartLine data={data} isGroup={false} />
+        <ChartLine data={[student]} isGroup={false} />
         <DetailedProgress student={student} />
       </section>
       <CommentsBox />

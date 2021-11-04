@@ -20,11 +20,12 @@ import { useHistory } from 'react-router';
 
 import { UserProvider } from './contexts/UserContext';
 import MapExample from 'components/MapExample';
+import { checkboxClasses } from '@mui/material';
 
 function App() {
   const history = useHistory();
   const [defaultBootcamp, setBootcamp] = useState('');
-  const [cohortData, setCohortData] = useState({});
+  const [cohortData, setCohortData] = useState([]);
 
   useEffect(() => {
     // place fetch request to API for bootcamp name
@@ -32,16 +33,18 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch("http://localhost:3001/records", {
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('http://localhost:3001/records', {
+        headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
-      return data.payload;
+
+      setCohortData(data.payload);
+      console.log('useEffect: ', cohortData);
     }
-    let data = getData();
-    setCohortData(data);
+    getData();
   }, []);
-  console.log(cohortData);
+
+  console.log('app: ', cohortData);
 
   return (
     <UserProvider>
