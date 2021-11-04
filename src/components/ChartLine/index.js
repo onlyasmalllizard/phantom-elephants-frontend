@@ -1,70 +1,71 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import uuid from 'react-uuid';
-import Chart from 'chart.js';
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import Dropdown from '../DropDown';
-import bootcamps from '../../dummyData';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import uuid from "react-uuid";
+import Chart from "chart.js";
+import Card from "@material-tailwind/react/Card";
+import CardHeader from "@material-tailwind/react/CardHeader";
+import CardBody from "@material-tailwind/react/CardBody";
+import Dropdown from "../DropDown";
+import { lineDataset } from "lib/lineData";
+import bootcamps from "dummyData";
 
 const chartFilters = [
   // used for the first dropdown filter
   {
     id: 0,
-    display: 'Quiz Scores',
-    ref: 'quizScores',
+    display: "Quiz Scores",
+    ref: "quizScores",
     spanGaps: true,
     beginAtZero: false,
   },
   {
     id: 1,
-    display: 'Experience Feedback',
-    ref: 'feedbackExDayAvg',
+    display: "Experience Feedback",
+    ref: "feedbackExDayAvg",
     spanGaps: true,
     beginAtZero: true,
   },
 ];
 
 const colors = [
-  '#e6194b',
-  '#3cb44b',
-  '#ffe119',
-  '#4363d8',
-  '#f58231',
-  '#911eb4',
-  '#46f0f0',
-  '#f032e6',
-  '#bcf60c',
-  '#fabebe',
-  '#008080',
-  '#e6beff',
-  '#9a6324',
-  '#fffac8',
-  '#800000',
-  '#aaffc3',
-  '#808000',
-  '#ffd8b1',
-  '#000075',
-  '#808080',
-  '#ffffff',
-  '#000000',
+  "#e6194b",
+  "#3cb44b",
+  "#ffe119",
+  "#4363d8",
+  "#f58231",
+  "#911eb4",
+  "#46f0f0",
+  "#f032e6",
+  "#bcf60c",
+  "#fabebe",
+  "#008080",
+  "#e6beff",
+  "#9a6324",
+  "#fffac8",
+  "#800000",
+  "#aaffc3",
+  "#808000",
+  "#ffd8b1",
+  "#000075",
+  "#808080",
+  "#ffffff",
+  "#000000",
 ];
 
 export default function ChartLine({ data, isGroup }) {
   const id = Number(useParams().id) || 1;
-  const [datasetId, setdatasetId] = useState(id);
-  const [chartId, setChartId] = useState('0');
+  const [datasetId, setDatasetId] = useState(id);
+  const [chartId, setChartId] = useState("0");
   const [isGroupData] = useState(isGroup);
-  const [dataset] = useState(data);
-  console.log('chart: ', dataset);
-  useEffect(() => setdatasetId(id), [id]);
+  const [dataset] = useState(lineDataset);
+  console.log("line chart: ", dataset);
+  useEffect(() => setDatasetId(id), [id]);
 
   useEffect(() => {
     let config = {
-      type: 'line',
+      type: "line",
       data: {
-        labels: dataset[0].quizzes.map((quiz, index) => index + 1),
+        labels: dataset[0].quizScores.map((quiz, index) => index + 1),
         datasets: dataset
           .filter((dataPoint) => {
             if (isGroupData) {
@@ -87,49 +88,49 @@ export default function ChartLine({ data, isGroup }) {
       options: {
         elements: {
           point: {
-            pointStyle: 'line',
+            pointStyle: "line",
           },
         },
         maintainAspectRatio: false,
         responsive: true,
         title: {
           display: false,
-          text: 'Sales Charts',
-          fontColor: 'white',
+          text: "Sales Charts",
+          fontColor: "white",
         },
         legend: {
           labels: {
-            fontColor: 'black',
+            fontColor: "black",
           },
-          align: 'end',
-          position: 'bottom',
+          align: "end",
+          position: "bottom",
         },
         tooltips: {
-          mode: 'index',
+          mode: "index",
           intersect: false,
         },
         hover: {
-          mode: 'index',
+          mode: "index",
           intersect: true,
         },
         scales: {
           xAxes: [
             {
               ticks: {
-                fontColor: 'rgba(17,17,17,.7)',
+                fontColor: "rgba(17,17,17,.7)",
               },
               display: true,
               scaleLabel: {
                 display: false,
-                labelString: 'Month',
-                fontColor: 'white',
+                labelString: "Month",
+                fontColor: "white",
               },
               gridLines: {
                 display: false,
                 borderDash: [2],
                 borderDashOffset: [2],
-                color: 'rgba(33, 37, 41, 0.3)',
-                zeroLineColor: 'rgba(0, 0, 0, 0)',
+                color: "rgba(33, 37, 41, 0.3)",
+                zeroLineColor: "rgba(0, 0, 0, 0)",
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
@@ -138,21 +139,21 @@ export default function ChartLine({ data, isGroup }) {
           yAxes: [
             {
               ticks: {
-                fontColor: 'rgba(17,17,17,.7)',
+                fontColor: "rgba(17,17,17,.7)",
                 beginAtZero: chartFilters[chartId].beginAtZero,
               },
               display: true,
               scaleLabel: {
                 display: false,
-                labelString: 'Value',
-                fontColor: 'white',
+                labelString: "Value",
+                fontColor: "white",
               },
               gridLines: {
                 borderDash: [3],
                 borderDashOffset: [3],
                 drawBorder: false,
-                color: 'rgba(17, 17, 17, 0.15)',
-                zeroLineColor: 'rgba(33, 37, 41, 0)',
+                color: "rgba(17, 17, 17, 0.15)",
+                zeroLineColor: "rgba(33, 37, 41, 0)",
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
@@ -161,7 +162,7 @@ export default function ChartLine({ data, isGroup }) {
         },
       },
     };
-    var ctx = document.getElementById('line-chart').getContext('2d');
+    var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
   }, [datasetId, chartId, dataset, isGroupData]);
 
@@ -187,17 +188,17 @@ export default function ChartLine({ data, isGroup }) {
             {isGroup ? (
               <Dropdown
                 state={datasetId}
-                setState={setdatasetId}
+                setState={setDatasetId}
                 label="Bootcamp"
                 itemOptions={[
-                  'All Bootcamps',
+                  "All Bootcamps",
                   ...bootcamps.map((bootcamp) => {
-                    return bootcamp.id + ': ' + bootcamp.region;
+                    return bootcamp.id + ": " + bootcamp.region;
                   }),
                 ]}
               />
             ) : (
-              ''
+              ""
             )}
           </div>
         </div>

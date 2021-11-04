@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import SettingsDashboard from "pages/Settings";
 import Tables from "./pages/Tables";
-import Maps from "./pages/StudentPage";
+import { massage } from "./lib/lineData";
 import Footer from "./components/Footer";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -35,17 +35,18 @@ function App() {
     async function getData() {
       setIsLoading(true);
       const API_URL = process.env.REACT_APP_API_URL + "/records";
-      console.log(API_URL, process.env);
       const response = await fetch(API_URL, {
         headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
       setCohortData(data.payload);
       setIsLoading(false);
+      console.log(massage(cohortData));
     }
     getData();
-    console.log("app: ", cohortData);
   }, []);
+
+  // console.log("app: ", cohortData);
 
   return isLoading ? (
     <Loading />
@@ -53,37 +54,34 @@ function App() {
     <UserProvider>
       <Sidebar />
       <div className="md:ml-64">
-        {isLoading ? (
-          <h1>Loading</h1>
-        ) : (
-          <Switch>
-            <Route exact path="/">
-              <Dashboard data={cohortData} />
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Dashboard data={cohortData} />
+          </Route>
 
-            <Route exact path="/tables">
-              <Tables />
-            </Route>
+          <Route exact path="/tables">
+            <Tables />
+          </Route>
 
-            <Route path="/student/:id">
-              <StudentPage data={cohortData} />
-            </Route>
+          <Route path="/student/:id">
+            <StudentPage data={cohortData} />
+          </Route>
 
-            <Route path="/student">
-              <StudentPage data={cohortData} />
-            </Route>
+          <Route path="/student">
+            <StudentPage data={cohortData} />
+          </Route>
 
-            <Route path="/upload">
-              <Upload />
-            </Route>
+          <Route path="/upload">
+            <Upload />
+          </Route>
 
-            <Route exact path="/settings">
-              <SettingsDashboard setBootcamp={setBootcamp} />
-            </Route>
+          <Route exact path="/settings">
+            <SettingsDashboard setBootcamp={setBootcamp} />
+          </Route>
 
-            <Redirect from="*" to="/" />
-          </Switch>
-        )}
+          <Redirect from="*" to="/" />
+        </Switch>
+
         <Footer />
       </div>
     </UserProvider>
