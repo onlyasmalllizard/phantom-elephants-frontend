@@ -212,6 +212,7 @@ export function massage(backendData) {
           avgQuiz,
           avgExperience,
           reflections: student.reflections,
+          workshops: student.workshops,
           hasWork: student.hasWork,
         };
       } else {

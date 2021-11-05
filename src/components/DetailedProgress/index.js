@@ -21,6 +21,8 @@ import H6 from '@material-tailwind/react/Heading5';
 import Paragraph from '@material-tailwind/react/Paragraph';
 import FeedbackView from 'components/FeedbackView';
 import ReflectionsView from 'components/ReflectionsView';
+import QuizView from '../QuizView';
+import WorkshopsView from 'components/WorkshopsView';
 
 const viewOptions = [
   'Week 1',
@@ -115,20 +117,24 @@ const DetailedProgress = ({ student }) => {
       <TabContent>
         <TabPane active={openTab === 1 ? true : false}>Recap Task</TabPane>
         <TabPane active={openTab === 2 ? true : false}>
-          Workshops
-          <H6>Monday</H6>
-          <H6>Tuesday</H6>
-          <H6>Wednesday</H6>
-          <H6>Thursday</H6>
-          <H6>Friday</H6>
+          {student.workshops ? (
+            <WorkshopsView
+              workshops={student.workshops}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} hasn't completed any workshops!`}</H6>
+          )}
         </TabPane>
         <TabPane active={openTab === 3 ? true : false}>
-          Quizzes
-          <H6>Monday</H6>
-          <H6>Tuesday</H6>
-          <H6>Wednesday</H6>
-          <H6>Thursday</H6>
-          <H6>Friday</H6>
+          {student.quizScoresArray ? (
+            <QuizView
+              quizzes={student.quizScoresArray}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} hasn't completed any quizzes!`}</H6>
+          )}
         </TabPane>
         <TabPane active={openTab === 4 ? true : false}>
           {hasWork ? (
@@ -143,11 +149,15 @@ const DetailedProgress = ({ student }) => {
           )}
         </TabPane>
         <TabPane active={openTab === 5 ? true : false}>
-          <ReflectionsView
-            reflections={student.reflections}
-            week={week}
-            calculateIndex={calculateIndex}
-          />
+          {student.reflections ? (
+            <ReflectionsView
+              reflections={student.reflections}
+              week={week}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} has no submitted reflections!`}</H6>
+          )}
         </TabPane>
       </TabContent>
     </Tab>

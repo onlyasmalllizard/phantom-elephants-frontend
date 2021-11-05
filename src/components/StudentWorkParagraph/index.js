@@ -6,6 +6,7 @@ const StudentWorkParagraph = ({
   doesntExistMessage,
   labels = [],
 }) => {
+  console.log(workArray);
   return (
     <section>
       {workArray.map((item, index) => (
