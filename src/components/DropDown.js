@@ -4,6 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import LoggedInProfile from "components/UserLoggedInProfile/index";
 
 function DropDown({ state, setState, label, itemOptions, width }) {
   const handleChange = (event) => {
