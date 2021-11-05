@@ -14,7 +14,7 @@ import ProfileCard from "pages/ProfileCard";
 import StudentPage from "./pages/StudentPage";
 import Upload from "./pages/Upload";
 import Loading from "components/Loading/Loading";
-import Settings from "./pages/Settings";
+import "./index.css";
 // Tailwind CSS Style Sheet
 import "assets/styles/tailwind.css";
 import "@material-tailwind/react/tailwind.css";

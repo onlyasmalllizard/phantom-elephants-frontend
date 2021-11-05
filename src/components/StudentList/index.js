@@ -3,8 +3,10 @@ import "antd/dist/antd.css";
 import "./index.css";
 import { List, message, Avatar, Skeleton, Divider } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { fakeData } from "lib/allMassagedData";
 
-const StudentList = ({ dataSet }) => {
+const StudentList = ({ massagedBackEndData }) => {
+  const dataset = [...massagedBackEndData, ...fakeData];
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
@@ -34,10 +36,11 @@ const StudentList = ({ dataSet }) => {
     <div
       id="scrollableDiv"
       style={{
-        height: 400,
-        overflow: "auto",
+        height: "100%",
+        overflowY: "auto",
         padding: "0 16px",
-        border: "1px solid rgba(140, 140, 140, 0.35)",
+        border: "1px solid  rgba(140, 140, 140, 0.35)",
+        width: "max-content",
       }}
     >
       <InfiniteScroll
@@ -47,11 +50,17 @@ const StudentList = ({ dataSet }) => {
         loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
         endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
         scrollableTarget="scrollableDiv"
+        style={{
+          height: "60rem",
+          width: "20rem",
+        }}
       >
         <List
-          dataSource={dataSet}
+          dataSource={dataset}
+          style={{
+            marginLeft: "1rem",
+          }}
           renderItem={(item) => {
-            console.log(item);
             return (
               <List.Item key={item.id}>
                 <List.Item.Meta
@@ -65,7 +74,7 @@ const StudentList = ({ dataSet }) => {
                   }
                   description={item.bootcampRegion}
                 />
-                <div>Go to Bootcamper Page</div>
+                {/* <div>Go to Bootcamper Page</div> */}
               </List.Item>
             );
           }}
