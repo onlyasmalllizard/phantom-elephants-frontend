@@ -1,5 +1,4 @@
 import StudentProfile from '../components/StudentProfile/index';
-import MessageNotification from 'components/MessageNotification';
 import CommentsBox from 'components/Comments';
 import ChartLine from '../components/ChartLine';
 import SearchByName from '../components/SearchByName';
@@ -38,7 +37,6 @@ export default function StudentPage({ massagedBackEndData }) {
       <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
-            <MessageNotification />
             <SearchByName handleSubmit={changeStudent} />
           </div>
         </div>

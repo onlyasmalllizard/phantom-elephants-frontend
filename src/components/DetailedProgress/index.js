@@ -23,6 +23,7 @@ import FeedbackView from 'components/FeedbackView';
 import ReflectionsView from 'components/ReflectionsView';
 import QuizView from '../QuizView';
 import WorkshopsView from 'components/WorkshopsView';
+import RecapView from '../RecapView';
 
 const viewOptions = [
   'Week 1',
@@ -115,7 +116,13 @@ const DetailedProgress = ({ student }) => {
         options={viewOptions}
       />
       <TabContent>
-        <TabPane active={openTab === 1 ? true : false}>Recap Task</TabPane>
+        <TabPane active={openTab === 1 ? true : false}>
+          {student.recaps ? (
+            <RecapView recaps={student.recaps} week={week} />
+          ) : (
+            <H6>{`${student.name} hasn't completed any recap tasks!`}</H6>
+          )}
+        </TabPane>
         <TabPane active={openTab === 2 ? true : false}>
           {student.workshops ? (
             <WorkshopsView
