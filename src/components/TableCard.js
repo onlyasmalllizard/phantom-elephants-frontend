@@ -6,35 +6,29 @@ import CardBody from "@material-tailwind/react/CardBody";
 import Image from "@material-tailwind/react/Image";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import DropDown from "./DropDown";
-import reducer, { FILTER_BY_ID } from "../reducer.js";
-import { filterOptions, filtationMethod, dataSet } from "../lib/tableData";
+import {
+  filterOptions,
+  filtationMethod,
+  tableHeaders,
+  viewOptions,
+} from "../lib/tableData";
+import { fakeData } from "../lib/allMassagedData";
 import { sortByFunction } from "functions";
 
-import bootcamps from "./../dummyData";
-
-console.log(dataSet);
-
-export default function CardTable() {
-  // const [state, dispatch] = useReducer(reducer, dataSet);
-  const [filter, setFilter] = useState(1);
+export default function CardTable({ backEndData }) {
+  // setting data to map over
+  const data = [
+    ...backEndData.filter((student) => student.hasWork === true),
+    ...fakeData,
+  ];
+  console.log("table:", data);
+  // set filter to option 0: all students
+  const [filter, setFilter] = useState(0);
   // heading state, isASC state
   const [heading, setHeading] = useState("name");
   const [isASC, setIsASC] = useState(true);
   // searchInput value state
   const [search, setSearch] = useState("");
-
-  // {
-  //   id: student.info.id,
-  //   name: student.info.name,
-  //   avatar: student.info.avatar,
-  //   bootcampID: bootcamp.id,
-  //   bootcampRegion: bootcamp.region,
-  //   trendRating: "placeholder",
-  //   recapTasks: recapTasks,
-  //   workshopTasks: workshopTasks,
-  //   avgQuiz: avgQuiz,
-  //   avgMood: avgMood,
-  // };
 
   const sortFunc = (heading, isASC) => (a, b) => {
     if (typeof a[heading] === "string" || a[heading] instanceof String) {
@@ -55,21 +49,6 @@ export default function CardTable() {
       return isASC ? a[heading] - b[heading] : b[heading] - a[heading];
     }
   };
-
-  const tableHeaders = [
-    { display: "Bootcamper", id: "name" },
-    { display: "Bootcamp", id: "bootcampID" },
-    { display: "Trend", id: "-" },
-    { display: "Recap Tasks", id: "recapTasks" },
-    { display: "Workshops", id: "workshopOverallAvgScore" },
-    { display: "Quiz Avg %", id: "avgQuiz" },
-    { display: "Mood Avg /5", id: "avgMood" },
-  ];
-  const viewOptions = [
-    "All Students",
-    ...bootcamps.map((bootcamp) => "Bootcamp " + bootcamp.id),
-    ...bootcamps.map((bootcamp) => bootcamp.region),
-  ];
 
   function toggleSort(e) {
     setHeading(e);
@@ -128,7 +107,8 @@ export default function CardTable() {
             </thead>
 
             <tbody>
-              {dataSet
+              {data
+                .filter((student) => student.hasWork === true)
                 .filter((data) =>
                   search.length > 0
                     ? data.name.toUpperCase().includes(search.toUpperCase())
@@ -152,7 +132,7 @@ export default function CardTable() {
                         </p>
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                        {student.bootcampID} : {student.bootcampRegion}
+                        {student.bootcampId} : {student.bootcampRegion}
                       </td>
 
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left ">
@@ -161,26 +141,26 @@ export default function CardTable() {
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                         <div className="flex content-evenly space-evenly items-evenly justify-evenly">
                           <div className="bg-green-500 px-1 w-6 text-center">
-                            <p>{student.recapTasks.green || 0}</p>
+                            <p>{student.recapTasksScoreObject.green || 0}</p>
                           </div>
                           <div className="bg-orange-500 px-1 w-6 text-center">
-                            <p>{student.recapTasks.amber || 0}</p>
+                            <p>{student.recapTasksScoreObject.amber || 0}</p>
                           </div>
                           <div className="bg-red-500 px-1 w-6 text-center">
-                            <p>{student.recapTasks.red || 0}</p>
+                            <p>{student.recapTasksScoreObject.red || 0}</p>
                           </div>
                         </div>
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                         <div className="flex content-evenly space-evenly items-evenly justify-evenly">
                           <div className="bg-green-500 px-1 w-6 text-center">
-                            <p>{student.workshopTasks.green || 0}</p>
+                            <p>{student.workshopTasksScoreObject.green || 0}</p>
                           </div>
                           <div className="bg-orange-500 px-1 w-6 text-center">
-                            <p>{student.workshopTasks.amber || 0}</p>
+                            <p>{student.workshopTasksScoreObject.amber || 0}</p>
                           </div>
                           <div className="bg-red-500 px-1 w-6 text-center">
-                            <p>{student.workshopTasks.red || 0}</p>
+                            <p>{student.workshopTasksScoreObject.red || 0}</p>
                           </div>
                         </div>
                       </td>
@@ -188,7 +168,7 @@ export default function CardTable() {
                         {student.avgQuiz}
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left ">
-                        {student.avgMood}
+                        {student.avgExperience}
                       </td>
                     </tr>
                   );

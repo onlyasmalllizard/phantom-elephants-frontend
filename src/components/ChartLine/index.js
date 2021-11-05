@@ -6,7 +6,7 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Dropdown from "../DropDown";
-import { lineDataset } from "lib/lineData";
+import { fakeData } from "lib/allMassagedData";
 import bootcamps from "dummyData";
 
 const chartFilters = [
@@ -14,14 +14,14 @@ const chartFilters = [
   {
     id: 0,
     display: "Quiz Scores",
-    ref: "quizScores",
+    ref: "quizScoresArray",
     spanGaps: true,
     beginAtZero: false,
   },
   {
     id: 1,
     display: "Experience Feedback",
-    ref: "feedbackExDayAvg",
+    ref: "feedbackExDayAvgArray",
     spanGaps: true,
     beginAtZero: true,
   },
@@ -57,7 +57,11 @@ export default function ChartLine({ data, isGroup }) {
   const [datasetId, setDatasetId] = useState(id);
   const [chartId, setChartId] = useState("0");
   const [isGroupData] = useState(isGroup);
-  const [dataset] = useState(lineDataset);
+
+  const [dataset] = useState([
+    ...data.filter((student) => student.hasWork === true),
+    ...fakeData,
+  ]);
   console.log("line chart: ", dataset);
   useEffect(() => setDatasetId(id), [id]);
 
@@ -65,7 +69,7 @@ export default function ChartLine({ data, isGroup }) {
     let config = {
       type: "line",
       data: {
-        labels: dataset[0].quizScores.map((quiz, index) => index + 1),
+        labels: dataset[0].quizScoresArray.map((quiz, index) => index + 1),
         datasets: dataset
           .filter((dataPoint) => {
             if (isGroupData) {

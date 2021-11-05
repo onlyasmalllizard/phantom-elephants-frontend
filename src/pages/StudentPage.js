@@ -1,14 +1,16 @@
-import StudentProfile from '../components/StudentProfile/index';
-import MessageNotification from 'components/MessageNotification';
-import CommentsBox from 'components/Comments';
-import ChartLine from '../components/ChartLine';
-import SearchByName from '../components/SearchByName';
-import DetailedProgress from 'components/DetailedProgress';
-import { useState } from 'react';
-import { useParams, useHistory } from 'react-router';
+import StudentProfile from "../components/StudentProfile/index";
+import MessageNotification from "components/MessageNotification";
+import CommentsBox from "components/Comments";
+import ChartLine from "../components/ChartLine";
+import SearchByName from "../components/SearchByName";
+import DetailedProgress from "components/DetailedProgress";
+import { fakeData } from "lib/allMassagedData";
+import { useState } from "react";
+import { useParams, useHistory } from "react-router";
 
-export default function StudentPage({ data }) {
-  console.log('student: ', data);
+export default function StudentPage({ backEndData }) {
+  const data = [...backEndData, ...fakeData];
+  console.log("studentPage: ", data);
   const history = useHistory();
   const [studentId, setStudentId] = useState(
     Number(useParams().id) || data[0].id

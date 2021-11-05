@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import SettingsDashboard from "pages/Settings";
 import Tables from "./pages/Tables";
-import { massage } from "./lib/lineData";
+import { massage } from "./lib/allMassagedData";
 import Footer from "./components/Footer";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -15,7 +15,6 @@ import StudentPage from "./pages/StudentPage";
 import Upload from "./pages/Upload";
 import Loading from "components/Loading/Loading";
 import Settings from "./pages/Settings";
-import { lineDataset } from "./lib/lineData";
 // Tailwind CSS Style Sheet
 import "assets/styles/tailwind.css";
 import "@material-tailwind/react/tailwind.css";
@@ -41,12 +40,11 @@ function App() {
       const data = await response.json();
       setCohortData(data.payload);
       setIsLoading(false);
-      console.log(massage(cohortData));
     }
     getData();
   }, []);
 
-  // console.log("app: ", cohortData);
+  // console.log("post-massage: ", massage(cohortData));
 
   return isLoading ? (
     <Loading />
@@ -56,19 +54,19 @@ function App() {
       <div className="md:ml-64">
         <Switch>
           <Route exact path="/">
-            <Dashboard data={cohortData} />
+            <Dashboard data={massage(cohortData)} />
           </Route>
 
           <Route exact path="/tables">
-            <Tables />
+            <Tables backEndData={massage(cohortData)} />
           </Route>
 
           <Route path="/student/:id">
-            <StudentPage data={cohortData} />
+            <StudentPage backEndData={massage(cohortData)} />
           </Route>
 
           <Route path="/student">
-            <StudentPage data={cohortData} />
+            <StudentPage backEndData={massage(cohortData)} />
           </Route>
 
           <Route path="/upload">
