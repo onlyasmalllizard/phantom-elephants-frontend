@@ -19,6 +19,8 @@ import TabContent from '@material-tailwind/react/TabContent';
 import TabPane from '@material-tailwind/react/TabPane';
 import H6 from '@material-tailwind/react/Heading5';
 import Paragraph from '@material-tailwind/react/Paragraph';
+import FeedbackView from 'components/FeedbackView';
+import ReflectionsView from 'components/ReflectionsView';
 
 const viewOptions = [
   'Week 1',
@@ -40,6 +42,11 @@ const DetailedProgress = ({ student }) => {
   const [hasWork, setHasWork] = useState(student.hasWork);
   const [openTab, setOpenTab] = useState(1);
   console.log(student);
+
+  // Day is 0 for Monday, 1 for Tuesday, ... 4 for Friday
+  const calculateIndex = (day) => {
+    return 5 * week + day;
+  };
   return (
     <Tab>
       <TabList color="lightBlue">
@@ -125,28 +132,22 @@ const DetailedProgress = ({ student }) => {
         </TabPane>
         <TabPane active={openTab === 4 ? true : false}>
           {hasWork ? (
-            <section>
-              <H6>Monday</H6>
-              <Paragraph>Morning</Paragraph>
-              <Paragraph>{student.feedbackCommentsArray[week][0]}</Paragraph>
-              <Paragraph>Afternoon</Paragraph>
-              <Paragraph>{student.feedbackCommentsArray[week][1]}</Paragraph>
-              <H6>Tuesday</H6>
-              <H6>Wednesday</H6>
-              <H6>Thursday</H6>
-              <H6>Friday</H6>
-            </section>
+            <FeedbackView
+              feedbackComments={student.feedbackCommentsArray}
+              feedbackExperience={student.feedbackExArray}
+              feedbackAverageExp={student.feedbackExDayAvgArray}
+              calculateIndex={calculateIndex}
+            />
           ) : (
             <H6>{`${student.name} has no submitted work!`}</H6>
           )}
         </TabPane>
         <TabPane active={openTab === 5 ? true : false}>
-          Reflections
-          <H6>Monday</H6>
-          <H6>Tuesday</H6>
-          <H6>Wednesday</H6>
-          <H6>Thursday</H6>
-          <H6>Friday</H6>
+          <ReflectionsView
+            reflections={student.reflections}
+            week={week}
+            calculateIndex={calculateIndex}
+          />
         </TabPane>
       </TabContent>
     </Tab>
