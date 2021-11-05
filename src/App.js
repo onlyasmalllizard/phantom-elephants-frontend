@@ -20,12 +20,15 @@ import "assets/styles/tailwind.css";
 import "@material-tailwind/react/tailwind.css";
 import { useHistory } from "react-router";
 import { UserProvider } from "./contexts/UserContext";
+import LoginButton from "./components/LoginButton/index";
+import LogoutButton from "components/LogoutButton";
+import LoggedInProfile from "components/UserLoggedInProfile";
 
 function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     // place fetch request to API for bootcamp name
   }, [defaultBootcamp]);
@@ -46,43 +49,51 @@ function App() {
 
   // console.log("post-massage: ", massage(cohortData));
 
-  return isLoading ? (
-    <Loading />
+  return isLoggedIn ? (
+    isLoading ? (
+      <Loading />
+    ) : (
+      <UserProvider>
+        <Sidebar />
+        <div className="md:ml-64">
+          <Switch>
+            <Route exact path="/">
+              <Dashboard massagedBackEndData={massage(cohortData)} />
+            </Route>
+
+            <Route exact path="/tables">
+              <Tables massagedBackEndData={massage(cohortData)} />
+            </Route>
+
+            <Route path="/student/:id">
+              <StudentPage massagedBackEndData={massage(cohortData)} />
+            </Route>
+
+            <Route path="/student">
+              <StudentPage massagedBackEndData={massage(cohortData)} />
+            </Route>
+
+            <Route path="/upload">
+              <Upload />
+            </Route>
+
+            <Route exact path="/settings">
+              <SettingsDashboard setBootcamp={setBootcamp} />
+            </Route>
+
+            <Redirect from="*" to="/" />
+          </Switch>
+
+          <Footer />
+        </div>
+      </UserProvider>
+    )
   ) : (
-    <UserProvider>
-      <Sidebar />
-      <div className="md:ml-64">
-        <Switch>
-          <Route exact path="/">
-            <Dashboard massagedBackEndData={massage(cohortData)} />
-          </Route>
-
-          <Route exact path="/tables">
-            <Tables massagedBackEndData={massage(cohortData)} />
-          </Route>
-
-          <Route path="/student/:id">
-            <StudentPage massagedBackEndData={massage(cohortData)} />
-          </Route>
-
-          <Route path="/student">
-            <StudentPage massagedBackEndData={massage(cohortData)} />
-          </Route>
-
-          <Route path="/upload">
-            <Upload />
-          </Route>
-
-          <Route exact path="/settings">
-            <SettingsDashboard setBootcamp={setBootcamp} />
-          </Route>
-
-          <Redirect from="*" to="/" />
-        </Switch>
-
-        <Footer />
-      </div>
-    </UserProvider>
+    <>
+      <LoginButton />
+      <LogoutButton />
+      <LoggedInProfile setIsLoggedIn={setIsLoggedIn} />
+    </>
   );
 }
 

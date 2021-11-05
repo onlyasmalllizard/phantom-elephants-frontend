@@ -4,6 +4,7 @@ import AdminNavbar from "../AdminNavbar/index";
 import Icon from "@material-tailwind/react/Icon";
 import H6 from "@material-tailwind/react/Heading6";
 import Logo from "../Logo";
+import LogoutButton from "components/LogoutButton";
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState("-left-64");
@@ -81,6 +82,7 @@ export default function Sidebar() {
                 </NavLink>
               </li>
             </ul>
+            <LogoutButton />
           </div>
         </div>
       </div>

@@ -9,6 +9,9 @@ import MessageNotification from "../components/MessageNotification/index";
 import Comments from "../components/Comments/index";
 import Doughnut from "../components/Doughnut/index";
 import StudentList from "../components/StudentList/index";
+import LoginButton from "components/LoginButton";
+import LogoutButton from "components/LogoutButton";
+import LoggedInProfile from "components/UserLoggedInProfile";
 
 export default function Dashboard({ massagedBackEndData }) {
   console.log(massagedBackEndData);
