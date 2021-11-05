@@ -99,7 +99,7 @@ const DetailedProgress = ({ student }) => {
         </TabItem>
       </TabList>
       <OutlineDropdown
-        text={week}
+        text={viewOptions[0]}
         state={week}
         setState={setWeek}
         options={viewOptions}
@@ -109,9 +109,9 @@ const DetailedProgress = ({ student }) => {
         <TabPane active={openTab === 2 ? true : false}>Workshops</TabPane>
         <TabPane active={openTab === 3 ? true : false}>Quizzes</TabPane>
         <TabPane active={openTab === 4 ? true : false}>
-          Feedback
+          <H5>Feedback</H5>
           <H6>Monday</H6>
-          {student.feedback[0].content}
+          {student.feedback[0][0].content}
           <H6>Tuesday</H6>
           <H6>Wednesday</H6>
           <H6>Thursday</H6>
