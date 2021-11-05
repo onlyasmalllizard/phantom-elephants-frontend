@@ -54,7 +54,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               color="blue"
               icon="groups"
               // leave the spaces they are there to balance box height HACK
-              title="ㅤ        ㅤ      Attendance"
+              title="Attendanceㅤ        ㅤ  "
               amount="49,65%"
               percentage="12"
               percentageIcon="arrow_upward"
