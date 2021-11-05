@@ -8,8 +8,10 @@ import InputField from "../components/InputField/index";
 import MessageNotification from "../components/MessageNotification/index";
 import Comments from "../components/Comments/index";
 import Doughnut from "../components/Doughnut/index";
+import StudentList from "../components/StudentList/index";
 
 export default function Dashboard({ massagedBackEndData }) {
+  console.log(massagedBackEndData);
   const donutDataset = {
     label: "My First Dataset",
     labels: ["Red", "Blue", "Yellow"],
@@ -57,6 +59,7 @@ export default function Dashboard({ massagedBackEndData }) {
               height="h-70"
               width="w-70"
             />
+            <StudentList dataSet={massagedBackEndData} />
           </div>
         </div>
       </div>
