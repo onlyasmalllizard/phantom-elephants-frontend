@@ -11,7 +11,7 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
   const location = useLocation().pathname;
 
   return (
-    <nav className="bg-black md:ml-64 py-6 px-3">
+    <nav className="bg-light-blue-500 md:ml-64 py-6 px-3">
       <div className="container max-w-full mx-auto flex items-center justify-between md:pr-8 md:pl-10">
         <div className="md:hidden">
           <Button
@@ -52,8 +52,6 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
           </h4>
 
           <div className="flex">
-            <NavbarInput placeholder="Search" />
-
             <div className="-mr-4 ml-6">
               <Dropdown
                 color="transparent"

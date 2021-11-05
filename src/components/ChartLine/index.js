@@ -1,84 +1,93 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import uuid from "react-uuid";
 import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import bootcamps from "../dummyData";
-import Dropdown from "./DropDown";
+import Dropdown from "../DropDown";
+import { fakeData } from "lib/allMassagedData";
+import bootcamps from "dummyData";
 
-export default function ChartLine() {
-  const [bootcampID, setBootcampID] = useState(0);
-  const handleChange = (event) => {
-    console.log("Bootcamp ID: ", event.target.value);
-    setBootcampID(event.target.value);
-  };
-  const days = bootcamps[bootcampID].students[0].work.map((work) => work.day);
-  const colors = [
-    "#e6194b",
-    "#3cb44b",
-    "#ffe119",
-    "#4363d8",
-    "#f58231",
-    "#911eb4",
-    "#46f0f0",
-    "#f032e6",
-    "#bcf60c",
-    "#fabebe",
-    "#008080",
-    "#e6beff",
-    "#9a6324",
-    "#fffac8",
-    "#800000",
-    "#aaffc3",
-    "#808000",
-    "#ffd8b1",
-    "#000075",
-    "#808080",
-    "#ffffff",
-    "#000000",
-  ];
+const chartFilters = [
+  // used for the first dropdown filter
+  {
+    id: 0,
+    display: "Quiz Scores",
+    ref: "quizScoresArray",
+    spanGaps: true,
+    beginAtZero: false,
+  },
+  {
+    id: 1,
+    display: "Experience Feedback",
+    ref: "feedbackExDayAvgArray",
+    spanGaps: true,
+    beginAtZero: true,
+  },
+];
+
+const colors = [
+  "#e6194b",
+  "#3cb44b",
+  "#ffe119",
+  "#4363d8",
+  "#f58231",
+  "#911eb4",
+  "#46f0f0",
+  "#f032e6",
+  "#bcf60c",
+  "#fabebe",
+  "#008080",
+  "#e6beff",
+  "#9a6324",
+  "#fffac8",
+  "#800000",
+  "#aaffc3",
+  "#808000",
+  "#ffd8b1",
+  "#000075",
+  "#808080",
+  "#ffffff",
+  "#000000",
+];
+
+export default function ChartLine({ data, isGroup }) {
+  const id = Number(useParams().id) || 1;
+  const [datasetId, setDatasetId] = useState(id);
+  const [chartId, setChartId] = useState("0");
+  const [isGroupData] = useState(isGroup);
+
+  const [dataset] = useState([
+    ...data.filter((student) => student.hasWork === true),
+    ...fakeData,
+  ]);
+  console.log("line chart: ", dataset);
+  useEffect(() => setDatasetId(id), [id]);
 
   useEffect(() => {
-    var config = {
+    let config = {
       type: "line",
       data: {
-        labels: days,
-        datasets: bootcamps[bootcampID].students.map((student, index) => {
-          return {
-            label: student.info.name,
-            backgroundColor: colors[index],
-            borderColor: colors[index],
-            data:
-              student.work.quiz === null
-                ? null
-                : student.work.map((work) =>
-                    work.quiz === null ? null : work.quiz.percentage
-                  ),
-            fill: false,
-            spanGaps: true,
-          };
-        }),
-        // datasets: [
-        //   {
-        //     label: new Date().getFullYear(),
-        //     backgroundColor: "#03a9f4",
-        //     borderColor: "#03a9f4",
-        //     data: quizScores1,
-        //     fill: false,
-        //   },
-        //   {
-        //     label: new Date().getFullYear() - 1,
-        //     fill: false,
-        //     backgroundColor: "#ff9800",
-        //     borderColor: "#ff9800",
-        //     data: quizScores2,
-        //   },
-        // ],
+        labels: dataset[0].quizScoresArray.map((quiz, index) => index + 1),
+        datasets: dataset
+          .filter((dataPoint) => {
+            if (isGroupData) {
+              return dataPoint.bootcampId === datasetId || datasetId === 0;
+            } else {
+              return dataPoint.id === datasetId;
+            }
+          })
+          .map((student, index) => {
+            return {
+              label: student.name,
+              backgroundColor: colors[index],
+              borderColor: colors[index],
+              data: student[chartFilters[chartId].ref],
+              fill: false,
+              spanGaps: chartFilters[chartId].spanGaps,
+            };
+          }),
       },
       options: {
         elements: {
@@ -105,7 +114,7 @@ export default function ChartLine() {
           intersect: false,
         },
         hover: {
-          mode: "nearest",
+          mode: "index",
           intersect: true,
         },
         scales: {
@@ -135,6 +144,7 @@ export default function ChartLine() {
             {
               ticks: {
                 fontColor: "rgba(17,17,17,.7)",
+                beginAtZero: chartFilters[chartId].beginAtZero,
               },
               display: true,
               scaleLabel: {
@@ -158,27 +168,42 @@ export default function ChartLine() {
     };
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
-  }, [bootcampID]);
+  }, [datasetId, chartId, dataset, isGroupData]);
 
   return (
     <Card key={uuid()}>
       <CardHeader color="orange" contentPosition="left">
         <div className="flex">
           <div>
-            {" "}
             <h6 className="uppercase text-gray-200 text-xs font-medium">
               Overview
             </h6>
-            <h2 className="text-white text-2xl">Quiz Scores</h2>
+            <h2 className="text-white text-2xl">
+              {chartFilters[chartId].display}
+            </h2>
           </div>
-          <div className="pl-5">
+          <div className="pl-5 flex">
             <Dropdown
-              state={bootcampID}
-              setState={setBootcampID}
-              label="Bootcamp"
-              datas={bootcamps}
-              itemOptions={["id", "region"]}
+              state={chartId}
+              setState={setChartId}
+              label="Chart Select"
+              itemOptions={chartFilters.map((option) => option.display)}
             />
+            {isGroup ? (
+              <Dropdown
+                state={datasetId}
+                setState={setDatasetId}
+                label="Bootcamp"
+                itemOptions={[
+                  "All Bootcamps",
+                  ...bootcamps.map((bootcamp) => {
+                    return bootcamp.id + ": " + bootcamp.region;
+                  }),
+                ]}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </CardHeader>

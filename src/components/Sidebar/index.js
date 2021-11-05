@@ -1,94 +1,9 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
-// import React from "react";
-// import {
-//   Checkbox,
-//   Grid,
-//   Header,
-//   Icon,
-//   Image,
-//   Menu,
-//   Segment,
-//   Sidebar,
-// } from "semantic-ui-react";
-
-// const SidebarExampleSidebar = () => {
-//   const [visible, setVisible] = React.useState(false);
-
-//   return (
-//     <Grid columns={1}>
-//       <Grid.Column>
-//         <Checkbox
-//           checked={visible}
-//           label={{ children: <code>visible</code> }}
-//           onChange={(e, data) => setVisible(data.checked)}
-//         />
-//       </Grid.Column>
-
-//       <Grid.Column>
-//         <Sidebar.Pushable as={Segment}>
-//           <Sidebar
-//             as={Menu}
-//             animation="overlay"
-//             icon="labeled"
-//             inverted
-//             onHide={() => setVisible(false)}
-//             vertical
-//             visible={visible}
-//             width="thin"
-//           >
-//             <Menu.Item as="a">
-//               <li className="rounded-lg mb-4">
-//                 <NavLink
-//                   to="/"
-//                   exact
-//                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-//                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-//                 >
-//                   <Icon name="dashboard" size="2xl" />
-//                   Dashboard
-//                 </NavLink>
-//               </li>
-//             </Menu.Item>
-
-//             <Menu.Item as="a">
-//               <li className="rounded-lg mb-2 ">
-//                 <NavLink
-//                   to="/tables"
-//                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-//                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-//                 >
-//                   {/* <Icon name="toc" size="2xl" /> */}
-//                   Tables
-//                 </NavLink>
-//               </li>
-//               <Icon name="gamepad" />
-//               Games
-//             </Menu.Item>
-//             <Menu.Item as="a">
-//               <Icon name="camera" />
-//               Channels
-//             </Menu.Item>
-//           </Sidebar>
-
-//           <Sidebar.Pusher>
-//             <Segment basic>
-//               <h1>Hiiiii</h1>
-//             </Segment>
-//           </Sidebar.Pusher>
-//         </Sidebar.Pushable>
-//       </Grid.Column>
-//     </Grid>
-//   );
-// };
-
-// export default SidebarExampleSidebar;
-
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar/index";
 import Icon from "@material-tailwind/react/Icon";
 import H6 from "@material-tailwind/react/Heading6";
-import Logo from "./Logo";
+import Logo from "../Logo";
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState("-left-64");
@@ -130,29 +45,31 @@ export default function Sidebar() {
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="toc" size="2xl" />
-                  Tables
+                  Cohort View
                 </NavLink>
               </li>
               <li className="rounded-lg mb-2 text-gray-700">
                 <NavLink
-                  to="/studentdashboard"
+                  to="/student"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="map" size="2xl" />
-                  Student Dashboard
+                  Individual Student View
                 </NavLink>
               </li>
-              <li className="px-4 rounded-lg mb-2 text-gray-700">
+
+              <li className="rounded-lg mb-2 text-gray-700">
                 <NavLink
-                  to="/profilecard"
+                  to="/upload"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
-                  <Icon name="account_circle" size="2xl" />
-                  Profile Card
+                  <Icon name="upload" size="2xl" />
+                  File Upload
                 </NavLink>
               </li>
+
               <li className="rounded-lg mb-2">
                 <NavLink
                   to="/settings"

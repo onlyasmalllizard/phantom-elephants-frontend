@@ -3,36 +3,60 @@ import ChartLine from "../components/ChartLine";
 import ChartBar from "../components/ChartBar";
 import PageVisitsCard from "../components/PageVisitsCard";
 import TrafficCard from "../components/TrafficCard";
-<<<<<<< HEAD
-import StudentDropdown from "../components/StudentDropdownList";
-import InputField from "components/InputField";
-import MessageNotification from "components/MessageBox";
-import CommentsBox from "components/Comments";
-=======
->>>>>>> e41ab31d10ed77d82ffbb4b30df214a277b2799c
+import StudentDropdown from "../components/NameSelection";
+import InputField from "../components/InputField/index";
+import MessageNotification from "../components/MessageNotification/index";
+import Comments from "../components/Comments/index";
+import Doughnut from "../components/Doughnut/index";
 
-export default function Dashboard() {
+export default function Dashboard({ massagedBackEndData }) {
+  const donutDataset = {
+    label: "My First Dataset",
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [
+      {
+        data: [300, 50, 100],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "grey",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  const options = {
+    legend: {
+      display: true,
+      position: "left",
+    },
+  };
   return (
     <>
-      <div className={"bg-black px-3 md:px-8 h-40"} />
+      <div className={"bg-light-blue-500 px-3 md:px-8 h-40"} />
 
       <div className="px-3 md:px-10 -mt-24">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 xl:grid-cols-100">
             <div className="xl:col-start-1 xl:col-end-6 px-4 mb-14">
-              <ChartLine />
+              <MessageNotification content="hi" />
             </div>
           </div>
         </div>
       </div>
-
+      <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
-            <StudentDropdown />
-            <InputField />
             <MessageNotification content="hi" />
-            <CommentsBox url="https://ih1.redbubble.net/image.521444957.7037/flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg" />
+            <Doughnut
+              dataset={donutDataset}
+              options={options}
+              height="h-70"
+              width="w-70"
+            />
           </div>
         </div>
       </div>
