@@ -37,29 +37,16 @@ export default function Dashboard({ massagedBackEndData }) {
   };
   return (
     <>
-      <div className={"bg-light-blue-500 px-3 md:px-8 h-40"} />
-
-      <div className="px-3 md:px-10 -mt-24">
-        <div className="container mx-auto max-w-full">
-          <div className="grid grid-cols-1 xl:grid-cols-100">
-            <div className="xl:col-start-1 xl:col-end-6 px-4 mb-14">
-              <MessageNotification content="hi" />
-            </div>
-          </div>
+      <div className="flex flex-row justify-evenly h-screen ">
+        <div classname="w-3/4">
+          <StudentList dataSet={massagedBackEndData} />
         </div>
-      </div>
-      <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
-      <div className="px-3 md:px-8">
-        <div className="container mx-auto max-w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
+        <div className="flex flex-col justify-evenly w-3/4">
+          <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
+          <div className="flex justify-evenly">
             <MessageNotification content="hi" />
-            <Doughnut
-              dataset={donutDataset}
-              options={options}
-              height="h-70"
-              width="w-70"
-            />
-            <StudentList dataSet={massagedBackEndData} />
+
+            <Doughnut dataset={donutDataset} options={options} />
           </div>
         </div>
       </div>
