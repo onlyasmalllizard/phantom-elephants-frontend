@@ -9,7 +9,7 @@ import MessageNotification from "../components/MessageNotification/index";
 import Comments from "../components/Comments/index";
 import Doughnut from "../components/Doughnut/index";
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ massagedBackEndData }) {
   const donutDataset = {
     label: "My First Dataset",
     labels: ["Red", "Blue", "Yellow"],
@@ -46,7 +46,7 @@ export default function Dashboard({ data }) {
           </div>
         </div>
       </div>
-      <ChartLine data={data} isGroup={true} id={0} />
+      <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">

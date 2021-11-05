@@ -8,8 +8,8 @@ import { fakeData } from "lib/allMassagedData";
 import { useState } from "react";
 import { useParams, useHistory } from "react-router";
 
-export default function StudentPage({ backEndData }) {
-  const data = [...backEndData, ...fakeData];
+export default function StudentPage({ massagedBackEndData }) {
+  const data = [...massagedBackEndData, ...fakeData];
   console.log("studentPage: ", data);
   const history = useHistory();
   const [studentId, setStudentId] = useState(

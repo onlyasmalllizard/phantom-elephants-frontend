@@ -60,10 +60,8 @@ export const fakeData = bootcamps
         tasksResultObj.amber * 0.67 +
         tasksResultObj.red * 0.33 +
         tasksResultObj.null * -0.01;
-      const workshopOverallAvgScore = RAG_TasksAvgScore(
-        workshopTasksScoreObject
-      );
-      const recapOverallAvgScore = RAG_TasksAvgScore(recapTasksScoreObject);
+      const avgWorkshopScore = RAG_TasksAvgScore(workshopTasksScoreObject);
+      const avgRecapScore = RAG_TasksAvgScore(recapTasksScoreObject);
       /* filtering out null quiz scores, then calculating average */
       const notNullQuizScores = student.work.filter(
         (work) => work.quiz !== null
@@ -105,9 +103,9 @@ export const fakeData = bootcamps
         feedbackExArray,
         feedbackCommentsArray,
         recapTasksScoreObject,
-        recapOverallAvgScore,
+        avgRecapScore,
         workshopTasksScoreObject,
-        workshopOverallAvgScore,
+        avgWorkshopScore,
         avgQuiz,
         avgExperience,
         hasWork: true,

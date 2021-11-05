@@ -54,19 +54,19 @@ function App() {
       <div className="md:ml-64">
         <Switch>
           <Route exact path="/">
-            <Dashboard data={massage(cohortData)} />
+            <Dashboard massagedBackEndData={massage(cohortData)} />
           </Route>
 
           <Route exact path="/tables">
-            <Tables backEndData={massage(cohortData)} />
+            <Tables massagedBackEndData={massage(cohortData)} />
           </Route>
 
           <Route path="/student/:id">
-            <StudentPage backEndData={massage(cohortData)} />
+            <StudentPage massagedBackEndData={massage(cohortData)} />
           </Route>
 
           <Route path="/student">
-            <StudentPage backEndData={massage(cohortData)} />
+            <StudentPage massagedBackEndData={massage(cohortData)} />
           </Route>
 
           <Route path="/upload">

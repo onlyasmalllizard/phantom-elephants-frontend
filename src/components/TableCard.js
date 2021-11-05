@@ -15,10 +15,10 @@ import {
 import { fakeData } from "../lib/allMassagedData";
 import { sortByFunction } from "functions";
 
-export default function CardTable({ backEndData }) {
+export default function CardTable({ massagedBackEndData }) {
   // setting data to map over
   const data = [
-    ...backEndData.filter((student) => student.hasWork === true),
+    ...massagedBackEndData.filter((student) => student.hasWork === true),
     ...fakeData,
   ];
   console.log("table:", data);
