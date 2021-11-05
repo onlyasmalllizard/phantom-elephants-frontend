@@ -6,20 +6,20 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 
-export default function Doughnut({ dataset, width, height }) {
-  const data = dataset;
+export default function Doughnut({ options, dataset, width, height }) {
   console.log("dataset: ", dataset);
   useEffect(() => {
     const config = {
       type: "doughnut",
-      data: data,
+      data: dataset,
+      options: options,
     };
     let ctx = document.getElementById("donut-chart").getContext("2d");
     window.myDoughnut = new Chart(ctx, config);
   }, []);
 
   return (
-    <Card key={uuid()}>
+    <Card key={uuid()} className="min-w-150 min-h-200">
       <CardHeader
         color="red"
         contentPosition="left"
@@ -35,7 +35,7 @@ export default function Doughnut({ dataset, width, height }) {
           </div>
         </div>
       </CardHeader>
-      <CardBody className={`${width} ${height} relative min-h-60 min-w-60`}>
+      <CardBody className={`${width} ${height} relative `}>
         <div>
           <canvas
             className="h-max w-max"

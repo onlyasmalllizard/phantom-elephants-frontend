@@ -52,8 +52,6 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
           </h4>
 
           <div className="flex">
-            <NavbarInput placeholder="Search" />
-
             <div className="-mr-4 ml-6">
               <Dropdown
                 color="transparent"
