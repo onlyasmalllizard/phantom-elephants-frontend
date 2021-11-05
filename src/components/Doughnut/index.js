@@ -29,7 +29,7 @@ export default function Doughnut({ datasets, label, options }) {
         className="-h-10"
         style={{ height: "10px" }}
       >
-        <div className="flex">
+        <div className="flex" style={{}}>
           <div>
             <h6 className="uppercase text-gray-200 text-xs font-medium ">
               {label}
@@ -37,8 +37,11 @@ export default function Doughnut({ datasets, label, options }) {
             <h2 className="text-white text-2xl">{datasets[chartId].label}</h2>
           </div>
           <div
+            className="items-end"
             style={{
               marginLeft: "1rem",
+              display: "flex",
+              justifyContent: "flex-end",
             }}
           >
             <Dropdown
@@ -50,7 +53,7 @@ export default function Doughnut({ datasets, label, options }) {
           </div>
         </div>
       </CardHeader>
-      <CardBody className={`relative`}>
+      <CardBody className={`relative `}>
         <div>
           <canvas
             className="h-max w-max"
