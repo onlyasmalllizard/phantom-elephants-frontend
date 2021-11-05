@@ -1,18 +1,10 @@
 import StatusCard from "../components/StatusCard";
 import TableCard from "../components/TableCard";
+import { cohortMaths } from "../lib/allCohortMaths";
 
 export default function CohortTableView({ massagedBackEndData }) {
-  const startWeek = 1;
-  const endWeek = 8;
-  console.log(massagedBackEndData);
-  // CALCULATING OVERALL COHORT SCORES BASED ON A TIME RANGE
-  const onlyStudentsWithWork = massagedBackEndData.filter(
-    (student) => student.hasWork === true
-  );
-
-  const cohortRecapPerformance = onlyStudentsWithWork
-    .slice(startWeek, endWeek)
-    .reduce((acc, cur) => acc + cur.avgRecapScore, 0);
+  const cohortData = cohortMaths(massagedBackEndData, 1, 8);
+  const { cohortRecapPerformance } = cohortData;
   return (
     <>
       <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">

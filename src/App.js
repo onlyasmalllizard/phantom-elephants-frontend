@@ -1,29 +1,32 @@
-import { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Dashboard from './pages/Dashboard';
-import SettingsDashboard from 'pages/Settings';
-import Tables from './pages/Tables';
-import { massage } from './lib/allMassagedData';
-import Footer from './components/Footer';
-import ReactNotification from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
-import 'semantic-ui-css/semantic.min.css';
-import AdminNavbar from './components/AdminNavbar';
-import ProfileCard from 'pages/ProfileCard';
-import StudentPage from './pages/StudentPage';
-import Upload from './pages/Upload';
-import Loading from 'components/Loading/Loading';
-import Settings from './pages/Settings';
+import { useState, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import SettingsDashboard from "pages/Settings";
+import Tables from "./pages/Tables";
+import { massage } from "./lib/allMassagedData";
+import Footer from "./components/Footer";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "semantic-ui-css/semantic.min.css";
+import AdminNavbar from "./components/AdminNavbar";
+import ProfileCard from "pages/ProfileCard";
+import StudentPage from "./pages/StudentPage";
+import Upload from "./pages/Upload";
+import Loading from "components/Loading/Loading";
+import Settings from "./pages/Settings";
+import "react-notifications-component/dist/theme.css";
+import "semantic-ui-css/semantic.min.css";
+import "./index.css";
 // Tailwind CSS Style Sheet
-import 'assets/styles/tailwind.css';
-import '@material-tailwind/react/tailwind.css';
-import { useHistory } from 'react-router';
-import { UserProvider } from './contexts/UserContext';
+import "assets/styles/tailwind.css";
+import "@material-tailwind/react/tailwind.css";
+import { useHistory } from "react-router";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   const [cohortData, setCohortData] = useState([]);
-  const [defaultBootcamp, setBootcamp] = useState('');
+  const [defaultBootcamp, setBootcamp] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,9 +36,9 @@ function App() {
   useEffect(() => {
     async function getData() {
       setIsLoading(true);
-      const API_URL = process.env.REACT_APP_API_URL + '/records';
+      const API_URL = process.env.REACT_APP_API_URL + "/records";
       const response = await fetch(API_URL, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
       setCohortData(data.payload);

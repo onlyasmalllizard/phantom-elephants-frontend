@@ -190,17 +190,23 @@ export default function ChartLine({ data, isGroup }) {
               itemOptions={chartFilters.map((option) => option.display)}
             />
             {isGroup ? (
-              <Dropdown
-                state={datasetId}
-                setState={setDatasetId}
-                label="Bootcamp"
-                itemOptions={[
-                  "All Bootcamps",
-                  ...bootcamps.map((bootcamp) => {
-                    return bootcamp.id + ": " + bootcamp.region;
-                  }),
-                ]}
-              />
+              <div
+                style={{
+                  marginLeft: "1rem",
+                }}
+              >
+                <Dropdown
+                  state={datasetId}
+                  setState={setDatasetId}
+                  label="Bootcamp"
+                  itemOptions={[
+                    "All Bootcamps",
+                    ...bootcamps.map((bootcamp) => {
+                      return bootcamp.id + ": " + bootcamp.region;
+                    }),
+                  ]}
+                />
+              </div>
             ) : (
               ""
             )}

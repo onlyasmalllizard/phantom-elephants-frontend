@@ -597,14 +597,11 @@ video {
 .ml-6{
 	margin-left: 1.5rem;
 }
+.mt-5{
+	margin-top: 1.25rem;
+}
 .-mt-24{
 	margin-top: -6rem;
-}
-.mb-14{
-	margin-bottom: 3.5rem;
-}
-.mb-4{
-	margin-bottom: 1rem;
 }
 .mb-16{
 	margin-bottom: 4rem;
@@ -615,6 +612,9 @@ video {
 .mt-1{
 	margin-top: 0.25rem;
 }
+.mb-4{
+	margin-bottom: 1rem;
+}
 .mt-0{
 	margin-top: 0px;
 }
@@ -623,9 +623,6 @@ video {
 }
 .-mt-8{
 	margin-top: -2rem;
-}
-.mt-5{
-	margin-top: 1.25rem;
 }
 .mt-2{
 	margin-top: 0.5rem;
@@ -660,11 +657,11 @@ video {
 .h-10{
 	height: 2.5rem;
 }
-.h-40{
-	height: 10rem;
-}
 .h-auto{
 	height: auto;
+}
+.h-40{
+	height: 10rem;
 }
 .h-96{
 	height: 24rem;
@@ -689,6 +686,15 @@ video {
 }
 .w-56{
 	width: 14rem;
+}
+.w-screen{
+	width: 100vw;
+}
+.w-3\/12{
+	width: 25%;
+}
+.w-8\/12{
+	width: 66.666667%;
 }
 .w-12{
 	width: 3rem;
@@ -731,6 +737,9 @@ video {
 }
 .content-evenly{
 	align-content: space-evenly;
+}
+.items-end{
+	align-items: flex-end;
 }
 .items-center{
 	align-items: center;
@@ -2532,10 +2541,6 @@ video {
 		padding-left: 2rem;
 		padding-right: 2rem;
 	}
-	.md\:px-10{
-		padding-left: 2.5rem;
-		padding-right: 2.5rem;
-	}
 	.md\:pr-8{
 		padding-right: 2rem;
 	}
@@ -2564,12 +2569,6 @@ video {
 	}
 }
 @media (min-width: 1280px){
-	.xl\:col-start-1{
-		grid-column-start: 1;
-	}
-	.xl\:col-end-6{
-		grid-column-end: 6;
-	}
 	.xl\:grid-cols-4{
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
