@@ -111,6 +111,7 @@ const DetailedProgress = ({ student }) => {
         <TabPane active={openTab === 4 ? true : false}>
           Feedback
           <H6>Monday</H6>
+          {student.feedback[0].content}
           <H6>Tuesday</H6>
           <H6>Wednesday</H6>
           <H6>Thursday</H6>
