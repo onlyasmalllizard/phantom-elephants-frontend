@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./index.css";
 import { List, message, Avatar, Skeleton, Divider } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { dataSet } from "lib/tableData";
-import { ElementFlags } from "typescript";
-
-const StudentList = () => {
+const StudentList = ({ dataSet }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
@@ -61,7 +57,9 @@ const StudentList = () => {
                 <List.Item.Meta
                   avatar={<Avatar src={item.avatar} />}
                   title={
-                    <a href={`http://localhost:3000/student/${item.id}`}>
+                    <a
+                      href={`${process.env.REACT_APP_API_URL}/student/${item.id}`}
+                    >
                       {item.name}
                     </a>
                   }

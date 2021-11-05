@@ -1,20 +1,28 @@
 import React from "react";
-import "./style.css";
+import css from "./style.module.css";
 import { useState } from "react";
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor="photo-upload" className="custom-file-upload fas">
     <div className="img-wrap img-upload">
-      <img for="photo-upload" src={src} />
+      <img for="photo-upload" src={src} className={css.img} />
     </div>
-    <input id="photo-upload" type="file" onChange={onChange} />
+    <input
+      id="photo-upload"
+      type="file"
+      onChange={onChange}
+      className={css.input}
+    />
   </label>
 );
 
 const Name = ({ onChange, value }) => (
-  <div className="field">
-    <label htmlFor="name">name:</label>
+  <div className={css.field}>
+    <label htmlFor="name" className={css.label}>
+      name:
+    </label>
     <input
+      className={css.input}
       id="name"
       type="text"
       onChange={onChange}
@@ -27,9 +35,12 @@ const Name = ({ onChange, value }) => (
 );
 
 const Region = ({ onChange, value }) => (
-  <div className="field">
-    <label htmlFor="status">region:</label>
+  <div className={css.field}>
+    <label htmlFor="status" className={css.label}>
+      region:
+    </label>
     <input
+      className={css.input}
       id="status"
       type="text"
       onChange={onChange}
@@ -42,9 +53,12 @@ const Region = ({ onChange, value }) => (
 );
 
 const Watchlist = ({ onChange, value }) => (
-  <div className="field">
-    <label htmlFor="watchlist">watchlist:</label>
+  <div className={css.field}>
+    <label htmlFor="watchlist" className={css.label}>
+      watchlist:
+    </label>
     <input
+      className={css.input}
       id="watchlist"
       type="text"
       onChange={onChange}
@@ -57,18 +71,18 @@ const Watchlist = ({ onChange, value }) => (
 );
 
 const Profile = ({ onSubmit, src, name, region, watchlist }) => (
-  <div className="card">
+  <div className={css.card}>
     <form onSubmit={onSubmit}>
       <h1>Profile Card</h1>
-      <label className="custom-file-upload fas">
-        <div className="img-wrap">
-          <img for="photo-upload" src={src} />
+      <label className={`${css.customFileUpload} ${css.label}`}>
+        <div className={css.imgWrap}>
+          <img for="photo-upload" src={src} className={css.img} />
         </div>
       </label>
-      <div className="name">{name}</div>
-      <div className="region">{region}</div>
-      <div className="watchlist">{watchlist}</div>
-      <button type="submit" className="edit">
+      <div className={css.card}>{name}</div>
+      <div className={css.region}>{region}</div>
+      <div className={css.watchlist}>{watchlist}</div>
+      <button type="submit" className={`${css.edit} ${css.button}`}>
         Edit Profile{" "}
       </button>
     </form>
@@ -76,11 +90,13 @@ const Profile = ({ onSubmit, src, name, region, watchlist }) => (
 );
 
 const Edit = ({ onSubmit, children }) => (
-  <div className="card">
+  <div className={css.card}>
     <form onSubmit={onSubmit}>
-      <h1>User Settings</h1>
+      <h1 className={`${css.label} text-center text-black mb-4`}>
+        User Settings
+      </h1>
       {children}
-      <button type="submit" className="save">
+      <button type="submit" className={`${css.save} ${css.button}`}>
         Save{" "}
       </button>
     </form>
@@ -144,14 +160,19 @@ function CardProfile(props) {
   return (
     <div>
       {active === "edit" ? (
-        <Edit onSubmit={handleSubmit}>
-          <ImgUpload onChange={photoUpload} src={previewImage} />
+        <Edit onSubmit={handleSubmit} className={css.body}>
+          <ImgUpload
+            onChange={photoUpload}
+            src={previewImage}
+            className={css.imgUpload}
+          />
           <Name onChange={editName} value={name} />
           <Region onChange={editRegion} value={region} />
           <Watchlist onChange={editWatchlist} value={watchlist} />
         </Edit>
       ) : (
         <Profile
+          className={css.body}
           onSubmit={handleSubmit}
           src={previewImage}
           name={name}
