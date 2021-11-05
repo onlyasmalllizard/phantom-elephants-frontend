@@ -10,8 +10,7 @@ import DropDown from 'components/DropDown';
 import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
-import H5 from '@material-tailwind/react/Heading5';
-import Paragraph from '@material-tailwind/react/Paragraph';
+import H4 from '@material-tailwind/react/Heading4';
 
 import Tab from '@material-tailwind/react/Tab';
 import TabList from '@material-tailwind/react/TabList';
@@ -19,6 +18,7 @@ import TabItem from '@material-tailwind/react/TabItem';
 import TabContent from '@material-tailwind/react/TabContent';
 import TabPane from '@material-tailwind/react/TabPane';
 import H6 from '@material-tailwind/react/Heading5';
+import Paragraph from '@material-tailwind/react/Paragraph';
 
 const viewOptions = [
   'Week 1',
@@ -36,7 +36,8 @@ const viewOptions = [
 ];
 
 const DetailedProgress = ({ student }) => {
-  const [week, setWeek] = useState(1);
+  const [week, setWeek] = useState(0);
+  const [hasWork, setHasWork] = useState(student.hasWork);
   const [openTab, setOpenTab] = useState(1);
   console.log(student);
   return (
@@ -105,19 +106,48 @@ const DetailedProgress = ({ student }) => {
         options={viewOptions}
       />
       <TabContent>
-        <TabPane active={openTab === 1 ? true : false}>Hello</TabPane>
-        <TabPane active={openTab === 2 ? true : false}>Workshops</TabPane>
-        <TabPane active={openTab === 3 ? true : false}>Quizzes</TabPane>
-        <TabPane active={openTab === 4 ? true : false}>
-          <H5>Feedback</H5>
+        <TabPane active={openTab === 1 ? true : false}>Recap Task</TabPane>
+        <TabPane active={openTab === 2 ? true : false}>
+          Workshops
           <H6>Monday</H6>
-          {student.feedback[0][0].content}
           <H6>Tuesday</H6>
           <H6>Wednesday</H6>
           <H6>Thursday</H6>
           <H6>Friday</H6>
         </TabPane>
-        <TabPane active={openTab === 5 ? true : false}>Reflections</TabPane>
+        <TabPane active={openTab === 3 ? true : false}>
+          Quizzes
+          <H6>Monday</H6>
+          <H6>Tuesday</H6>
+          <H6>Wednesday</H6>
+          <H6>Thursday</H6>
+          <H6>Friday</H6>
+        </TabPane>
+        <TabPane active={openTab === 4 ? true : false}>
+          {hasWork ? (
+            <section>
+              <H6>Monday</H6>
+              <Paragraph>Morning</Paragraph>
+              <Paragraph>{student.feedbackCommentsArray[week][0]}</Paragraph>
+              <Paragraph>Afternoon</Paragraph>
+              <Paragraph>{student.feedbackCommentsArray[week][1]}</Paragraph>
+              <H6>Tuesday</H6>
+              <H6>Wednesday</H6>
+              <H6>Thursday</H6>
+              <H6>Friday</H6>
+            </section>
+          ) : (
+            <H6>{`${student.name} has no submitted work!`}</H6>
+          )}
+        </TabPane>
+        <TabPane active={openTab === 5 ? true : false}>
+          Reflections
+          <H6>Monday</H6>
+          <H6>Tuesday</H6>
+          <H6>Wednesday</H6>
+          <H6>Thursday</H6>
+          <H6>Friday</H6>
+        </TabPane>
       </TabContent>
     </Tab>
   );
