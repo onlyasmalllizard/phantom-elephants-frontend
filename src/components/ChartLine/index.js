@@ -8,6 +8,7 @@ import CardBody from "@material-tailwind/react/CardBody";
 import Dropdown from "../DropDown";
 import { fakeData } from "lib/allMassagedData";
 import bootcamps from "dummyData";
+import setRef from "@mui/utils/setRef";
 
 const chartFilters = [
   // used for the first dropdown filter
@@ -52,18 +53,28 @@ const colors = [
   "#000000",
 ];
 
-export default function ChartLine({ data, isGroup }) {
+export default function ChartLine({ data, isGroup, refresh1 }) {
   const id = Number(useParams().id) || 1;
   const [datasetId, setDatasetId] = useState(id);
   const [chartId, setChartId] = useState("0");
   const [isGroupData] = useState(isGroup);
+  const [welcome, setWelcome] = useState(true);
 
   const [dataset] = useState([
     ...data.filter((student) => student.hasWork === true),
     ...fakeData,
   ]);
-  console.log("line chart: ", dataset);
-  useEffect(() => setDatasetId(id), [id]);
+
+  // checking for defualt bootcamp setting for dashboard line
+  useEffect(() => {
+    if (isGroupData && welcome) {
+      setDatasetId(+localStorage.getItem("defaultBootcamp"));
+      console.log("line Defualt boot: ");
+      setWelcome(false);
+    } else {
+      setDatasetId(id);
+    }
+  }, [id]);
 
   useEffect(() => {
     let config = {

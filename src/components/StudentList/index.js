@@ -18,6 +18,13 @@ const StudentList = ({ massagedBackEndData, headerColor }) => {
   const [data, setData] = useState([]);
   const [datasetId, setDatasetId] = useState(1);
   const [watchlist, setWatchlist] = useState([]);
+  const [welcome, setWelcome] = useState(true);
+
+  // checking for defualt bootcamp setting for dashboard line
+  if (welcome) {
+    setDatasetId(+localStorage.getItem("defaultBootcamp"));
+    setWelcome(false);
+  }
 
   const loadMoreData = () => {
     if (loading) {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ChartLine from "../components/ChartLine";
 import { cohortMaths } from "../lib/allCohortMaths";
 import Doughnut from "../components/Doughnut/index";
@@ -93,7 +94,12 @@ export default function Dashboard({ massagedBackEndData }) {
               </div>
             </div>
             <div className="flex flex-col justify-start w-8/12">
-              <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
+              <ChartLine
+                data={massagedBackEndData}
+                isGroup={true}
+                refresh1={false}
+                id={0}
+              />
               <div className="flex justify-evenly mt-10">
                 <Doughnut
                   datasets={allDonutData}

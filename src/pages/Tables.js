@@ -10,6 +10,15 @@ export default function CohortTableView({ massagedBackEndData }) {
     cohortWorkCompletion,
     cohortOverallMood,
   } = cohortData;
+
+  const defaultComparisonId = localStorage.getItem("defaultComparison") || 0;
+  const comparisonDisplayPeriod = [
+    "last week",
+    "2 weeks ago",
+    "last month",
+    "2 months ago",
+  ][defaultComparisonId];
+
   return (
     <>
       <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
@@ -23,7 +32,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               percentage="3.48"
               percentageIcon="arrow_upward"
               percentageColor="green"
-              date="Since last week"
+              date={`Since ${comparisonDisplayPeriod}`}
             />
             <StatusCard
               color="orange"
@@ -33,7 +42,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               percentage="3.48"
               percentageIcon="arrow_downward"
               percentageColor="red"
-              date="Since last week"
+              date={`Since ${comparisonDisplayPeriod}`}
             />
             <StatusCard
               className="h-40"
@@ -45,7 +54,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               percentage="1.10"
               percentageIcon="arrow_downward"
               percentageColor="orange"
-              date="Since yesterday"
+              date={`Since ${comparisonDisplayPeriod}`}
             />
             <StatusCard
               color="blue"
@@ -56,7 +65,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               percentage="12"
               percentageIcon="arrow_upward"
               percentageColor="green"
-              date="Since last month"
+              date={`Since ${comparisonDisplayPeriod}`}
             />
           </div>
         </div>
