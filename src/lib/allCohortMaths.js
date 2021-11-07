@@ -1,14 +1,11 @@
 export const cohortMaths = (array, startWeek, endWeek) => {
+  // start week and end week need to go into the massage function!!!!
   // CALCULATING OVERALL COHORT SCORES BASED ON A TIME RANGE
   const onlyStudentsWithWork = array.filter(
     (student) => student.hasWork === true
   );
-
+  const numStudents = onlyStudentsWithWork.length;
   //   RECAPS
-  //   single number
-  const cohortRecapPerformance = onlyStudentsWithWork
-    .slice(startWeek, endWeek)
-    .reduce((acc, cur) => acc + cur.avgRecapScore, 0);
   // total object
   const cohortRecapGreens = onlyStudentsWithWork.reduce(
     (acc, cur) => acc + cur.recapTasksScoreObject.green,
@@ -22,9 +19,10 @@ export const cohortMaths = (array, startWeek, endWeek) => {
     (acc, cur) => acc + cur.recapTasksScoreObject.red,
     0
   );
-  const cohortRecapnulls =
-    (endWeek - startWeek) * onlyStudentsWithWork.length -
-    (cohortRecapGreens + cohortRecapAmbers + cohortRecapReds);
+  const cohortRecapnulls = Math.abs(
+    (endWeek - startWeek) * numStudents -
+      (cohortRecapGreens + cohortRecapAmbers + cohortRecapReds)
+  );
   // and finally
   const cohortRecapScoreObject = {
     amber: +cohortRecapAmbers,
@@ -32,11 +30,18 @@ export const cohortMaths = (array, startWeek, endWeek) => {
     null: +cohortRecapnulls,
     red: +cohortRecapReds,
   };
+  const totalRecaps =
+    cohortRecapAmbers + cohortRecapGreens + cohortRecapReds + cohortRecapnulls;
+  //   single number
+  const cohortRecapPerformance = (
+    (100 *
+      (cohortRecapScoreObject.green * 0.99 +
+        cohortRecapScoreObject.amber * 0.67 +
+        cohortRecapScoreObject.red * 0.33 +
+        cohortRecapScoreObject.null * 0)) /
+    totalRecaps
+  ).toFixed(1);
   //   WORKSHOPS
-  //   RECPAS
-  const cohortWorkshopsPerformance = onlyStudentsWithWork
-    .slice(startWeek, endWeek)
-    .reduce((acc, cur) => acc + cur.avgRecapScore, 0);
   const cohortWorkshopsGreens = onlyStudentsWithWork.reduce(
     (acc, cur) => acc + cur.workshopTasksScoreObject.green,
     0
@@ -53,25 +58,59 @@ export const cohortMaths = (array, startWeek, endWeek) => {
     (acc, cur) => acc + cur.workshopTasksScoreObject.null,
     0
   );
-  // and finally
   const cohortWorkshopsScoreObject = {
     amber: +cohortWorkshopsAmbers,
     green: +cohortWorkshopsGreens,
     null: +cohortWorkshopsNulls,
     red: +cohortWorkshopsReds,
   };
+  const totalWorkshops =
+    cohortWorkshopsAmbers +
+    cohortWorkshopsGreens +
+    cohortWorkshopsReds +
+    cohortWorkshopsNulls;
+  //   single number
+  const cohortWorkshopsPerformance = (
+    (onlyStudentsWithWork.reduce((acc, cur) => acc + cur.avgWorkshopScore, 0) *
+      100) /
+    numStudents
+  ).toFixed(1);
 
   // ATTENDANCE
-  const cohortAttendance =
-    onlyStudentsWithWork
-      .slice(startWeek, endWeek)
-      .reduce((acc, cur) => acc + cur.attendanceNum, 0) /
-    onlyStudentsWithWork.length;
-  // WORKSHOPS
+  const cohortDaysAttended =
+    onlyStudentsWithWork.reduce((acc, cur) => acc + cur.attendanceNum, 0) /
+    numStudents;
+  const cohortAttendancePercentage = (
+    (cohortDaysAttended * 100) /
+    onlyStudentsWithWork[0].attendanceArray.length
+  ).toFixed(1);
+  // WORK COMPLETION ((quizes/quizes +nulls)+(all green amber reds / all + nulls) = pecentage%)
+  const cohortWorkCompletion = (
+    ((onlyStudentsWithWork.reduce(
+      (acc, cur) => (cur.didAttend ? acc + 1 : acc),
+      0
+    ) /
+      ((startWeek - endWeek) * 5) +
+      (cohortRecapAmbers + cohortRecapGreens + cohortRecapReds) / totalRecaps +
+      (cohortWorkshopsAmbers + cohortWorkshopsGreens + cohortWorkshopsReds) /
+        totalWorkshops) *
+      100) /
+    3
+  ).toFixed(1);
+  // COHORT MOOD
+  const cohortOverallMood = (
+    onlyStudentsWithWork.reduce((acc, cur) => acc + cur.avgExperience, 0) /
+    numStudents
+  ).toFixed(1);
+
   return {
     cohortRecapPerformance,
-    cohortAttendance,
+    cohortDaysAttended,
     cohortRecapScoreObject,
     cohortWorkshopsScoreObject,
+    cohortWorkshopsPerformance,
+    cohortWorkCompletion,
+    cohortOverallMood,
+    cohortAttendancePercentage,
   };
 };

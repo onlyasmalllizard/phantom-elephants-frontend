@@ -13,7 +13,6 @@ import {
   viewOptions,
 } from "../lib/tableData";
 import { fakeData } from "../lib/allMassagedData";
-import { sortByFunction } from "functions";
 
 export default function CardTable({ massagedBackEndData }) {
   // setting data to map over
@@ -132,34 +131,34 @@ export default function CardTable({ massagedBackEndData }) {
                         </p>
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                        {student.bootcampId} : {student.bootcampRegion}
+                        {student.bootcampId}
                       </td>
 
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left ">
-                        placeholder
+                        {student.bootcampRegion}
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                        <div className="flex content-evenly space-evenly items-evenly justify-evenly">
+                        <div className="flex content-evenly space-evenly items-evenly justify-evenly flex-end justify-start">
                           <div className="bg-green-500 px-1 w-6 text-center">
                             <p>{student.recapTasksScoreObject.green || 0}</p>
                           </div>
-                          <div className="bg-orange-500 px-1 w-6 text-center">
+                          <div className="bg-orange-500 px-1 w-6 text-center ml-1">
                             <p>{student.recapTasksScoreObject.amber || 0}</p>
                           </div>
-                          <div className="bg-red-500 px-1 w-6 text-center">
+                          <div className="bg-red-500 px-1 w-6 text-center ml-1">
                             <p>{student.recapTasksScoreObject.red || 0}</p>
                           </div>
                         </div>
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                        <div className="flex content-evenly space-evenly items-evenly justify-evenly">
+                        <div className="flex content-evenly space-evenly items-evenly justify-evenly flex-end justify-start">
                           <div className="bg-green-500 px-1 w-6 text-center">
                             <p>{student.workshopTasksScoreObject.green || 0}</p>
                           </div>
-                          <div className="bg-orange-500 px-1 w-6 text-center">
+                          <div className="bg-orange-500 px-1 w-6 text-center ml-1">
                             <p>{student.workshopTasksScoreObject.amber || 0}</p>
                           </div>
-                          <div className="bg-red-500 px-1 w-6 text-center">
+                          <div className="bg-red-500 px-1 w-6 text-center ml-1">
                             <p>{student.workshopTasksScoreObject.red || 0}</p>
                           </div>
                         </div>
@@ -168,7 +167,7 @@ export default function CardTable({ massagedBackEndData }) {
                         {student.avgQuiz}
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left ">
-                        {student.avgExperience}
+                        {student.avgExperience.toFixed(1)}
                       </td>
                     </tr>
                   );

@@ -3,8 +3,13 @@ import TableCard from "../components/TableCard";
 import { cohortMaths } from "../lib/allCohortMaths";
 
 export default function CohortTableView({ massagedBackEndData }) {
-  const cohortData = cohortMaths(massagedBackEndData, 1, 8);
-  const { cohortRecapPerformance } = cohortData;
+  const cohortData = cohortMaths(massagedBackEndData, 1, 12);
+  const {
+    cohortRecapPerformance,
+    cohortAttendancePercentage,
+    cohortWorkCompletion,
+    cohortOverallMood,
+  } = cohortData;
   return (
     <>
       <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
@@ -14,7 +19,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               color="pink"
               icon="trending_up"
               title="Recap Performance"
-              amount={cohortRecapPerformance}
+              amount={cohortRecapPerformance + "%"}
               percentage="3.48"
               percentageIcon="arrow_upward"
               percentageColor="green"
@@ -24,7 +29,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               color="orange"
               icon="work"
               title="Work Completion"
-              amount="2,356"
+              amount={cohortWorkCompletion + "%"}
               percentage="3.48"
               percentageIcon="arrow_downward"
               percentageColor="red"
@@ -36,7 +41,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               icon="mood"
               // leave the spaces they are there to balance box height HACK
               title="ㅤ     Overall Mood"
-              amount="924"
+              amount={cohortOverallMood}
               percentage="1.10"
               percentageIcon="arrow_downward"
               percentageColor="orange"
@@ -47,7 +52,7 @@ export default function CohortTableView({ massagedBackEndData }) {
               icon="groups"
               // leave the spaces they are there to balance box height HACK
               title="Attendanceㅤ        ㅤ  "
-              amount="49,65%"
+              amount={cohortAttendancePercentage + "%"}
               percentage="12"
               percentageIcon="arrow_upward"
               percentageColor="green"

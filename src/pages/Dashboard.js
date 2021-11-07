@@ -9,7 +9,7 @@ export default function Dashboard({ massagedBackEndData }) {
   const cohortData = cohortMaths(massagedBackEndData, 1, 8);
   const {
     cohortRecapScoreObject,
-    cohortAttendance,
+    cohortAttendancePercentage,
     cohortWorkshopsScoreObject,
   } = cohortData;
 
@@ -18,7 +18,10 @@ export default function Dashboard({ massagedBackEndData }) {
     labels: ["Present", "Absent"],
     datasets: [
       {
-        data: [cohortAttendance, 60 - cohortAttendance],
+        data: [
+          cohortAttendancePercentage,
+          (100 - cohortAttendancePercentage).toFixed(1),
+        ],
         backgroundColor: ["#8BC34A", "#EF5350"],
         hoverOffset: 4,
       },
@@ -71,27 +74,38 @@ export default function Dashboard({ massagedBackEndData }) {
 
   return (
     <>
-      <div className="w-screen bg-light-blue h-50"></div>
-      <div className="flex  flex-row">
-        <div className="flex flex-row justify-evenly w-screen mt-5">
-          <div classname="w-3/12 flex flex-col">
-            <NotificationCard />
-            <div className="h-30 mt-10">
-              <StudentList massagedBackEndData={massagedBackEndData} />
-            </div>
-          </div>
-          <div className="flex flex-col justify-between w-8/12">
-            <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
-            <div className="flex justify-evenly">
-              <Doughnut
-                datasets={allDonutData}
-                label="Overview"
-                options={allOptions}
+      <div className="bg-light-blue-500 h-20 ">
+        <div
+          className="flex  flex-row relative overflow-auto "
+          style={{ zIndex: 5 }}
+        >
+          <div className="flex flex-row justify-evenly w-screen mt-5">
+            <div classname="w-3/12 flex flex-col">
+              <NotificationCard
+                title={`Notifications since last week`}
+                headerColor="purple"
               />
+              <div className="h-30 mt-10">
+                <StudentList
+                  massagedBackEndData={massagedBackEndData}
+                  headerColor="blue"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col justify-start w-8/12">
+              <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
+              <div className="flex justify-evenly mt-10">
+                <Doughnut
+                  datasets={allDonutData}
+                  label="Overview"
+                  options={allOptions}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="h-196 w-screen"></div>
     </>
   );
 }

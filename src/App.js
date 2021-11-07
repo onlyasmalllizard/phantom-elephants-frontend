@@ -82,7 +82,6 @@ function App() {
 
           <Redirect from="*" to="/" />
         </Switch>
-
         <Footer />
       </div>
     </UserProvider>

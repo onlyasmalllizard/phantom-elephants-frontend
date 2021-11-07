@@ -4,11 +4,11 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 
-function index() {
+export default function NotifactionCard({ title, headerColor }) {
   return (
     <Card className="min-w-150 min-h-200">
       <CardHeader
-        color="red"
+        color={headerColor}
         contentPosition="left"
         className="-h-10"
         style={{ height: "10px" }}
@@ -16,9 +16,9 @@ function index() {
         <div className="flex" style={{}}>
           <div>
             <h6 className="uppercase text-gray-200 text-xs font-medium ">
-              Welcome Back User! Since last week:
+              {/* Welcome Back User! Since last week: */}
             </h6>
-            <h2 className="text-white text-2xl">{}</h2>
+            <h2 className="text-white text-2xl">{title}</h2>
           </div>
         </div>
       </CardHeader>
@@ -45,5 +45,3 @@ function index() {
     </Card>
   );
 }
-
-export default index;

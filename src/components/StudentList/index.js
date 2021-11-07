@@ -8,7 +8,7 @@ import CardBody from "@material-tailwind/react/CardBody";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fakeData } from "lib/allMassagedData";
 
-const StudentList = ({ massagedBackEndData }) => {
+const StudentList = ({ massagedBackEndData, headerColor }) => {
   const dataset = [...massagedBackEndData, ...fakeData];
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -38,7 +38,7 @@ const StudentList = ({ massagedBackEndData }) => {
   return (
     <Card className="min-w-150 ">
       <CardHeader
-        color="red"
+        color={headerColor}
         contentPosition="left"
         className="-h-10"
         style={{ height: "10px" }}

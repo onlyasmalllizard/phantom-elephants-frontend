@@ -48,11 +48,27 @@ export default class CSVReader2 extends Component {
           </CardHeader>
           <CardBody className="-py-0">
             <div style={{ textAlign: "left" }} className="mt-4 mb-8 px-4 ">
+              <div className="flex justify-center items-center mt-0 mb-12">
+                <img
+                  alt={this.props.imgAlt}
+                  src={this.props.imgSrc}
+                  style={{
+                    height: "12rem",
+                    width: "auto",
+                    borderRadius: "1rem",
+                    border: `2px ${this.props.headerColor} solid`,
+                  }}
+                />
+              </div>
               <CSVReader
                 onDrop={this.handleOnDrop}
                 onError={this.handleOnError}
                 addRemoveButton
                 onRemoveFile={this.handleOnRemoveFile}
+                color={this.props.headerColor}
+                style={{
+                  borderColor: this.props.headerColor,
+                }}
               >
                 <span>Drop CSV file here or click to upload.</span>
               </CSVReader>

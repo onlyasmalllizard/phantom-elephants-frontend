@@ -1,6 +1,6 @@
-import { time } from 'faker';
-import bootcamps from '../dummyData';
-import { listRecapTasks, tallyScores } from '../functions';
+import { time } from "faker";
+import bootcamps from "../dummyData";
+import { listRecapTasks, tallyScores } from "../functions";
 
 export const fakeData = bootcamps
   .map((bootcamp) => {
@@ -89,10 +89,10 @@ export const fakeData = bootcamps
         moodArray.reduce((acc, cur) => acc + cur, 0) / moodArray.length
       ).toFixed(2);
       return {
-        all: 'all',
+        all: "all",
         id: student.info.id,
         name: student.info.name,
-        email: 'example@gmail.com',
+        email: "example@gmail.com",
         avatar: student.info.avatar,
         attendanceArray,
         attendanceNum,
@@ -115,7 +115,7 @@ export const fakeData = bootcamps
   .flat();
 
 export function massage(backendData) {
-  console.log('pre-massage =>', backendData);
+  console.log("pre-massage =>", backendData);
 
   return backendData
     .map((student) => {
@@ -146,7 +146,7 @@ export function massage(backendData) {
             ? day.map((time, index) =>
                 time
                   ? time.comment
-                  : `No feedback ${index === 0 ? 'morning' : 'afternoon'} left`
+                  : `No feedback ${index === 0 ? "morning" : "afternoon"} left`
               )
             : [null, null]
         );
@@ -169,8 +169,8 @@ export function massage(backendData) {
         // /* Workshop average & Recap Task score calculator (null: 0, red :0.33, amber:0.66, green:1*/
         const RAG_TasksAvgScore = (tasksResultObj) =>
           tasksResultObj.green * 0.99 +
-          tasksResultObj.amber * 0.67 +
-          tasksResultObj.red * 0.33 +
+          tasksResultObj.amber * 0.5 +
+          tasksResultObj.red * 0.3 +
           tasksResultObj.null * -0.01;
         const avgRecapScore = RAG_TasksAvgScore(recapTasksScoreObject);
         const avgWorkshopScore = RAG_TasksAvgScore(workshopTasksScoreObject);
@@ -192,10 +192,10 @@ export function massage(backendData) {
         ).toFixed(2);
 
         return {
-          all: 'all',
+          all: "all",
           id: student.id,
           name: student.name,
-          email: 'example@gmail.com',
+          email: "example@gmail.com",
           avatar: student.avatar,
           attendanceArray,
           attendanceNum,
@@ -218,10 +218,10 @@ export function massage(backendData) {
         };
       } else {
         return {
-          all: 'all',
+          all: "all",
           id: student.id,
           name: student.name,
-          email: 'example@gmail.com',
+          email: "example@gmail.com",
           avatar: student.avatar,
           bootcampId: student.bootcampId,
           bootcampRegion: student.region,
