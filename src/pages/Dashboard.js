@@ -5,7 +5,7 @@ import Doughnut from "../components/Doughnut/index";
 import StudentList from "../components/StudentList/index";
 import NotificationCard from "../components/NofiticationCard";
 
-export default function Dashboard({ massagedBackEndData }) {
+export default function Dashboard({ massagedBackEndData, pushRight }) {
   // recieving cohort data for donuts
   const cohortData = cohortMaths(massagedBackEndData, 1, 8);
   const {
@@ -75,11 +75,8 @@ export default function Dashboard({ massagedBackEndData }) {
 
   return (
     <>
-      <div className="bg-light-blue-500 h-20 ">
-        <div
-          className="flex  flex-row relative overflow-auto "
-          style={{ zIndex: 5 }}
-        >
+      <div className="bg-light-blue-500 h-30 ">
+        <div className="flex  flex-row relative " style={{ zIndex: 5 }}>
           <div className="flex flex-row justify-evenly w-screen mt-8">
             <div classname="w-3/12 flex flex-col">
               <NotificationCard
@@ -97,14 +94,15 @@ export default function Dashboard({ massagedBackEndData }) {
               <ChartLine
                 data={massagedBackEndData}
                 isGroup={true}
-                refresh1={false}
                 id={0}
+                pushRight={pushRight}
               />
               <div className="flex justify-evenly mt-10">
                 <Doughnut
                   datasets={allDonutData}
                   label="Overview"
                   options={allOptions}
+                  pushRight={pushRight}
                 />
               </div>
             </div>

@@ -53,7 +53,7 @@ const colors = [
   "#000000",
 ];
 
-export default function ChartLine({ data, isGroup, refresh1 }) {
+export default function ChartLine({ data, isGroup, pushRight }) {
   const id = Number(useParams().id) || 1;
   const [datasetId, setDatasetId] = useState(id);
   const [chartId, setChartId] = useState("0");
@@ -74,7 +74,7 @@ export default function ChartLine({ data, isGroup, refresh1 }) {
     } else {
       setDatasetId(id);
     }
-  }, [id]);
+  }, [id, pushRight]);
 
   useEffect(() => {
     let config = {

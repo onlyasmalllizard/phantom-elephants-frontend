@@ -28,6 +28,7 @@ function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [pushRight, setPushRight] = useState(false);
 
   useEffect(() => {
     // place fetch request to API for bootcamp name
@@ -47,17 +48,20 @@ function App() {
     getData();
   }, []);
 
-  // console.log("post-massage: ", massage(cohortData));
+  console.log("pushRight:", pushRight);
 
   return isLoading ? (
     <Loading />
   ) : (
     <UserProvider>
-      <Sidebar />
-      <div className="md:ml-64">
+      <Sidebar setPushRight={setPushRight} pushRight={pushRight} />
+      <div className={pushRight ? "ml-64" : ""}>
         <Switch>
           <Route exact path="/">
-            <Dashboard massagedBackEndData={massage(cohortData)} />
+            <Dashboard
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
           </Route>
 
           <Route exact path="/tables">
@@ -65,11 +69,17 @@ function App() {
           </Route>
 
           <Route path="/student/:id">
-            <StudentPage massagedBackEndData={massage(cohortData)} />
+            <StudentPage
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
           </Route>
 
           <Route path="/student">
-            <StudentPage massagedBackEndData={massage(cohortData)} />
+            <StudentPage
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
           </Route>
 
           <Route path="/upload">
