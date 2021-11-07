@@ -124,11 +124,13 @@ export default function CardTable({ massagedBackEndData }) {
                             rounded
                             alt="student avatar"
                           />
-                        </div>
-                        <p className="font-light text-sm whitespace-nowrap px-2 py-4 pl-3 text-left ">
-                          {" "}
+                        </div>{" "}
+                        <a
+                          href={`${process.env.REACT_APP_API_URL}/student/${student.id}`}
+                          className="font-light text-sm whitespace-nowrap px-2 py-4 pl-3 text-left "
+                        >
                           {student.name}
-                        </p>
+                        </a>
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                         {student.bootcampId}
