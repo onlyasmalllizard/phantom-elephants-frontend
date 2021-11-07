@@ -79,7 +79,7 @@ export default function Dashboard({ massagedBackEndData }) {
           className="flex  flex-row relative overflow-auto "
           style={{ zIndex: 5 }}
         >
-          <div className="flex flex-row justify-evenly w-screen mt-5">
+          <div className="flex flex-row justify-evenly w-screen mt-8">
             <div classname="w-3/12 flex flex-col">
               <NotificationCard
                 title={`Notifications since last week`}

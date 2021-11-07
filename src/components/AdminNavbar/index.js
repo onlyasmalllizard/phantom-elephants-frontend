@@ -9,6 +9,9 @@ import ProfilePicture from "assets/img/team-1-800x800.jpg";
 
 export default function AdminNavbar({ showSidebar, setShowSidebar }) {
   const location = useLocation().pathname;
+  // if(location === "/"){
+  //   localStorage.setItem()
+  // }
 
   return (
     <nav className="bg-light-blue-500 md:ml-64 py-6 px-3">
@@ -45,10 +48,13 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
         </div>
 
         <div className="flex justify-between items-center w-full">
-          <h4 className="uppercase text-white text-sm tracking-wider mt-1">
+          <h4 className=" text-white font-bold tracking-wider mt-1 dashboard-consistent-header">
             {location === "/"
-              ? "DASHBOARD"
-              : location.toUpperCase().replace("/", "")}
+              ? "Dashboard"
+              : location.replaceAll("/", "") === "upload"
+              ? "File Upload"
+              : location.replaceAll("/", "")[0].toUpperCase() +
+                location.replaceAll("/", " ").slice(2)}
           </h4>
 
           <div className="flex">

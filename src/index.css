@@ -1,3 +1,30 @@
 div {
   /* border: solid black 1px; */
 }
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lato&family=Limelight&family=Roboto&family=Stalinist+One&family=Volkhov:ital@1&display=swap");
+
+.dashboard-consistent-header {
+  font-size: 52px;
+
+  font-family: "Lato", sans-serif;
+}
+
+:root {
+  --background-dark: #282c34;
+  --background-light: whitesmoke;
+}
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  /* -webkit-font-smoothing: antialiased; */
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s linear;
+}
+body[color-scheme="dark"] {
+  background-color: var(--background-dark);
+  color: white;
+}
+body[color-scheme="light"] {
+  background-color: var(--background-light);
+  color: black;
+}

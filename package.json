@@ -7,6 +7,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@material-tailwind/react": "0.3.4",
+    "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.4",
     "@react-google-maps/api": "^2.1.1",
     "@testing-library/jest-dom": "^5.11.4",

@@ -7,11 +7,17 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fakeData } from "lib/allMassagedData";
+import bootcamps from "dummyData";
+import Dropdown from "../DropDown";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const StudentList = ({ massagedBackEndData, headerColor }) => {
   const dataset = [...massagedBackEndData, ...fakeData];
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [datasetId, setDatasetId] = useState(1);
+  const [watchlist, setWatchlist] = useState([]);
 
   const loadMoreData = () => {
     if (loading) {
@@ -50,6 +56,24 @@ const StudentList = ({ massagedBackEndData, headerColor }) => {
             </h6>
             <h2 className="text-white text-2xl">Student List</h2>
           </div>
+          <div
+            style={{
+              marginLeft: "1rem",
+            }}
+          >
+            <Dropdown
+              state={datasetId}
+              setState={setDatasetId}
+              label="Bootcamp"
+              itemOptions={[
+                "All Bootcamps",
+                ...bootcamps.map((bootcamp) => {
+                  return bootcamp.id + ": " + bootcamp.region;
+                }),
+                "Watchlist",
+              ]}
+            />
+          </div>
         </div>
       </CardHeader>
       <CardBody className={`relative `}>
@@ -78,13 +102,18 @@ const StudentList = ({ massagedBackEndData, headerColor }) => {
             }}
           >
             <List
-              dataSource={dataset}
+              dataSource={dataset.filter(
+                (dataset) =>
+                  dataset.bootcampId === datasetId ||
+                  datasetId === 0 ||
+                  (datasetId === 5 && watchlist.includes(dataset.id))
+              )}
               style={{
                 marginLeft: "1rem",
               }}
               renderItem={(item) => {
                 return (
-                  <List.Item key={item.id}>
+                  <List.Item key={item.id} className="flex">
                     <List.Item.Meta
                       avatar={<Avatar src={item.avatar} />}
                       title={
@@ -96,6 +125,38 @@ const StudentList = ({ massagedBackEndData, headerColor }) => {
                       }
                       description={item.bootcampRegion}
                     />
+                    <div className="mr-6 mb-1">
+                      {watchlist.includes(item.id) ? (
+                        <>
+                          <VisibilityIcon
+                            size="2xl"
+                            onClick={() => {
+                              const i = watchlist.findIndex(
+                                (el) => el === item.id
+                              );
+                              setWatchlist([
+                                ...watchlist.slice(0, i),
+                                ...watchlist.slice(i + 1),
+                              ]);
+                              localStorage.setItem("Watchlist", watchlist);
+                            }}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <VisibilityOffIcon
+                            size="2xl"
+                            onClick={() => {
+                              setWatchlist(
+                                Array.from(new Set([...watchlist, item.id]))
+                              );
+
+                              localStorage.setItem("Watchlist", watchlist);
+                            }}
+                          />
+                        </>
+                      )}
+                    </div>
                     {/* <div>Go to Bootcamper Page</div> */}
                   </List.Item>
                 );
