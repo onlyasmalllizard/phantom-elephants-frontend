@@ -179,7 +179,7 @@ export default function ChartLine({ data, isGroup, pushRight }) {
     };
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
-  }, [datasetId, chartId, dataset, isGroupData]);
+  }, [datasetId, chartId, dataset, isGroupData, pushRight]);
 
   return (
     <Card key={uuid()}>

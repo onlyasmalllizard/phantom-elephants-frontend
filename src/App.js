@@ -58,7 +58,7 @@ function App() {
   ) : (
     <UserProvider>
       <Sidebar setPushRight={setPushRight} pushRight={pushRight} />
-      <div className={pushRight ? "ml-64" : ""}>
+      <div className={`${pushRight ? "ml-64 " : ""} xl:ml-64`}>
         <Switch>
           <Route exact path="/">
             <Dashboard

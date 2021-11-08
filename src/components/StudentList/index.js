@@ -23,6 +23,7 @@ const StudentList = ({ massagedBackEndData, headerColor }) => {
   // checking for defualt bootcamp setting for dashboard line
   if (welcome) {
     setDatasetId(+localStorage.getItem("defaultBootcamp"));
+    setWatchlist(localStorage.getItem("Watchlist"));
     setWelcome(false);
   }
 

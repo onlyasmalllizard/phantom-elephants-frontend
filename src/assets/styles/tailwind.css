@@ -663,8 +663,26 @@ video {
 .h-20 {
   height: 5rem;
 }
+.h-30 {
+  height: 7.7rem;
+}
+.h-40 {
+  height: 10rem;
+}
+.h-50 {
+  height: 12.5rem;
+}
+.h-60 {
+  height: 15rem;
+}
+.h-70 {
+  height: 17.5rem;
+}
 .h-10 {
   height: 2.5rem;
+}
+.h-144 {
+  height: 37.5rem;
 }
 .h-auto {
   height: auto;
@@ -5530,6 +5548,7 @@ video {
 @media (min-width: 1280px) {
   .xl\:left-0 {
     left: 0px;
+<<<<<<< HEAD
   }
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -5575,28 +5594,22 @@ video {
   }
   .xl\:flex-row {
     flex-direction: row;
+=======
+>>>>>>> 7a62bc5c1701446dea96dc87d36adaacb61517d0
   }
-  .xl\:justify-start {
-    justify-content: flex-start;
+  .xl\:ml-64 {
+    margin-left: 16rem;
   }
-  .xl\:justify-between {
-    justify-content: space-between;
+  .xl\:hidden {
+    display: none;
   }
-  .xl\:gap-6 {
-    gap: 1.5rem;
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  .xl\:px-8 {
-    padding-left: 2rem;
+  .xl\:pr-8 {
     padding-right: 2rem;
   }
-  .xl\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .xl\:pr-12 {
-    padding-right: 3rem;
-  }
-  .xl\:pt-0 {
-    padding-top: 0px;
+  .xl\:pl-10 {
+    padding-left: 2.5rem;
   }
 }

@@ -22,13 +22,13 @@ export default function AdminNavbar({
     <nav
       className={`bg-light-blue-500 py-6 px-3 ${
         pushRight ? "ml-64" : ""
-      } inherit`}
+      } inherit xl:ml-64`}
     >
-      <div className="container max-w-full mx-auto flex items-center justify-between xl:pr-8 xl:pl-10">
-        <div>
+      <div className="container max-w-full mx-auto flex  items-center justify-between xl:pr-8 xl:pl-10">
+        <div className="xl:hidden">
           {/* show sidebar */}
           <Button
-            className={`${pushRight ? "hidden" : ""}`}
+            className={`${pushRight ? "hidden" : ""} xl:hidden`}
             color="transparent"
             buttonType="link"
             size="lg"
@@ -45,7 +45,7 @@ export default function AdminNavbar({
           <div
             className={`absolute top-2  ${
               showSidebar === "left-0" ? "left-64" : "-left-64"
-            } z-50 transition-all duration-300`}
+            } z-50 transition-all duration-300 xl:hidden`}
           >
             {/* closeSidebar */}
             <Button
