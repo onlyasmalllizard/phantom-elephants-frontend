@@ -3,11 +3,12 @@ import CommentsBox from "components/Comments";
 import ChartLine from "../components/ChartLine";
 import SearchByName from "../components/SearchByName";
 import DetailedProgress from "components/DetailedProgress";
+import Doughnut from "components/Doughnut";
 import { fakeData } from "lib/allMassagedData";
 import { useState } from "react";
 import { useParams, useHistory } from "react-router";
 
-export default function StudentPage({ massagedBackEndData }) {
+export default function StudentPage({ massagedBackEndData, pushRight }) {
   const data = [...massagedBackEndData, ...fakeData];
   console.log("studentPage: ", data);
   const history = useHistory();
@@ -32,6 +33,32 @@ export default function StudentPage({ massagedBackEndData }) {
       history.push(`/student/${newStudent.id}`);
     }
   };
+  console.log("STUDENT:", student);
+  // DOUGHNUT CHART DATA SETS
+  const attendanceDataset = {
+    label: "Attendance",
+    labels: ["Present", "Absent"],
+    datasets: [
+      {
+        data: [
+          student.attendanceNum,
+          student.attendanceArray.length - student.attendanceNum,
+        ],
+        backgroundColor: ["#8BC34A", "#EF5350"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  const options = {
+    legend: {
+      display: true,
+      position: "left",
+    },
+  };
+
+  const allDonutData = [attendanceDataset, "recapDataset", "workshopDataset"];
+  const allOptions = [options, options];
 
   return (
     <>
@@ -53,6 +80,14 @@ export default function StudentPage({ massagedBackEndData }) {
               <ChartLine data={[student]} isGroup={false} label="Student" />
               <div className="mt-5 w-full">
                 <DetailedProgress student={student} />
+              </div>
+              <div className="mt-5 w-full">
+                <Doughnut
+                  datasets={allDonutData}
+                  label="Student"
+                  options={allOptions}
+                  pushRight={pushRight}
+                />
               </div>
             </div>
           </div>
