@@ -126,7 +126,9 @@ const DetailedProgress = ({ student }) => {
           {student.recaps ? (
             <RecapView recaps={student.recaps} week={week} />
           ) : (
-            <H6>{`${student.name} hasn't completed any recap tasks!`}</H6>
+            <div className="mt-8">
+              <H6>{`${student.name} hasn't completed any recap tasks!`}</H6>
+            </div>
           )}
         </TabPane>
         <TabPane active={openTab === 2 ? true : false}>
@@ -136,7 +138,9 @@ const DetailedProgress = ({ student }) => {
               calculateIndex={calculateIndex}
             />
           ) : (
-            <H6>{`${student.name} hasn't completed any workshops!`}</H6>
+            <div className="mt-8">
+              <H6>{`${student.name} hasn't completed any workshops!`}</H6>
+            </div>
           )}
         </TabPane>
         <TabPane active={openTab === 3 ? true : false}>
@@ -146,7 +150,9 @@ const DetailedProgress = ({ student }) => {
               calculateIndex={calculateIndex}
             />
           ) : (
-            <H6>{`${student.name} hasn't completed any quizzes!`}</H6>
+            <div className="mt-8">
+              <H6>{`${student.name} hasn't completed any quizzes!`}</H6>
+            </div>
           )}
         </TabPane>
         <TabPane active={openTab === 4 ? true : false}>
@@ -158,7 +164,9 @@ const DetailedProgress = ({ student }) => {
               calculateIndex={calculateIndex}
             />
           ) : (
-            <H6>{`${student.name} has no submitted work!`}</H6>
+            <div className="mt-8">
+              <H6>{`${student.name} has no submitted work!`}</H6>
+            </div>
           )}
         </TabPane>
         <TabPane active={openTab === 5 ? true : false}>
@@ -169,7 +177,9 @@ const DetailedProgress = ({ student }) => {
               calculateIndex={calculateIndex}
             />
           ) : (
-            <H6>{`${student.name} has no submitted reflections!`}</H6>
+            <div className="mt-8">
+              <H6>{`${student.name} has no submitted reflections!`}</H6>
+            </div>
           )}
         </TabPane>
       </TabContent>

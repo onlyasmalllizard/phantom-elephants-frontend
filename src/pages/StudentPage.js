@@ -10,19 +10,16 @@ import { useParams, useHistory } from "react-router";
 
 export default function StudentPage({ massagedBackEndData, pushRight }) {
   const data = [...massagedBackEndData, ...fakeData];
-  console.log("studentPage: ", data);
   const history = useHistory();
   const [studentId, setStudentId] = useState(
     Number(useParams().id) || data[0].id
   );
   const studentObject = data.find((item) => {
-    console.log(item.id, studentId);
     return item.id === studentId;
   });
   const [student, setStudent] = useState(studentObject);
-
+  console.log("STUDENT", student);
   const changeStudent = (name) => {
-    console.log("NAME: ", name);
     const newStudent = data.find((studentData) =>
       studentData.name.toLowerCase().includes(name.toLowerCase())
     );
@@ -33,7 +30,6 @@ export default function StudentPage({ massagedBackEndData, pushRight }) {
       history.push(`/student/${newStudent.id}`);
     }
   };
-  console.log("STUDENT:", student);
   // DOUGHNUT CHART DATA SETS
   const attendanceDataset = {
     label: "Attendance",
@@ -49,6 +45,38 @@ export default function StudentPage({ massagedBackEndData, pushRight }) {
       },
     ],
   };
+  const recapDataset = {
+    label: "Recap Performance",
+    labels: ["Green", "Red", "Amber", "Nulls"],
+    datasets: [
+      {
+        data: [
+          student.recapTasksScoreObject.green,
+          student.recapTasksScoreObject.red,
+          student.recapTasksScoreObject.amber,
+          student.recapTasksScoreObject.null,
+        ],
+        backgroundColor: ["#8BC34A", "#EF5350", "#F59E0B", "#9E9E9E"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  const workshopDataset = {
+    label: "Workshop Performance",
+    labels: ["Green", "Red", "Amber", "Nulls"],
+    datasets: [
+      {
+        data: [
+          student.workshopTasksScoreObject.green,
+          student.workshopTasksScoreObject.red,
+          student.workshopTasksScoreObject.amber,
+          student.workshopTasksScoreObject.null,
+        ],
+        backgroundColor: ["#8BC34A", "#EF5350", "#F59E0B", "#9E9E9E"],
+        hoverOffset: 4,
+      },
+    ],
+  };
 
   const options = {
     legend: {
@@ -57,7 +85,7 @@ export default function StudentPage({ massagedBackEndData, pushRight }) {
     },
   };
 
-  const allDonutData = [attendanceDataset, "recapDataset", "workshopDataset"];
+  const allDonutData = [attendanceDataset, recapDataset, workshopDataset];
   const allOptions = [options, options];
 
   return (
