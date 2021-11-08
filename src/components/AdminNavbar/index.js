@@ -70,8 +70,8 @@ export default function AdminNavbar({
           </div>
         </div>
 
-        <div className="flex justify-between items-center w-full">
-          <h4 className=" text-white font-bold tracking-wider mt-1 dashboard-consistent-header">
+        <div className="ml-6 flex justify-between items-center w-full">
+          <h4 className="ml-6 text-white font-bold tracking-wider mt-1 dashboard-consistent-header">
             {location === "/"
               ? "Dashboard"
               : location.replaceAll("/", "") === "upload"

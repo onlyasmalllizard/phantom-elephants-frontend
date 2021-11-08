@@ -93,7 +93,7 @@ export default function StudentPage({ massagedBackEndData, pushRight }) {
       <div className="bg-light-blue-500 h-40 ">
         <div className="mb-10">
           <div className="flex justify-evenly ">
-            <div className="flex flex-col mr-6 ml-6 w-4/12 items-center mt-10 ">
+            <div className="flex flex-col mr-6 ml-6 w-auto items-center mt-10 ">
               <div>
                 <SearchByName data={data} handleSubmit={changeStudent} />
               </div>

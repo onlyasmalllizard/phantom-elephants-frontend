@@ -9,7 +9,7 @@ const workImgSrc =
 function Upload(props) {
   return (
     <>
-      <div className="bg-light-blue-500 h-40 ">
+      <div className="bg-light-blue-500 h-70 ">
         <div
           className="flex justify-evenly items-center "
           style={{ height: "78vh" }}

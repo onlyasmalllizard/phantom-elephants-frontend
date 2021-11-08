@@ -80,13 +80,16 @@ export default function Dashboard({ massagedBackEndData, pushRight }) {
     <>
       <div className="bg-light-blue-500 h-30 ">
         <div className="flex  flex-row relative " style={{ zIndex: 5 }}>
-          <div className="flex flex-row justify-evenly w-screen mt-8">
-            <div classname="w-3/12 flex flex-col">
-              <NotificationCard
-                title={`Notifications since last week`}
-                headerColor="purple"
-              />
-              <div className="h-30 mt-10">
+          <div className="flex flex-row justify-evenly w-screen mt-8 ">
+            <div classname="flex flex-col w-auto ">
+              <div className="mr-6 ml-6">
+                <NotificationCard
+                  title={`Notifications since last week`}
+                  headerColor="purple"
+                />
+              </div>
+
+              <div className="h-30 mt-10 mr-6 ml-6">
                 <StudentList
                   massagedBackEndData={massagedBackEndData}
                   headerColor="blue"
@@ -95,16 +98,18 @@ export default function Dashboard({ massagedBackEndData, pushRight }) {
                 />
               </div>
             </div>
-            <div className="flex flex-col justify-start w-8/12">
-              <ChartLine
-                data={massagedBackEndData}
-                isGroup={true}
-                id={0}
-                pushRight={pushRight}
-                setWatchlist={setWatchlist}
-                watchlist={watchlist}
-              />
-              <div className="flex justify-evenly mt-10">
+            <div className="flex flex-col justify-start w-10/12 mr-6">
+              <div className="mr-6 ">
+                <ChartLine
+                  data={massagedBackEndData}
+                  isGroup={true}
+                  id={0}
+                  pushRight={pushRight}
+                  setWatchlist={setWatchlist}
+                  watchlist={watchlist}
+                />
+              </div>
+              <div className="flex justify-evenly mt-10 mr-6">
                 <Doughnut
                   datasets={allDonutData}
                   label="Overview"
