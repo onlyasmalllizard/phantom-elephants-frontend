@@ -904,11 +904,11 @@ video {
 .pb-28{
 	padding-bottom: 7rem;
 }
-.pl-5{
-	padding-left: 1.25rem;
-}
 .pt-8{
 	padding-top: 2rem;
+}
+.pl-5{
+	padding-left: 1.25rem;
 }
 .text-left{
 	text-align: left;
