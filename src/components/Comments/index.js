@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
 import { Button, Comment, Form, Header } from "semantic-ui-react";
+import Card from "@material-tailwind/react/Card";
+import CardBody from "@material-tailwind/react/CardBody";
 import IndividualComment from "../IndividualComment/index";
 
 export default function Comments({ existingcomments = [] }) {
@@ -23,29 +25,35 @@ export default function Comments({ existingcomments = [] }) {
     setText(e.target.value);
   };
   return (
-    <Comment.Group>
-      <Header as="h3" dividing>
-        Comments
-      </Header>
-      {comments.map((comment) => (
-        <IndividualComment
-          imageUrl={comment.imageUrl}
-          author={comment.author}
-          comment={comment.comment}
-          date={comment.date}
-        />
-      ))}
-      <Form reply>
-        <Form.TextArea onChange={handleChange} value={text} />
+    <Card>
+      <CardBody>
+        <Comment.Group>
+          <div className="w-full">
+            <Header as="h3" dividing>
+              Comments
+            </Header>
+          </div>
+          {comments.map((comment) => (
+            <IndividualComment
+              imageUrl={comment.imageUrl}
+              author={comment.author}
+              comment={comment.comment}
+              date={comment.date}
+            />
+          ))}
+          <Form reply>
+            <Form.TextArea onChange={handleChange} value={text} />
 
-        <Button
-          onClick={submitCommentLine}
-          content="Add Reply"
-          labelPosition="left"
-          icon="edit"
-          primary
-        />
-      </Form>
-    </Comment.Group>
+            <Button
+              onClick={submitCommentLine}
+              content="Add Reply"
+              labelPosition="left"
+              icon="edit"
+              primary
+            />
+          </Form>
+        </Comment.Group>
+      </CardBody>
+    </Card>
   );
 }

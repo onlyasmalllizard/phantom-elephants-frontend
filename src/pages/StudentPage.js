@@ -38,11 +38,17 @@ export default function StudentPage({ massagedBackEndData }) {
         <div className="mb-10">
           <div className="flex justify-evenly ">
             <div className="flex flex-col mr-6 ml-6 w-4/12 items-center mt-10 ">
-              <SearchByName handleSubmit={changeStudent} />
-              <StudentProfile student={student} />
-              <CommentsBox />
+              <div>
+                <SearchByName handleSubmit={changeStudent} />
+              </div>
+              <div className="mt-6">
+                <StudentProfile student={student} />
+              </div>
+              <div className="mt-6">
+                <CommentsBox />
+              </div>
             </div>
-            <div className="flex flex-col justify-evenly items-center mr-6 mt-10 ">
+            <div className="flex flex-col items-center mr-6 mt-10 ">
               <ChartLine data={[student]} isGroup={false} />
               <div className="mt-5">
                 <DetailedProgress student={student} />
