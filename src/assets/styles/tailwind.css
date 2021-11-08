@@ -5527,6 +5527,20 @@ video {
     padding-top: 1rem;
   }
 }
+@media (min-width: 1280px) {
+  .xl\:left-0 {
+    left: 0px;
+  }
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .xl\:pr-8 {
+    padding-right: 2rem;
+  }
+  .xl\:pl-10 {
+    padding-left: 2.5rem;
+  }
+}
 @media (min-width: 1400px) {
   .xl\:mt-40 {
     margin-top: 10rem;
@@ -5534,8 +5548,8 @@ video {
   .xl\:mt-0 {
     margin-top: 0px;
   }
-  .xl\:mt-64 {
-    margin-top: 16rem;
+  .xl\:ml-64 {
+    margin-left: 16rem;
   }
   .xl\:mb-0 {
     margin-bottom: 0px;
@@ -5549,8 +5563,8 @@ video {
   .xl\:w-6\/12 {
     width: 50%;
   }
-  .xl\:w-4\/12 {
-    width: 33.333333%;
+  .xl\:hidden {
+    display: none;
   }
   .xl\:w-5\/12 {
     width: 41.666667%;
