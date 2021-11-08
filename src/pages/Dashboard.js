@@ -1,32 +1,62 @@
-import StatusCard from "../components/StatusCard";
+import { useState } from "react";
 import ChartLine from "../components/ChartLine";
-import ChartBar from "../components/ChartBar";
-import PageVisitsCard from "../components/PageVisitsCard";
-import TrafficCard from "../components/TrafficCard";
-import StudentDropdown from "../components/NameSelection";
-import InputField from "../components/InputField/index";
-import MessageNotification from "../components/MessageNotification/index";
-import Comments from "../components/Comments/index";
+import { cohortMaths } from "../lib/allCohortMaths";
 import Doughnut from "../components/Doughnut/index";
 import StudentList from "../components/StudentList/index";
-import LoginButton from "components/LoginButton";
-import LogoutButton from "components/LogoutButton";
-import LoggedInProfile from "components/UserLoggedInProfile";
+import NotificationCard from "../components/NofiticationCard";
 
-export default function Dashboard({ massagedBackEndData }) {
-  console.log(massagedBackEndData);
-  const donutDataset = {
-    label: "My First Dataset",
-    labels: ["Red", "Blue", "Yellow"],
+export default function Dashboard({ massagedBackEndData, pushRight }) {
+  // recieving cohort data for donuts
+  const cohortData = cohortMaths(massagedBackEndData, 1, 8);
+  const {
+    cohortRecapScoreObject,
+    cohortAttendancePercentage,
+    cohortWorkshopsScoreObject,
+  } = cohortData;
+
+  const attendanceDataset = {
+    label: "Attendance",
+    labels: ["Present", "Absent"],
     datasets: [
       {
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-          "grey",
+        data: [
+          cohortAttendancePercentage,
+          (100 - cohortAttendancePercentage).toFixed(1),
         ],
+        backgroundColor: ["#8BC34A", "#EF5350"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  const recapDataset = {
+    label: "Recap Performance",
+    labels: ["Green", "Red", "Amber", "Nulls"],
+    datasets: [
+      {
+        data: [
+          cohortRecapScoreObject.green,
+          cohortRecapScoreObject.red,
+          cohortRecapScoreObject.amber,
+          cohortRecapScoreObject.null,
+        ],
+        backgroundColor: ["#8BC34A", "#EF5350", "#F59E0B", "#9E9E9E"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  const workshopDataset = {
+    label: "Workshop Performance",
+    labels: ["Green", "Red", "Amber", "Nulls"],
+    datasets: [
+      {
+        data: [
+          cohortWorkshopsScoreObject.green,
+          cohortWorkshopsScoreObject.red,
+          cohortWorkshopsScoreObject.amber,
+          cohortWorkshopsScoreObject.null,
+        ],
+        backgroundColor: ["#8BC34A", "#EF5350", "#F59E0B", "#9E9E9E"],
         hoverOffset: 4,
       },
     ],
@@ -38,34 +68,48 @@ export default function Dashboard({ massagedBackEndData }) {
       position: "left",
     },
   };
+
+  // all options for donut filters AND all donut datasets to flick through
+  const allDonutData = [attendanceDataset, recapDataset, workshopDataset];
+  const allOptions = [options, options];
+
   return (
     <>
-      <div className={"bg-light-blue-500 px-3 md:px-8 h-40"} />
-
-      <div className="px-3 md:px-10 -mt-24">
-        <div className="container mx-auto max-w-full">
-          <div className="grid grid-cols-1 xl:grid-cols-100">
-            <div className="xl:col-start-1 xl:col-end-6 px-4 mb-14">
-              <MessageNotification content="hi" />
+      <div className="bg-light-blue-500 h-30 ">
+        <div className="flex  flex-row relative " style={{ zIndex: 5 }}>
+          <div className="flex flex-row justify-evenly w-screen mt-8">
+            <div classname="w-3/12 flex flex-col">
+              <NotificationCard
+                title={`Notifications since last week`}
+                headerColor="purple"
+              />
+              <div className="h-30 mt-10">
+                <StudentList
+                  massagedBackEndData={massagedBackEndData}
+                  headerColor="blue"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col justify-start w-8/12">
+              <ChartLine
+                data={massagedBackEndData}
+                isGroup={true}
+                id={0}
+                pushRight={pushRight}
+              />
+              <div className="flex justify-evenly mt-10">
+                <Doughnut
+                  datasets={allDonutData}
+                  label="Overview"
+                  options={allOptions}
+                  pushRight={pushRight}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <ChartLine data={massagedBackEndData} isGroup={true} id={0} />
-      <div className="px-3 md:px-8">
-        <div className="container mx-auto max-w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
-            <MessageNotification content="hi" />
-            <Doughnut
-              dataset={donutDataset}
-              options={options}
-              height="h-70"
-              width="w-70"
-            />
-            <StudentList dataSet={massagedBackEndData} />
-          </div>
-        </div>
-      </div>
+      <div className="h-196 w-screen"></div>
     </>
   );
 }

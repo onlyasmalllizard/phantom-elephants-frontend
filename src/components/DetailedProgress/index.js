@@ -10,8 +10,7 @@ import DropDown from 'components/DropDown';
 import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
-import H5 from '@material-tailwind/react/Heading5';
-import Paragraph from '@material-tailwind/react/Paragraph';
+import H4 from '@material-tailwind/react/Heading4';
 
 import Tab from '@material-tailwind/react/Tab';
 import TabList from '@material-tailwind/react/TabList';
@@ -19,6 +18,12 @@ import TabItem from '@material-tailwind/react/TabItem';
 import TabContent from '@material-tailwind/react/TabContent';
 import TabPane from '@material-tailwind/react/TabPane';
 import H6 from '@material-tailwind/react/Heading5';
+import Paragraph from '@material-tailwind/react/Paragraph';
+import FeedbackView from 'components/FeedbackView';
+import ReflectionsView from 'components/ReflectionsView';
+import QuizView from '../QuizView';
+import WorkshopsView from 'components/WorkshopsView';
+import RecapView from '../RecapView';
 
 const viewOptions = [
   'Week 1',
@@ -36,9 +41,15 @@ const viewOptions = [
 ];
 
 const DetailedProgress = ({ student }) => {
-  const [week, setWeek] = useState(1);
+  const [week, setWeek] = useState(0);
+  const [hasWork, setHasWork] = useState(student.hasWork);
   const [openTab, setOpenTab] = useState(1);
   console.log(student);
+
+  // Day is 0 for Monday, 1 for Tuesday, ... 4 for Friday
+  const calculateIndex = (day) => {
+    return 5 * week + day;
+  };
   return (
     <Tab>
       <TabList color="lightBlue">
@@ -99,24 +110,62 @@ const DetailedProgress = ({ student }) => {
         </TabItem>
       </TabList>
       <OutlineDropdown
-        text={week}
+        text={viewOptions[0]}
         state={week}
         setState={setWeek}
         options={viewOptions}
       />
       <TabContent>
-        <TabPane active={openTab === 1 ? true : false}>Hello</TabPane>
-        <TabPane active={openTab === 2 ? true : false}>Workshops</TabPane>
-        <TabPane active={openTab === 3 ? true : false}>Quizzes</TabPane>
-        <TabPane active={openTab === 4 ? true : false}>
-          Feedback
-          <H6>Monday</H6>
-          <H6>Tuesday</H6>
-          <H6>Wednesday</H6>
-          <H6>Thursday</H6>
-          <H6>Friday</H6>
+        <TabPane active={openTab === 1 ? true : false}>
+          {student.recaps ? (
+            <RecapView recaps={student.recaps} week={week} />
+          ) : (
+            <H6>{`${student.name} hasn't completed any recap tasks!`}</H6>
+          )}
         </TabPane>
-        <TabPane active={openTab === 5 ? true : false}>Reflections</TabPane>
+        <TabPane active={openTab === 2 ? true : false}>
+          {student.workshops ? (
+            <WorkshopsView
+              workshops={student.workshops}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} hasn't completed any workshops!`}</H6>
+          )}
+        </TabPane>
+        <TabPane active={openTab === 3 ? true : false}>
+          {student.quizScoresArray ? (
+            <QuizView
+              quizzes={student.quizScoresArray}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} hasn't completed any quizzes!`}</H6>
+          )}
+        </TabPane>
+        <TabPane active={openTab === 4 ? true : false}>
+          {hasWork ? (
+            <FeedbackView
+              feedbackComments={student.feedbackCommentsArray}
+              feedbackExperience={student.feedbackExArray}
+              feedbackAverageExp={student.feedbackExDayAvgArray}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} has no submitted work!`}</H6>
+          )}
+        </TabPane>
+        <TabPane active={openTab === 5 ? true : false}>
+          {student.reflections ? (
+            <ReflectionsView
+              reflections={student.reflections}
+              week={week}
+              calculateIndex={calculateIndex}
+            />
+          ) : (
+            <H6>{`${student.name} has no submitted reflections!`}</H6>
+          )}
+        </TabPane>
       </TabContent>
     </Tab>
   );

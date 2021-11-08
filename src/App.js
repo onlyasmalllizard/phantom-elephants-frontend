@@ -15,6 +15,9 @@ import StudentPage from "./pages/StudentPage";
 import Upload from "./pages/Upload";
 import Loading from "components/Loading/Loading";
 import Settings from "./pages/Settings";
+import "react-notifications-component/dist/theme.css";
+import "semantic-ui-css/semantic.min.css";
+import "./index.css";
 // Tailwind CSS Style Sheet
 import "assets/styles/tailwind.css";
 import "@material-tailwind/react/tailwind.css";
@@ -28,7 +31,8 @@ function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [pushRight, setPushRight] = useState(false);
+
   useEffect(() => {
     // place fetch request to API for bootcamp name
   }, [defaultBootcamp]);
@@ -47,53 +51,53 @@ function App() {
     getData();
   }, []);
 
-  // console.log("post-massage: ", massage(cohortData));
+  console.log("pushRight:", pushRight);
 
-  return isLoggedIn ? (
-    isLoading ? (
-      <Loading />
-    ) : (
-      <UserProvider>
-        <Sidebar />
-        <div className="md:ml-64">
-          <Switch>
-            <Route exact path="/">
-              <Dashboard massagedBackEndData={massage(cohortData)} />
-            </Route>
-
-            <Route exact path="/tables">
-              <Tables massagedBackEndData={massage(cohortData)} />
-            </Route>
-
-            <Route path="/student/:id">
-              <StudentPage massagedBackEndData={massage(cohortData)} />
-            </Route>
-
-            <Route path="/student">
-              <StudentPage massagedBackEndData={massage(cohortData)} />
-            </Route>
-
-            <Route path="/upload">
-              <Upload />
-            </Route>
-
-            <Route exact path="/settings">
-              <SettingsDashboard setBootcamp={setBootcamp} />
-            </Route>
-
-            <Redirect from="*" to="/" />
-          </Switch>
-
-          <Footer />
-        </div>
-      </UserProvider>
-    )
+  return isLoading ? (
+    <Loading />
   ) : (
-    <>
-      <LoginButton />
-      <LogoutButton />
-      <LoggedInProfile setIsLoggedIn={setIsLoggedIn} />
-    </>
+    <UserProvider>
+      <Sidebar setPushRight={setPushRight} pushRight={pushRight} />
+      <div className={pushRight ? "ml-64" : ""}>
+        <Switch>
+          <Route exact path="/">
+            <Dashboard
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
+          </Route>
+
+          <Route exact path="/tables">
+            <Tables massagedBackEndData={massage(cohortData)} />
+          </Route>
+
+          <Route path="/student/:id">
+            <StudentPage
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
+          </Route>
+
+          <Route path="/student">
+            <StudentPage
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
+          </Route>
+
+          <Route path="/upload">
+            <Upload />
+          </Route>
+
+          <Route exact path="/settings">
+            <SettingsDashboard setBootcamp={setBootcamp} />
+          </Route>
+
+          <Redirect from="*" to="/" />
+        </Switch>
+        <Footer />
+      </div>
+    </UserProvider>
   );
 }
 

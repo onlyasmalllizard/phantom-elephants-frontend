@@ -4,48 +4,62 @@ import { listRecapTasks, tallyScores } from "../functions";
 
 export const fakeData = bootcamps
   .map((bootcamp) => {
+    const SW = 0;
+    const EW = 60;
+    // sw = Start Week
+    // ew = End Week
     const bootcampId = bootcamp.id;
     const bootcampRegion = bootcamp.region;
     return bootcamp.students.map((student) => {
+      console.log("Dummy WOrk:", student);
       // ATTENDANCE
-      const attendanceArray = student.work.map((day) =>
-        day.didAttend ? true : false
-      );
-      const attendanceArrayFiltered = student.work.filter(
-        (day) => day.didAttend
-      );
+      const attendanceArray = student.work
+        .slice(SW, EW)
+        .map((day) => (day.didAttend ? true : false));
+      const attendanceArrayFiltered = student.work
+        .slice(SW, EW)
+        .filter((day) => day.didAttend);
       const attendanceNum = attendanceArrayFiltered.length;
       // QUIZZES
       const quizScoresArray =
-        student.work.quiz === null
+        student.work.slice(SW, EW).quiz === null
           ? null
           : student.work.map((work) =>
               work.quiz === null ? null : work.quiz.percentage
             );
 
       // FEEDBACK EXPERIENCE SCORES
-      const feedbackExArray = student.work.map((day) =>
-        day.feedback
-          ? [day.feedback[0].experienceRating, day.feedback[1].experienceRating]
-          : [null, null]
-      );
+      const feedbackExArray = student.work
+        .slice(SW, EW)
+        .map((day) =>
+          day.feedback
+            ? [
+                day.feedback[0].experienceRating,
+                day.feedback[1].experienceRating,
+              ]
+            : [null, null]
+        );
       const feedbackExDayAvgArray = feedbackExArray.map((day) =>
         day[0] && day[1] ? (day[0] + day[1]) / 2 : day[0] || day[1]
       );
       //   FEEDBACK COMMENTS
-      const feedbackCommentsArray = student.work.map((day) =>
-        day.feedback
-          ? [day.feedback[0].comment, day.feedback[1].comment]
-          : [null, null]
-      );
+      const feedbackCommentsArray = student.work
+        .slice(SW, EW)
+        .map((day) =>
+          day.feedback
+            ? [day.feedback[0].comment, day.feedback[1].comment]
+            : [null, null]
+        );
       // RECAP TASKS
       /* creates an recapTask array ['green', 'amber', 'red', null] & then counts the occurences, output => Object */
       const recapTasksScoreObject = student.work
+        .slice(SW, EW)
         .reduce(listRecapTasks, [])
         .reduce(tallyScores, { amber: 0, green: 0, null: 0, red: 0 });
       // WORKSHOPS
       /* reduce to only workshop scores ['green', 'amber', 'red', null] & then reduce into an object of occurences {green : 5, amber: 4, red:2} */
       const workshopTasksScoreObject = student.work
+        .slice(SW, EW)
         .reduce(
           (acc, cur) =>
             cur.workshops
@@ -63,9 +77,9 @@ export const fakeData = bootcamps
       const avgWorkshopScore = RAG_TasksAvgScore(workshopTasksScoreObject);
       const avgRecapScore = RAG_TasksAvgScore(recapTasksScoreObject);
       /* filtering out null quiz scores, then calculating average */
-      const notNullQuizScores = student.work.filter(
-        (work) => work.quiz !== null
-      );
+      const notNullQuizScores = student.work
+        .slice(SW, EW)
+        .filter((work) => work.quiz !== null);
       const avgQuiz = Math.round(
         notNullQuizScores.reduce((acc, cur) => acc + cur.quiz.percentage, 0) /
           notNullQuizScores.length
@@ -73,6 +87,7 @@ export const fakeData = bootcamps
 
       /* get array of experience ratings & average them */
       const moodArray = student.work
+        .slice(SW, EW)
         .reduce(
           (acc, cur) =>
             cur.feedback
@@ -114,50 +129,58 @@ export const fakeData = bootcamps
   })
   .flat();
 
-export function massage(backendData) {
+export function massage(backendData, SW = 0, EW = 60) {
   console.log("pre-massage =>", backendData);
 
   return backendData
     .map((student) => {
       if (student.hasWork) {
         // ATTENDANCE
-        const attendanceArray = student.attendance.map((day) =>
-          day.didAttend ? true : false
-        );
+        const attendanceArray = student.attendance
+          .slice(SW, EW)
+          .map((day) => (day.didAttend ? true : false));
         const attendanceNum = student.daysAttended;
         // QUIZZES
-        const quizScoresArray = student.quizzes.map((quiz) =>
-          quiz ? quiz.percentage : null
-        );
+        const quizScoresArray = student.quizzes
+          .slice(SW, EW)
+          .map((quiz) => (quiz ? quiz.percentage : null));
 
         // FEEDBACK EXPERIENCE SCORES
-        const feedbackExArray = student.feedback.map((day) =>
-          day
-            ? day.map((time) => (time ? time.experienceRating : null))
-            : [null, null]
-        );
+        const feedbackExArray = student.feedback
+          .slice(SW, EW)
+          .map((day) =>
+            day
+              ? day.map((time) => (time ? time.experienceRating : null))
+              : [null, null]
+          );
         const feedbackExDayAvgArray = feedbackExArray.map((day) =>
           day[0] && day[1] ? (day[0] + day[1]) / 2 : day[0] || day[1]
         );
 
         //   FEEDBACK COMMENTS
-        const feedbackCommentsArray = student.feedback.map((day) =>
-          day
-            ? day.map((time, index) =>
-                time
-                  ? time.comment
-                  : `No feedback ${index === 0 ? "morning" : "afternoon"} left`
-              )
-            : [null, null]
-        );
+        const feedbackCommentsArray = student.feedback
+          .slice(SW, EW)
+          .map((day) =>
+            day
+              ? day.map((time, index) =>
+                  time
+                    ? time.comment
+                    : `No feedback ${
+                        index === 0 ? "morning" : "afternoon"
+                      } left`
+                )
+              : [null, null]
+          );
         // RECAP TASKS
         /* creates an recapTask array ['green', 'amber', 'red', null] & then counts the occurences, output => Object */
         const recapTasksScoreObject = student.recaps
+          .slice(SW, EW)
           .map((recap) => (recap ? recap.score : null))
           .reduce(tallyScores, { amber: 0, green: 0, null: 0, red: 0 });
         // WORKSHOPS
         /* reduce to only workshop scores ['green', 'amber', 'red', null] & then reduce into an object of occurences {green : 5, amber: 4, red:2} */
         const workshopTasksScoreObject = student.workshops
+          .slice(SW, EW)
           .reduce(
             (acc, cur) =>
               cur
@@ -169,15 +192,15 @@ export function massage(backendData) {
         // /* Workshop average & Recap Task score calculator (null: 0, red :0.33, amber:0.66, green:1*/
         const RAG_TasksAvgScore = (tasksResultObj) =>
           tasksResultObj.green * 0.99 +
-          tasksResultObj.amber * 0.67 +
-          tasksResultObj.red * 0.33 +
+          tasksResultObj.amber * 0.5 +
+          tasksResultObj.red * 0.3 +
           tasksResultObj.null * -0.01;
         const avgRecapScore = RAG_TasksAvgScore(recapTasksScoreObject);
         const avgWorkshopScore = RAG_TasksAvgScore(workshopTasksScoreObject);
         /* filtering out null quiz scores, then calculating average */
-        const notNullQuizScores = quizScoresArray.filter(
-          (quiz) => quiz !== null
-        );
+        const notNullQuizScores = quizScoresArray
+          .slice(SW, EW)
+          .filter((quiz) => quiz !== null);
         const avgQuiz = Math.round(
           notNullQuizScores.reduce((acc, cur) => acc + cur, 0) /
             notNullQuizScores.length
@@ -211,6 +234,9 @@ export function massage(backendData) {
           avgWorkshopScore,
           avgQuiz,
           avgExperience,
+          reflections: student.reflections,
+          workshops: student.workshops,
+          recaps: student.recaps,
           hasWork: student.hasWork,
         };
       } else {
