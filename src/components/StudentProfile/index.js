@@ -8,8 +8,8 @@ export default function StudentProfile({ student }) {
   const { name, avatar, email, bootcampId } = student;
   return (
     <>
-      <div className="bg-grey text-center flex flex-col justify-evenly w-60">
-        <div className="text-left w-60 mb-4">
+      <div className="bg-grey text-center flex flex-col w-full justify-evenly ">
+        <div className="text-left w-full mb-4">
           <Header as="h3" dividing>
             Student
           </Header>
