@@ -34,18 +34,22 @@ export default function StudentPage({ massagedBackEndData }) {
 
   return (
     <>
-      <div className="flex">
-        <div className="flex flex-col justify-evenly items-center w-3/12">
-          <SearchByName handleSubmit={changeStudent} />
-
-          <StudentProfile student={student} />
-          <CommentsBox />
-        </div>
-        <div className="flex flex-col justify-evenly items-center w-9/12">
-          <ChartLine data={[student]} isGroup={false} />
-          <DetailedProgress student={student} />
+      <div className="bg-light-blue-500 h-40 ">
+        <div className="flex justify-evenly ">
+          <div className="flex flex-col mr-6 ml-6 w-4/12">
+            <SearchByName handleSubmit={changeStudent} />
+            <StudentProfile student={student} />
+            <CommentsBox />
+          </div>
+          <div className="flex flex-col justify-evenly items-center mr-6  ">
+            <ChartLine data={[student]} isGroup={false} />
+            <div className="mt-5">
+              <DetailedProgress student={student} />
+            </div>
+          </div>
         </div>
       </div>
+      <div className="h-196 w-screen"></div>
     </>
   );
 }

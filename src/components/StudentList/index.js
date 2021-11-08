@@ -34,7 +34,6 @@ const StudentList = ({
         .split(",")
         .map((el) => +el),
     ]);
-    console.log(localStorage.getItem("Watchlist"));
   }
 
   const loadMoreData = () => {
@@ -135,9 +134,7 @@ const StudentList = ({
                     <List.Item.Meta
                       avatar={<Avatar src={item.avatar} />}
                       title={
-                        <a
-                          href={`${process.env.REACT_APP_API_URL}/student/${item.id}`}
-                        >
+                        <a href={`${window.location.href}student/${item.id}`}>
                           {item.name}
                         </a>
                       }

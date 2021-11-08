@@ -126,7 +126,7 @@ export default function CardTable({ massagedBackEndData }) {
                           />
                         </div>{" "}
                         <a
-                          href={`${process.env.REACT_APP_API_URL}/student/${student.id}`}
+                          href={`${window.location.href}student/${student.id}`}
                           className="font-light text-sm whitespace-nowrap px-2 py-4 pl-3 text-left "
                         >
                           {student.name}
