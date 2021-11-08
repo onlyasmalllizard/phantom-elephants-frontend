@@ -6,7 +6,13 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 
-export default function Doughnut({ datasets, label, options, pushRight }) {
+export default function Doughnut({
+  datasets,
+  label,
+  options,
+  pushRight,
+  watchlist,
+}) {
   // set state for donutChart
   const [chartId, setChartId] = useState(0);
 
@@ -19,7 +25,7 @@ export default function Doughnut({ datasets, label, options, pushRight }) {
     };
     let ctx = document.getElementById("donut-chart").getContext("2d");
     window.myDoughnut = new Chart(ctx, config);
-  }, [chartId, pushRight]);
+  }, [chartId, pushRight, watchlist]);
 
   return (
     <Card key={uuid()} className="min-w-150 min-h-200">

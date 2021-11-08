@@ -12,12 +12,16 @@ import Dropdown from "../DropDown";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const StudentList = ({ massagedBackEndData, headerColor }) => {
+const StudentList = ({
+  massagedBackEndData,
+  headerColor,
+  watchlist,
+  setWatchlist,
+}) => {
   const dataset = [...massagedBackEndData, ...fakeData];
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [datasetId, setDatasetId] = useState(1);
-  const [watchlist, setWatchlist] = useState([]);
   const [welcome, setWelcome] = useState(true);
 
   // checking for defualt bootcamp setting for dashboard line

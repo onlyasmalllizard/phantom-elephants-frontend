@@ -53,7 +53,7 @@ const colors = [
   "#000000",
 ];
 
-export default function ChartLine({ data, isGroup, pushRight }) {
+export default function ChartLine({ data, isGroup, pushRight, watchlist }) {
   const id = Number(useParams().id) || 1;
   const [datasetId, setDatasetId] = useState(id);
   const [chartId, setChartId] = useState("0");
@@ -84,7 +84,11 @@ export default function ChartLine({ data, isGroup, pushRight }) {
         datasets: dataset
           .filter((dataPoint) => {
             if (isGroupData) {
-              return dataPoint.bootcampId === datasetId || datasetId === 0;
+              return (
+                dataPoint.bootcampId === datasetId ||
+                datasetId === 0 ||
+                (datasetId === 5 && watchlist.includes(dataPoint.id))
+              );
             } else {
               return dataPoint.id === datasetId;
             }
@@ -179,7 +183,7 @@ export default function ChartLine({ data, isGroup, pushRight }) {
     };
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
-  }, [datasetId, chartId, dataset, isGroupData, pushRight]);
+  }, [datasetId, chartId, dataset, isGroupData, pushRight, watchlist]);
 
   return (
     <Card key={uuid()}>
@@ -215,6 +219,7 @@ export default function ChartLine({ data, isGroup, pushRight }) {
                     ...bootcamps.map((bootcamp) => {
                       return bootcamp.id + ": " + bootcamp.region;
                     }),
+                    "Watchlist",
                   ]}
                 />
               </div>

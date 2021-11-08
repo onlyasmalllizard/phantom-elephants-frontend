@@ -6,6 +6,9 @@ import StudentList from "../components/StudentList/index";
 import NotificationCard from "../components/NofiticationCard";
 
 export default function Dashboard({ massagedBackEndData, pushRight }) {
+  // Watch list to pass to line and table
+  const [watchlist, setWatchlist] = useState([]);
+
   // recieving cohort data for donuts
   const cohortData = cohortMaths(massagedBackEndData, 1, 8);
   const {
@@ -87,6 +90,8 @@ export default function Dashboard({ massagedBackEndData, pushRight }) {
                 <StudentList
                   massagedBackEndData={massagedBackEndData}
                   headerColor="blue"
+                  setWatchlist={setWatchlist}
+                  watchlist={watchlist}
                 />
               </div>
             </div>
@@ -96,6 +101,8 @@ export default function Dashboard({ massagedBackEndData, pushRight }) {
                 isGroup={true}
                 id={0}
                 pushRight={pushRight}
+                setWatchlist={setWatchlist}
+                watchlist={watchlist}
               />
               <div className="flex justify-evenly mt-10">
                 <Doughnut
@@ -103,6 +110,7 @@ export default function Dashboard({ massagedBackEndData, pushRight }) {
                   label="Overview"
                   options={allOptions}
                   pushRight={pushRight}
+                  watchlist={watchlist}
                 />
               </div>
             </div>
