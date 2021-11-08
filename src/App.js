@@ -24,6 +24,10 @@ import LoginButton from "./components/LoginButton/index";
 import LogoutButton from "components/LogoutButton";
 import LoggedInProfile from "components/UserLoggedInProfile";
 
+import Landing from "./components/react-landing-page/src/views/Landing";
+
+import LandingPageFooter from "components/react-landing-page/src/components/Footer";
+
 function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
@@ -90,8 +94,8 @@ function App() {
     )
   ) : (
     <>
-      <LoginButton />
-      <LogoutButton />
+      <Landing />
+      <LandingPageFooter />
       <LoggedInProfile setIsLoggedIn={setIsLoggedIn} />
     </>
   );

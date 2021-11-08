@@ -1,9 +1,10 @@
-import { Button } from 'semantic-ui-react';
-import { useState } from 'react';
-import Input from '@material-tailwind/react/Input';
+import { Button } from "semantic-ui-react";
+import { useState } from "react";
+import Input from "@material-tailwind/react/Input";
+import LoginButton from "components/LoginButton";
 
 const SearchByName = ({ handleSubmit }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -11,7 +12,7 @@ const SearchByName = ({ handleSubmit }) => {
 
   const submit = () => {
     handleSubmit(search);
-    setSearch('');
+    setSearch("");
   };
 
   return (
@@ -22,6 +23,7 @@ const SearchByName = ({ handleSubmit }) => {
         onChange={handleChange}
       />
       <Button onClick={submit}>Search</Button>
+      <LoginButton />
     </section>
   );
 };
