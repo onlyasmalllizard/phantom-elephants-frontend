@@ -50,7 +50,7 @@ export default function StudentPage({ massagedBackEndData }) {
               </div>
             </div>
             <div className="flex flex-col items-center mr-6 mt-10 w-10/12">
-              <ChartLine data={[student]} isGroup={false} />
+              <ChartLine data={[student]} isGroup={false} label="Student" />
               <div className="mt-5 w-full">
                 <DetailedProgress student={student} />
               </div>

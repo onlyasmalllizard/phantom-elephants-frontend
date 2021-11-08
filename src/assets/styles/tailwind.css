@@ -666,6 +666,9 @@ video {
 .h-10 {
   height: 2.5rem;
 }
+.h-20 {
+  height: 5rem;
+}
 .h-30 {
   height: 7.7rem;
 }
@@ -1967,6 +1970,9 @@ video {
 .w-5 {
   width: 1.25rem;
 }
+.w-1\/5 {
+  width: 19%;
+}
 .w-10\/12 {
   width: 83.333333%;
 }
@@ -2192,6 +2198,10 @@ video {
 }
 .border-r {
   border-right-width: 1px;
+}
+.border-rl {
+  border-right-width: 1px;
+  border-left-width: 1px;
 }
 .border-solid {
   border-style: solid;

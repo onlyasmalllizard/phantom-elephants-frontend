@@ -53,7 +53,13 @@ const colors = [
   "#000000",
 ];
 
-export default function ChartLine({ data, isGroup, pushRight, watchlist }) {
+export default function ChartLine({
+  data,
+  isGroup,
+  pushRight,
+  watchlist,
+  label = "overview",
+}) {
   const id = Number(useParams().id) || 1;
   const [datasetId, setDatasetId] = useState(id);
   const [chartId, setChartId] = useState("0");
@@ -191,7 +197,7 @@ export default function ChartLine({ data, isGroup, pushRight, watchlist }) {
         <div className="flex">
           <div>
             <h6 className="uppercase text-gray-200 text-xs font-medium">
-              Overview
+              {label}
             </h6>
             <h2 className="text-white text-2xl">
               {chartFilters[chartId].display}

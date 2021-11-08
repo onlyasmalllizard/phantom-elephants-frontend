@@ -4,40 +4,40 @@ take in student data
 Display Quizzes, Workshops, Recaps, Reflections, and Feedback separated into week view
 Dropdown to switch week
 */
-import { useState } from 'react';
-import OutlineDropdown from 'components/OutlineDropdown';
-import DropDown from 'components/DropDown';
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import H4 from '@material-tailwind/react/Heading4';
+import { useState } from "react";
+import OutlineDropdown from "components/OutlineDropdown";
+import DropDown from "components/DropDown";
+import Card from "@material-tailwind/react/Card";
+import CardHeader from "@material-tailwind/react/CardHeader";
+import CardBody from "@material-tailwind/react/CardBody";
+import H4 from "@material-tailwind/react/Heading4";
 
-import Tab from '@material-tailwind/react/Tab';
-import TabList from '@material-tailwind/react/TabList';
-import TabItem from '@material-tailwind/react/TabItem';
-import TabContent from '@material-tailwind/react/TabContent';
-import TabPane from '@material-tailwind/react/TabPane';
-import H6 from '@material-tailwind/react/Heading5';
-import Paragraph from '@material-tailwind/react/Paragraph';
-import FeedbackView from 'components/FeedbackView';
-import ReflectionsView from 'components/ReflectionsView';
-import QuizView from '../QuizView';
-import WorkshopsView from 'components/WorkshopsView';
-import RecapView from '../RecapView';
+import Tab from "@material-tailwind/react/Tab";
+import TabList from "@material-tailwind/react/TabList";
+import TabItem from "@material-tailwind/react/TabItem";
+import TabContent from "@material-tailwind/react/TabContent";
+import TabPane from "@material-tailwind/react/TabPane";
+import H6 from "@material-tailwind/react/Heading5";
+import Paragraph from "@material-tailwind/react/Paragraph";
+import FeedbackView from "components/FeedbackView";
+import ReflectionsView from "components/ReflectionsView";
+import QuizView from "../QuizView";
+import WorkshopsView from "components/WorkshopsView";
+import RecapView from "../RecapView";
 
 const viewOptions = [
-  'Week 1',
-  'Week 2',
-  'Week 3',
-  'Week 4',
-  'Week 5',
-  'Week 6',
-  'Week 7',
-  'Week 8',
-  'Week 9',
-  'Week 10',
-  'Week 11',
-  'Week 12',
+  "Week 1",
+  "Week 2",
+  "Week 3",
+  "Week 4",
+  "Week 5",
+  "Week 6",
+  "Week 7",
+  "Week 8",
+  "Week 9",
+  "Week 10",
+  "Week 11",
+  "Week 12",
 ];
 
 const DetailedProgress = ({ student }) => {
@@ -53,6 +53,12 @@ const DetailedProgress = ({ student }) => {
   return (
     <Tab>
       <TabList color="lightBlue">
+        <div style={{ marginLeft: "13px", marginRight: "5rem" }}>
+          <h6 className="uppercase text-gray-200 text-xs font-medium ">
+            Student
+          </h6>
+          <h2 className="text-white text-2xl">Detailed Progress</h2>
+        </div>
         <TabItem
           onClick={(e) => {
             e.preventDefault();

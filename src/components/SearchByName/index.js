@@ -6,24 +6,16 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 
 const SearchByName = ({ handleSubmit, data }) => {
-  const [search, setSearch] = useState("");
   const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
 
   const namesList = data.map((student) => student.name);
 
-  const handleChange = (event) => {
-    setSearch(event.target.value);
-    console.log("NAME: ", event.target.value);
-  };
-
   const submit = () => {
     handleSubmit(value);
-    setSearch("");
   };
 
   return (
@@ -42,9 +34,8 @@ const SearchByName = ({ handleSubmit, data }) => {
         </div>
       </CardHeader>
       <CardBody className={`relative `}>
-        <section className="bg-grey flex flex-col justify-evenly h-30">
+        <section className="bg-grey flex flex-col justify-start h-30">
           <div>
-            <br />
             <Autocomplete
               value={value}
               onChange={(event, newValue) => {
@@ -61,8 +52,11 @@ const SearchByName = ({ handleSubmit, data }) => {
               )}
             />
           </div>
-
-          <Button onClick={submit}>Search</Button>
+          <div className="mt-3 w-full">
+            <Button onClick={submit} style={{ width: "100%" }}>
+              Search
+            </Button>
+          </div>
         </section>
       </CardBody>
     </Card>
