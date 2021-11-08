@@ -80,8 +80,8 @@ const Profile = ({ onSubmit, src, name, region, watchlist }) => (
         </div>
       </label>
       <div className={css.card}>{name}</div>
-      <div className={css.region}>{region}</div>
-      <div className={css.watchlist}>{watchlist}</div>
+      <div className={css.card}>{region}</div>
+      <div className={css.card}>{watchlist}</div>
       <button type="submit" className={`${css.edit} ${css.button}`}>
         Edit Profile{" "}
       </button>
@@ -120,10 +120,7 @@ function CardProfile(props) {
     const reader = new FileReader();
     const file = e.target.files[0];
     reader.onloadend = () => {
-      setFiles({
-        files: file,
-        imagePreviewUrl: reader.result,
-      });
+      setPreviewImage(reader.result);
     };
     reader.readAsDataURL(file);
   };
@@ -144,8 +141,8 @@ function CardProfile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let activeP = state.active === "edit" ? "profile" : "edit";
-    setActive({ activeP });
+    let activeP = active === "edit" ? "profile" : "edit";
+    setActive(activeP);
   };
 
   //   useEffect(() => {
