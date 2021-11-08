@@ -21,6 +21,7 @@ export default function StudentPage({ massagedBackEndData }) {
   const [student, setStudent] = useState(studentObject);
 
   const changeStudent = (name) => {
+    console.log("NAME: ", name);
     const newStudent = data.find((studentData) =>
       studentData.name.toLowerCase().includes(name.toLowerCase())
     );
@@ -39,7 +40,7 @@ export default function StudentPage({ massagedBackEndData }) {
           <div className="flex justify-evenly ">
             <div className="flex flex-col mr-6 ml-6 w-4/12 items-center mt-10 ">
               <div>
-                <SearchByName handleSubmit={changeStudent} />
+                <SearchByName data={data} handleSubmit={changeStudent} />
               </div>
               <div className="mt-6">
                 <StudentProfile student={student} />
@@ -48,9 +49,9 @@ export default function StudentPage({ massagedBackEndData }) {
                 <CommentsBox />
               </div>
             </div>
-            <div className="flex flex-col items-center mr-6 mt-10 ">
+            <div className="flex flex-col items-center mr-6 mt-10 w-10/12">
               <ChartLine data={[student]} isGroup={false} />
-              <div className="mt-5">
+              <div className="mt-5 w-full">
                 <DetailedProgress student={student} />
               </div>
             </div>

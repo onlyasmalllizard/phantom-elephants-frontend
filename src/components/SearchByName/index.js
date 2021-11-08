@@ -4,16 +4,25 @@ import Input from "@material-tailwind/react/Input";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 
-const SearchByName = ({ handleSubmit }) => {
+const SearchByName = ({ handleSubmit, data }) => {
   const [search, setSearch] = useState("");
+  const [value, setValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState("");
+
+  const namesList = data.map((student) => student.name);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
+    console.log("NAME: ", event.target.value);
   };
 
   const submit = () => {
-    handleSubmit(search);
+    handleSubmit(value);
     setSearch("");
   };
 
@@ -34,11 +43,25 @@ const SearchByName = ({ handleSubmit }) => {
       </CardHeader>
       <CardBody className={`relative `}>
         <section className="bg-grey flex flex-col justify-evenly h-30">
-          <Input
-            placeholder="Student Name"
-            value={search}
-            onChange={handleChange}
-          />
+          <div>
+            <br />
+            <Autocomplete
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={namesList}
+              renderInput={(params) => (
+                <TextField {...params} label="Student Name" />
+              )}
+            />
+          </div>
+
           <Button onClick={submit}>Search</Button>
         </section>
       </CardBody>
