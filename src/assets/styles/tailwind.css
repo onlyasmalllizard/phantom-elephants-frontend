@@ -5587,6 +5587,9 @@ video {
   .xl\:ml-64 {
     margin-left: 16rem;
   }
+  .xl\:hidden {
+    display: none;
+  }
   .xl\:mb-0 {
     margin-bottom: 0px;
   }
