@@ -24,6 +24,12 @@ import "@material-tailwind/react/tailwind.css";
 import { useHistory } from "react-router";
 import { UserProvider } from "./contexts/UserContext";
 
+
+import Landing from "./components/react-landing-page/src/views/Landing";
+
+import LandingPageFooter from "components/react-landing-page/src/components/Footer";
+
+
 function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
@@ -85,6 +91,11 @@ function App() {
         <Footer />
       </div>
     </UserProvider>
+     )  (
+      <>
+        <Landing />
+        <LandingPageFooter />
+        </>
   );
 }
 
