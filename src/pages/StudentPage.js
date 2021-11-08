@@ -1,15 +1,15 @@
-import StudentProfile from '../components/StudentProfile/index';
-import CommentsBox from 'components/Comments';
-import ChartLine from '../components/ChartLine';
-import SearchByName from '../components/SearchByName';
-import DetailedProgress from 'components/DetailedProgress';
-import { fakeData } from 'lib/allMassagedData';
-import { useState } from 'react';
-import { useParams, useHistory } from 'react-router';
+import StudentProfile from "../components/StudentProfile/index";
+import CommentsBox from "components/Comments";
+import ChartLine from "../components/ChartLine";
+import SearchByName from "../components/SearchByName";
+import DetailedProgress from "components/DetailedProgress";
+import { fakeData } from "lib/allMassagedData";
+import { useState } from "react";
+import { useParams, useHistory } from "react-router";
 
 export default function StudentPage({ massagedBackEndData }) {
   const data = [...massagedBackEndData, ...fakeData];
-  console.log('studentPage: ', data);
+  console.log("studentPage: ", data);
   const history = useHistory();
   const [studentId, setStudentId] = useState(
     Number(useParams().id) || data[0].id
@@ -34,19 +34,18 @@ export default function StudentPage({ massagedBackEndData }) {
 
   return (
     <>
-      <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
-        <div className="container mx-auto max-w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
-            <SearchByName handleSubmit={changeStudent} />
-          </div>
+      <div className="flex">
+        <div className="flex flex-col justify-evenly items-center w-3/12">
+          <SearchByName handleSubmit={changeStudent} />
+
+          <StudentProfile student={student} />
+          <CommentsBox />
+        </div>
+        <div className="flex flex-col justify-evenly items-center w-9/12">
+          <ChartLine data={[student]} isGroup={false} />
+          <DetailedProgress student={student} />
         </div>
       </div>
-      <section className="grid">
-        <StudentProfile student={student} />
-        <ChartLine data={[student]} isGroup={false} />
-        <DetailedProgress student={student} />
-      </section>
-      <CommentsBox />
     </>
   );
 }
