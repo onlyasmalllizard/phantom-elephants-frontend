@@ -5,7 +5,7 @@ import { useState } from "react";
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor="photo-upload" className="custom-file-upload fas">
     <div className="img-wrap img-upload">
-      <img for="photo-upload" src={src} className={css.img} />
+      <img htmlFor="photo-upload" src={src} className={css.img} />
     </div>
     <input
       id="photo-upload"
@@ -26,7 +26,7 @@ const Name = ({ onChange, value }) => (
       id="name"
       type="text"
       onChange={onChange}
-      maxlength="25"
+      maxLength="25"
       value={value}
       placeholder="Name"
       required
@@ -70,24 +70,26 @@ const Watchlist = ({ onChange, value }) => (
   </div>
 );
 
-const Profile = ({ onSubmit, src, name, region, watchlist }) => (
-  <div className={css.card}>
-    <form onSubmit={onSubmit}>
-      <h1>Profile Card</h1>
-      <label className={`${css.customFileUpload} ${css.label}`}>
-        <div className={css.imgWrap}>
-          <img for="photo-upload" src={src} className={css.img} />
-        </div>
-      </label>
-      <div className={css.card}>{name}</div>
-      <div className={css.region}>{region}</div>
-      <div className={css.watchlist}>{watchlist}</div>
-      <button type="submit" className={`${css.edit} ${css.button}`}>
-        Edit Profile{" "}
-      </button>
-    </form>
-  </div>
-);
+const Profile = ({ onSubmit, src, name, region, watchlist }) => {
+  return (
+    <div className={css.card}>
+      <form onSubmit={onSubmit}>
+        <h1>Profile Card</h1>
+        <label className={`${css.customFileUpload} ${css.label}`}>
+          <div className={css.imgWrap}>
+            <img htmlFor="photo-upload" src={src} className={css.img} />
+          </div>
+        </label>
+        <div className={css.card}>{name}</div>
+        <div className={css.region}>{region}</div>
+        <div className={css.watchlist}>{watchlist}</div>
+        <button type="submit" className={`${css.edit} ${css.button}`}>
+          Edit Profile{" "}
+        </button>
+      </form>
+    </div>
+  );
+};
 
 const Edit = ({ onSubmit, children }) => (
   <div className={css.card}>
@@ -105,7 +107,7 @@ const Edit = ({ onSubmit, children }) => (
 
 function CardProfile(props) {
   const [state, setState] = useState("");
-  const [files, setFiles] = useState("");
+  const [files, setFiles] = useState({});
   const [previewImage, setPreviewImage] = useState(
     "https://thumbs.dreamstime.com/b/user-icon-human-person-symbol-avatar-login-sign-vector-illustration-isolated-modern-background-user-icon-human-person-symbol-118096858.jpg"
   );
@@ -114,6 +116,7 @@ function CardProfile(props) {
   const [active, setActive] = useState("edit");
   const [region, setRegion] = useState("");
   const [watchlist, setWatchlist] = useState("");
+  const [view, setView] = useState("profile");
 
   const photoUpload = (e) => {
     e.preventDefault();
@@ -144,7 +147,8 @@ function CardProfile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let activeP = state.active === "edit" ? "profile" : "edit";
+
+    let activeP = view === "edit" ? "profile" : "edit";
     setActive({ activeP });
   };
 
