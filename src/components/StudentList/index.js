@@ -95,7 +95,7 @@ const StudentList = ({
           </div>
         </div>
       </CardHeader>
-      <CardBody className={`relative `}>
+      <CardBody className={`relative flex justify-center`}>
         <div
           id="scrollableDiv"
           style={{
@@ -119,7 +119,7 @@ const StudentList = ({
             scrollableTarget="scrollableDiv"
             style={{
               height: "auto",
-              width: "24rem",
+              width: "20rem",
             }}
           >
             <List
