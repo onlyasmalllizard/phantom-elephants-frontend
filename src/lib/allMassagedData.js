@@ -1,6 +1,6 @@
-import { time } from "faker";
-import bootcamps from "../dummyData";
-import { listRecapTasks, tallyScores } from "../functions";
+import { time } from 'faker';
+import { listRecapTasks, tallyScores } from '../functions';
+import bootcamps from '../dummyData';
 
 export const fakeData = bootcamps
   .map((bootcamp) => {
@@ -11,7 +11,7 @@ export const fakeData = bootcamps
     const bootcampId = bootcamp.id;
     const bootcampRegion = bootcamp.region;
     return bootcamp.students.map((student) => {
-      console.log("Dummy WOrk:", student);
+      console.log('Dummy WOrk:', student);
       // ATTENDANCE
       const attendanceArray = student.work
         .slice(SW, EW)
@@ -104,10 +104,10 @@ export const fakeData = bootcamps
         moodArray.reduce((acc, cur) => acc + cur, 0) / moodArray.length
       ).toFixed(2);
       return {
-        all: "all",
+        all: 'all',
         id: student.info.id,
         name: student.info.name,
-        email: "example@gmail.com",
+        email: 'example@gmail.com',
         avatar: student.info.avatar,
         attendanceArray,
         attendanceNum,
@@ -130,7 +130,7 @@ export const fakeData = bootcamps
   .flat();
 
 export function massage(backendData, SW = 0, EW = 60) {
-  console.log("pre-massage =>", backendData);
+  console.log('pre-massage =>', backendData);
 
   return backendData
     .map((student) => {
@@ -166,7 +166,7 @@ export function massage(backendData, SW = 0, EW = 60) {
                   time
                     ? time.comment
                     : `No feedback ${
-                        index === 0 ? "morning" : "afternoon"
+                        index === 0 ? 'morning' : 'afternoon'
                       } left`
                 )
               : [null, null]
@@ -215,10 +215,10 @@ export function massage(backendData, SW = 0, EW = 60) {
         ).toFixed(2);
 
         return {
-          all: "all",
+          all: 'all',
           id: student.id,
           name: student.name,
-          email: "example@gmail.com",
+          email: 'example@gmail.com',
           avatar: student.avatar,
           attendanceArray,
           attendanceNum,
@@ -241,10 +241,10 @@ export function massage(backendData, SW = 0, EW = 60) {
         };
       } else {
         return {
-          all: "all",
+          all: 'all',
           id: student.id,
           name: student.name,
-          email: "example@gmail.com",
+          email: 'example@gmail.com',
           avatar: student.avatar,
           bootcampId: student.bootcampId,
           bootcampRegion: student.region,

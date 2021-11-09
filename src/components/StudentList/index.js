@@ -7,10 +7,10 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fakeData } from "lib/allMassagedData";
-import bootcamps from "dummyData";
 import Dropdown from "../DropDown";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import bootcamps from "../../dummyData";
 
 const StudentList = ({
   massagedBackEndData,
@@ -28,12 +28,14 @@ const StudentList = ({
   if (welcome) {
     setDatasetId(+localStorage.getItem("defaultBootcamp"));
     setWelcome(false);
-    setWatchlist([
-      ...localStorage
-        .getItem("Watchlist")
-        .split(",")
-        .map((el) => +el),
-    ]);
+    if (localStorage.getItem("Watchlist")) {
+      setWatchlist([
+        ...localStorage
+          .getItem("Watchlist")
+          .split(",")
+          .map((el) => +el),
+      ]);
+    }
   }
 
   const loadMoreData = () => {

@@ -27,11 +27,16 @@ import LoginButton from "./components/LoginButton/index";
 import LogoutButton from "components/LogoutButton";
 import LoggedInProfile from "components/UserLoggedInProfile";
 
+import Landing from "./components/react-landing-page/src/views/Landing";
+
+import LandingPageFooter from "components/react-landing-page/src/components/Footer";
+
 function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [pushRight, setPushRight] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     // place fetch request to API for bootcamp name
@@ -53,52 +58,59 @@ function App() {
 
   console.log("pushRight:", pushRight);
 
-  return isLoading ? (
-    <Loading />
+  return isLoggedIn ? (
+    isLoading ? (
+      <Loading />
+    ) : (
+      <UserProvider>
+        <Sidebar setPushRight={setPushRight} pushRight={pushRight} />
+        <div className={`${pushRight ? "ml-64 " : ""} xl:ml-64`}>
+          <Switch>
+            <Route exact path="/">
+              <Dashboard
+                massagedBackEndData={massage(cohortData)}
+                pushRight={pushRight}
+              />
+            </Route>
+
+            <Route exact path="/tables">
+              <Tables massagedBackEndData={massage(cohortData)} />
+            </Route>
+
+            <Route path="/student/:id">
+              <StudentPage
+                massagedBackEndData={massage(cohortData)}
+                pushRight={pushRight}
+              />
+            </Route>
+
+            <Route path="/student">
+              <StudentPage
+                massagedBackEndData={massage(cohortData)}
+                pushRight={pushRight}
+              />
+            </Route>
+
+            <Route path="/upload">
+              <Upload />
+            </Route>
+
+            <Route exact path="/settings">
+              <SettingsDashboard setBootcamp={setBootcamp} />
+            </Route>
+
+            <Redirect from="*" to="/" />
+          </Switch>
+          <Footer />
+        </div>
+      </UserProvider>
+    )
   ) : (
-    <UserProvider>
-      <Sidebar setPushRight={setPushRight} pushRight={pushRight} />
-      <div className={`${pushRight ? "ml-64 " : ""} xl:ml-64`}>
-        <Switch>
-          <Route exact path="/">
-            <Dashboard
-              massagedBackEndData={massage(cohortData)}
-              pushRight={pushRight}
-            />
-          </Route>
-
-          <Route exact path="/tables">
-            <Tables massagedBackEndData={massage(cohortData)} />
-          </Route>
-
-          <Route path="/student/:id">
-            <StudentPage
-              massagedBackEndData={massage(cohortData)}
-              pushRight={pushRight}
-            />
-          </Route>
-
-          <Route path="/student">
-            <StudentPage
-              massagedBackEndData={massage(cohortData)}
-              pushRight={pushRight}
-            />
-          </Route>
-
-          <Route path="/upload">
-            <Upload />
-          </Route>
-
-          <Route exact path="/settings">
-            <SettingsDashboard setBootcamp={setBootcamp} />
-          </Route>
-
-          <Redirect from="*" to="/" />
-        </Switch>
-        <Footer />
-      </div>
-    </UserProvider>
+    <>
+      <Landing />
+      <LandingPageFooter />
+      <LoggedInProfile setIsLoggedIn={setIsLoggedIn} />
+    </>
   );
 }
-
 export default App;
