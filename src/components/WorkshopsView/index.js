@@ -30,7 +30,7 @@ const WorkshopsView = ({ workshops, calculateIndex }) => {
               labels={createTitleArray(mondayWorkshops)}
             />
           ) : (
-            doesntExistMessage
+            <p className="mt-8">{doesntExistMessage}</p>
           )}
         </div>
         <div className="w-1/5 border-r border-gray-200">
@@ -43,7 +43,7 @@ const WorkshopsView = ({ workshops, calculateIndex }) => {
               labels={createTitleArray(tuesdayWorkshops)}
             />
           ) : (
-            doesntExistMessage
+            <p className="mt-8">{doesntExistMessage}</p>
           )}
         </div>
         <div className="w-1/5 border-r border-gray-200">
@@ -55,7 +55,7 @@ const WorkshopsView = ({ workshops, calculateIndex }) => {
               labels={createTitleArray(wednesdayWorkshops)}
             />
           ) : (
-            doesntExistMessage
+            <p className="mt-8">{doesntExistMessage}</p>
           )}
         </div>
         <div className="w-1/5 border-r border-gray-200">
@@ -68,7 +68,7 @@ const WorkshopsView = ({ workshops, calculateIndex }) => {
               labels={createTitleArray(thursdayWorkshops)}
             />
           ) : (
-            doesntExistMessage
+            <p className="mt-8">{doesntExistMessage}</p>
           )}
         </div>
         <div className="w-1/5">
@@ -81,7 +81,7 @@ const WorkshopsView = ({ workshops, calculateIndex }) => {
               labels={createTitleArray(fridayWorkshops)}
             />
           ) : (
-            doesntExistMessage
+            <p className="mt-8">{doesntExistMessage}</p>
           )}
         </div>
       </div>
