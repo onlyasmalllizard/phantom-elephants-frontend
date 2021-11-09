@@ -10,7 +10,7 @@ import { fakeData } from 'lib/allMassagedData';
 import Dropdown from '../DropDown';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-const bootcamps = require('../dummyData');
+const bootcamps = require('../../dummyData');
 
 const StudentList = ({
   massagedBackEndData,
