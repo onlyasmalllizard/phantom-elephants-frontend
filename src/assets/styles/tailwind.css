@@ -780,6 +780,9 @@ video {
 .justify-between{
 	justify-content: space-between;
 }
+.justify-around{
+	justify-content: space-around;
+}
 .justify-evenly{
 	justify-content: space-evenly;
 }
@@ -853,6 +856,10 @@ video {
 .bg-red-500{
 	--tw-bg-opacity: 1;
 	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+.bg-blue-600{
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
 }
 .bg-white{
 	--tw-bg-opacity: 1;

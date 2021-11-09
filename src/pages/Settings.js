@@ -25,22 +25,9 @@ export default function SettingsDashboard() {
   
   return (
  <>
-    <div className="flex justify-around"/>
-    <Card>
-        <CardBody>
-           <CardProfile>
-             <div className="flex justify-around"/>
-              <Header as="h3" dividing>
-                User Settings
-              </Header>
-           </CardProfile>
-      </CardBody>
-  </Card> 
-
-
-  <Card>
+<Card>
      <CardBody>
-     <div className="flex flex-col"/>
+     <div className="flex flex-center"/>
      <Dropdown
         state={datasetId}
         setState={setDatasetId}
@@ -52,20 +39,34 @@ export default function SettingsDashboard() {
           }),
           "Watchlist",
         ]} />  
+
       <Dropdown
         state={comparisonId}
         setState={setComparisionId}
         label="Set Comparision Period"
         itemOptions={["1 Week", "2 Weeks", "1 Month", "2 Months"]}/>
+
         </CardBody>
   </Card>
 
+    <div className="flex justify-center">
+    <Card>
+        <CardBody >
+           <CardProfile>
+             <div className="flex justify-around"/>
+              <Header as="h3" dividing>
+                User Settings
+              </Header>
+           </CardProfile>
+      </CardBody>
+  </Card> 
 
 
-
-  <Card>
-     <CardBody>
-     <div className="flex flex-col">
+  <Card className="flex min-w-150 " >
+     <CardBody >
+     <div className="flex flex-col bg-blue-600" >
+     <div className="flex flex-col w-auto"/>
+     <div className="bg-light-blue-500 h-30 "/>
        <Header as="h3" dividing>
                Calendar
        </Header>
@@ -74,10 +75,11 @@ export default function SettingsDashboard() {
          <Calendar onChange={onChange} value={value}/>
       </div>
        </CardBody>
+       
    </Card>
+   </div>
 
       </>
 )};
-
 
 // w-full3
