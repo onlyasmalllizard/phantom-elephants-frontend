@@ -25,7 +25,7 @@ export default function Doughnut({
     };
     let ctx = document.getElementById("donut-chart").getContext("2d");
     window.myDoughnut = new Chart(ctx, config);
-  }, [chartId, pushRight, watchlist]);
+  }, [chartId, pushRight, watchlist, datasets]);
 
   return (
     <Card key={uuid()} className="min-w-150 min-h-200">

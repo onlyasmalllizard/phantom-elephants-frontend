@@ -69,6 +69,7 @@ function App() {
             <Route exact path="/">
               <Dashboard
                 massagedBackEndData={massage(cohortData)}
+                plainData={cohortData}
                 pushRight={pushRight}
               />
             </Route>
