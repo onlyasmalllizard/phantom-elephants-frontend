@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LoginButton from "../../../LoginButton/index";
 
 import LandingPageFooter from "components/Footer";
+// import LandingPageLogo from "../../../LandingPageLogo/index"
 
 export default function Landing() {
   return (
@@ -113,14 +114,16 @@ export default function Landing() {
 
             <div className="flex flex-wrap items-center mt-32">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-                <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full text-blue-600"></div>
+                <div className="bg-blue-400  p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full text-blue-600"></div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
                   Seamless performance tracker
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-                  Don't let your uses guess by attaching tooltips and popoves to
-                  any element. Just make sure you enable them first via
-                  JavaScript.
+                  9 in 10 managers are not satisfied with their company’s
+                  employee performance evaluation system because of its obsolete
+                  methods. Performance review in performance management is the
+                  right way to approach to increase the productivity of the
+                  bootcampers and also the engagement rate.
                 </p>
               </div>
 
@@ -189,54 +192,13 @@ export default function Landing() {
                   <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">A growing company</h3>
+                  <h3 className="text-3xl font-semibold">Grow your company</h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    The extension comes with three pre-built pages to help you
-                    get started faster. You can change the text and images and
-                    you're good to go.
+                    Scaling a business means setting the stage to enable and
+                    support growth in your company. It means having the ability
+                    to grow without being hampered. It requires planning, some
+                    funding and, most importantly, the right systems.
                   </p>
-                  <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -266,9 +228,7 @@ export default function Landing() {
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">James Perrett</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      The Trunk
-                    </p>
+                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold"></p>
                     <div className="mt-6">
                       <button
                         className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -302,9 +262,7 @@ export default function Landing() {
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Mohit Sharma</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      The Tusk
-                    </p>
+                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold"></p>
                     <div className="mt-6">
                       <button
                         className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -338,9 +296,7 @@ export default function Landing() {
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Lizard Morrow</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      The Stomp
-                    </p>
+                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold"></p>
                     <div className="mt-6">
                       <button
                         className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -374,9 +330,7 @@ export default function Landing() {
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Juweryria Abdikadir</h5>
-                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                      The Ears
-                    </p>
+                    <p className="mt-1 text-sm text-gray-500 uppercase font-semibold"></p>
                     <div className="mt-6">
                       <button
                         className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -432,9 +386,8 @@ export default function Landing() {
                   Build something
                 </h2>
                 <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-                  Put the potentially record low maximum sea ice extent tihs
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
+                  Take your business to the next level with a Phantom Elephants
+                  Dashboard.
                 </p>
               </div>
             </div>
@@ -444,12 +397,8 @@ export default function Landing() {
                   <i className="fas fa-medal text-xl"></i>
                 </div>
                 <h6 className="text-xl mt-5 font-semibold text-white">
-                  Excelent Services
+                  Excellent Services
                 </h6>
-                <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
                 <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
@@ -458,10 +407,6 @@ export default function Landing() {
                 <h5 className="text-xl mt-5 font-semibold text-white">
                   Grow your market
                 </h5>
-                <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
                 <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
@@ -470,10 +415,6 @@ export default function Landing() {
                 <h5 className="text-xl mt-5 font-semibold text-white">
                   Launch time
                 </h5>
-                <p className="mt-2 mb-4 text-gray-500">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
               </div>
             </div>
           </div>

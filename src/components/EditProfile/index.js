@@ -65,7 +65,6 @@ const Watchlist = ({ onChange, value }) => (
       maxLength="35"
       value={value}
       placeholder="Watchlist"
-      required
     />
   </div>
 );
@@ -165,7 +164,7 @@ function CardProfile(props) {
           />
           <Name onChange={editName} value={name} />
           <Region onChange={editRegion} value={region} />
-          <Watchlist onChange={editWatchlist} value={watchlist} />
+          {/* <Watchlist onChange={editWatchlist} value={watchlist} /> */}
         </Edit>
       ) : (
         <Profile
@@ -174,7 +173,7 @@ function CardProfile(props) {
           src={previewImage}
           name={name}
           region={region}
-          watchlist={watchlist}
+          // watchlist={watchlist}
         />
       )}
     </div>
