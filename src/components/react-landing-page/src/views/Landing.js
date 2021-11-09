@@ -331,7 +331,7 @@ export default function Landing() {
                     style={{ maxWidth: "120px" }}
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Juweryria Abdikadir</h5>
+                    <h5 className="text-xl font-bold">Juweyriya Abdikadir</h5>
                     <p className="mt-1 text-sm text-gray-500 uppercase font-semibold"></p>
                     <div className="mt-6">
                       <button
