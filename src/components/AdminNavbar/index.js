@@ -7,29 +7,47 @@ import Dropdown from "@material-tailwind/react/Dropdown";
 import DropdownItem from "@material-tailwind/react/DropdownItem";
 import ProfilePicture from "assets/img/team-1-800x800.jpg";
 
-export default function AdminNavbar({ showSidebar, setShowSidebar }) {
+export default function AdminNavbar({
+  showSidebar,
+  setShowSidebar,
+  setPushRight,
+  pushRight,
+}) {
   const location = useLocation().pathname;
+  // if(location === "/"){
+  //   localStorage.setItem()
+  // }
 
   return (
-    <nav className="bg-light-blue-500 md:ml-64 py-6 px-3">
-      <div className="container max-w-full mx-auto flex items-center justify-between md:pr-8 md:pl-10">
-        <div className="md:hidden">
+    <nav
+      className={`bg-light-blue-500 py-6 px-3 ${
+        pushRight ? "ml-64" : ""
+      } inherit xl:ml-64`}
+    >
+      <div className="container max-w-full mx-auto flex  items-center justify-between xl:pr-8 xl:pl-10">
+        <div className="xl:hidden">
+          {/* show sidebar */}
           <Button
+            className={`${pushRight ? "hidden" : ""} xl:hidden`}
             color="transparent"
             buttonType="link"
             size="lg"
             iconOnly
             rounded
             ripple="light"
-            onClick={() => setShowSidebar("left-0")}
+            onClick={() => {
+              setShowSidebar("left-0");
+              setPushRight(true);
+            }}
           >
             <Icon name="menu" size="2xl" color="white" />
           </Button>
           <div
-            className={`absolute top-2 md:hidden ${
+            className={`absolute top-2  ${
               showSidebar === "left-0" ? "left-64" : "-left-64"
-            } z-50 transition-all duration-300`}
+            } z-50 transition-all duration-300 xl:hidden`}
           >
+            {/* closeSidebar */}
             <Button
               color="transparent"
               buttonType="link"
@@ -37,18 +55,29 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
               iconOnly
               rounded
               ripple="light"
-              onClick={() => setShowSidebar("-left-64")}
+              onClick={() => {
+                setShowSidebar("-left-64");
+                setPushRight(false);
+              }}
             >
-              <Icon name="close" size="2xl" color="white" />
+              <Icon
+                style={{ marginBottom: "10px" }}
+                name="close"
+                size="2xl"
+                color="white"
+              />
             </Button>
           </div>
         </div>
 
-        <div className="flex justify-between items-center w-full">
-          <h4 className="uppercase text-white text-sm tracking-wider mt-1">
+        <div className="ml-6 flex justify-between items-center w-full">
+          <h4 className="ml-6 text-white font-bold tracking-wider mt-1 dashboard-consistent-header">
             {location === "/"
-              ? "DASHBOARD"
-              : location.toUpperCase().replace("/", "")}
+              ? "Dashboard"
+              : location.replaceAll("/", "") === "upload"
+              ? "File Upload"
+              : location.replaceAll("/", "")[0].toUpperCase() +
+                location.replaceAll("/", " ").slice(2)}
           </h4>
 
           <div className="flex">

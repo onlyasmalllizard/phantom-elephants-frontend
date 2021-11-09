@@ -5,7 +5,7 @@ import { useState } from "react";
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor="photo-upload" className="custom-file-upload fas">
     <div className="img-wrap img-upload">
-      <img for="photo-upload" src={src} className={css.img} />
+      <img htmlFor="photo-upload" src={src} className={css.img} />
     </div>
     <input
       id="photo-upload"
@@ -26,7 +26,7 @@ const Name = ({ onChange, value }) => (
       id="name"
       type="text"
       onChange={onChange}
-      maxlength="25"
+      maxLength="25"
       value={value}
       placeholder="Name"
       required
@@ -104,7 +104,7 @@ const Edit = ({ onSubmit, children }) => (
 
 function CardProfile(props) {
   const [state, setState] = useState("");
-  const [files, setFiles] = useState("");
+  const [files, setFiles] = useState({});
   const [previewImage, setPreviewImage] = useState(
     "https://thumbs.dreamstime.com/b/user-icon-human-person-symbol-avatar-login-sign-vector-illustration-isolated-modern-background-user-icon-human-person-symbol-118096858.jpg"
   );
@@ -113,6 +113,7 @@ function CardProfile(props) {
   const [active, setActive] = useState("edit");
   const [region, setRegion] = useState("");
   const [watchlist, setWatchlist] = useState("");
+  const [view, setView] = useState("profile");
 
   const photoUpload = (e) => {
     e.preventDefault();

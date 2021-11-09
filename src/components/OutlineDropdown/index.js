@@ -9,7 +9,7 @@ const OutlineDropdown = ({ state, setState, text, options }) => {
 
   const handleChange = (event) => {
     setLabel(event.target.innerText);
-    setState(event.target.innerText);
+    setState(Number(label[label.length - 1]));
   };
 
   return (
