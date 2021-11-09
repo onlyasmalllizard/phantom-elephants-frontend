@@ -37,12 +37,14 @@ export default function CardTable({ massagedBackEndData }) {
 
   if (welcome) {
     setWelcome(false);
-    setWatchlist([
-      ...localStorage
-        .getItem("Watchlist")
-        .split(",")
-        .map((el) => +el),
-    ]);
+    if (localStorage.getItem("Watchlist")) {
+      setWatchlist([
+        ...localStorage
+          .getItem("Watchlist")
+          .split(",")
+          .map((el) => +el),
+      ]);
+    }
   }
 
   const sortFunc = (heading, isASC) => (a, b) => {
@@ -130,7 +132,7 @@ export default function CardTable({ massagedBackEndData }) {
                       ? data.name.toUpperCase().includes(search.toUpperCase())
                       : data[filterOptions[filter]] ===
                         filtationMethod[filter]) ||
-                    (filter == 9 && watchlist.includes(+data.id))
+                    (filter === 9 && watchlist.includes(+data.id))
                 )
                 .sort(sortFunc(heading, isASC))
                 .map((student) => {
