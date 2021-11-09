@@ -25,12 +25,27 @@ export default function SettingsDashboard() {
   
   return (
  <>
+    <div className="flex justify-center">
+    <Card>
+    <div className="flex justify-center item-center">
+        <CardBody>
+        <div className="flex flex-col">
+           <CardProfile>
+              <Header as="h3" dividing>
+                User Settings
+              </Header>
+           </CardProfile>
+           </div>
+      </CardBody>
+      </div>
+  </Card> 
+
+
 <Card>
      <CardBody>
      <div className="flex flex-center"/>
-     <div className="flex flex-col bg-light-blue-500" >
-     <div className="flex flex-col bg-yellow-500"/>
-     
+     <div className="flex bg-light-blue-500 justify-evenly p-6" >
+  
      <Dropdown
         state={datasetId}
         setState={setDatasetId}
@@ -52,33 +67,16 @@ export default function SettingsDashboard() {
         </div>
 
         </CardBody>
-  </Card>
-
-    <div className="flex justify-center">
-    <Card>
-        <CardBody >
-        <div className="flex flex-col bg-yellow-500">
-           <CardProfile>
-             <div className="flex justify-around"/>
-              <Header as="h3" dividing>
-                User Settings
-              </Header>
-           </CardProfile>
-           </div>
-      </CardBody>
-  </Card> 
-
-
-  <Card className="flex min-w-150 " >
+  
      <CardBody >
-     <div className="flex flex-col bg-light-blue-500" >
-     <div className="flex flex-col w-auto"/>
-     <div className="bg-light-blue-500 h-30 "/>
+
+  
+       
        <Header as="h3" dividing>
                Calendar
        </Header>
-      </div>
-      <div className="flex flex-col">
+     
+      <div className="flex flex-col items-center">
          <Calendar onChange={onChange} value={value}/>
       </div>
        </CardBody>
