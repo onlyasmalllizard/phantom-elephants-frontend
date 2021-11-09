@@ -5,7 +5,11 @@ import Doughnut from "../components/Doughnut/index";
 import StudentList from "../components/StudentList/index";
 import NotificationCard from "../components/NofiticationCard";
 
-export default function Dashboard({ massagedBackEndData, pushRight }) {
+export default function Dashboard({
+  plainData,
+  massagedBackEndData,
+  pushRight,
+}) {
   // Watch list to pass to line and table
   const [watchlist, setWatchlist] = useState([]);
 
@@ -83,10 +87,7 @@ export default function Dashboard({ massagedBackEndData, pushRight }) {
           <div className="flex flex-row justify-evenly w-screen mt-8 ">
             <div classname="flex flex-col w-auto ">
               <div className="mr-6 ml-6">
-                <NotificationCard
-                  title={`Notifications since last week`}
-                  headerColor="purple"
-                />
+                <NotificationCard plainData={plainData} headerColor="purple" />
               </div>
 
               <div className="h-30 mt-10 mr-6 ml-6">

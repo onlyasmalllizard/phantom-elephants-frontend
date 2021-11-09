@@ -65,31 +65,28 @@ const Watchlist = ({ onChange, value }) => (
       maxLength="35"
       value={value}
       placeholder="Watchlist"
-      required
     />
   </div>
 );
 
-const Profile = ({ onSubmit, src, name, region, watchlist }) => {
-  return (
-    <div className={css.card}>
-      <form onSubmit={onSubmit}>
-        <h1>Profile Card</h1>
-        <label className={`${css.customFileUpload} ${css.label}`}>
-          <div className={css.imgWrap}>
-            <img htmlFor="photo-upload" src={src} className={css.img} />
-          </div>
-        </label>
-        <div className={css.card}>{name}</div>
-        <div className={css.region}>{region}</div>
-        <div className={css.watchlist}>{watchlist}</div>
-        <button type="submit" className={`${css.edit} ${css.button}`}>
-          Edit Profile{" "}
-        </button>
-      </form>
-    </div>
-  );
-};
+const Profile = ({ onSubmit, src, name, region, watchlist }) => (
+  <div className={css.card}>
+    <form onSubmit={onSubmit}>
+      <h1>Profile Card</h1>
+      <label className={`${css.customFileUpload} ${css.label}`}>
+        <div className={css.imgWrap}>
+          <img for="photo-upload" src={src} className={css.img} />
+        </div>
+      </label>
+      <div className={css.card}>{name}</div>
+      <div className={css.card}>{region}</div>
+      <div className={css.card}>{watchlist}</div>
+      <button type="submit" className={`${css.edit} ${css.button}`}>
+        Edit Profile{" "}
+      </button>
+    </form>
+  </div>
+);
 
 const Edit = ({ onSubmit, children }) => (
   <div className={css.card}>
@@ -123,10 +120,7 @@ function CardProfile(props) {
     const reader = new FileReader();
     const file = e.target.files[0];
     reader.onloadend = () => {
-      setFiles({
-        files: file,
-        imagePreviewUrl: reader.result,
-      });
+      setPreviewImage(reader.result);
     };
     reader.readAsDataURL(file);
   };
@@ -147,9 +141,8 @@ function CardProfile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    let activeP = view === "edit" ? "profile" : "edit";
-    setActive({ activeP });
+    let activeP = active === "edit" ? "profile" : "edit";
+    setActive(activeP);
   };
 
   //   useEffect(() => {
@@ -172,7 +165,7 @@ function CardProfile(props) {
           />
           <Name onChange={editName} value={name} />
           <Region onChange={editRegion} value={region} />
-          <Watchlist onChange={editWatchlist} value={watchlist} />
+          {/* <Watchlist onChange={editWatchlist} value={watchlist} /> */}
         </Edit>
       ) : (
         <Profile
@@ -181,7 +174,7 @@ function CardProfile(props) {
           src={previewImage}
           name={name}
           region={region}
-          watchlist={watchlist}
+          // watchlist={watchlist}
         />
       )}
     </div>
