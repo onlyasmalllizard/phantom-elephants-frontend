@@ -7,10 +7,10 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fakeData } from 'lib/allMassagedData';
-import * as bootcamps from 'dummyData';
 import Dropdown from '../DropDown';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+const bootcamps = require('../dummyData');
 
 const StudentList = ({
   massagedBackEndData,
