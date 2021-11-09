@@ -6,6 +6,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { CardProfile } from "components/EditProfile";
+// import SettingsPanel from "../components/SettingsPanel/App";
 
 export default function SettingsDashboard() {
   const [value, onChange] = useState(new Date());
@@ -14,6 +15,7 @@ export default function SettingsDashboard() {
     <div>
       <Calendar onChange={onChange} value={value} />
       <CardProfile />
+      {/* <SettingsPanel /> */}
     </div>
   );
 }

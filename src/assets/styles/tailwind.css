@@ -694,9 +694,6 @@ video {
 .mt-32{
 	margin-top: 8rem;
 }
-.mr-3{
-	margin-right: 0.75rem;
-}
 .mb-24{
 	margin-bottom: 6rem;
 }
@@ -985,10 +982,6 @@ video {
 .bg-pink-300{
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 168, 212, var(--tw-bg-opacity));
-}
-.bg-pink-200{
-	--tw-bg-opacity: 1;
-	background-color: rgba(251, 207, 232, var(--tw-bg-opacity));
 }
 .bg-blue-600{
 	--tw-bg-opacity: 1;

@@ -55,7 +55,8 @@
     "build": "npm run build:tailwind && craco build",
     "test": "react-scripts test",
     "eject": "craco eject",
-    "npm:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
+    "npm:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+   
   },
   "eslintConfig": {
     "extends": [
@@ -81,7 +82,10 @@
     "postcss": "^8.3.11",
     "postcss-cli": "^8.3.1",
     "postcss-import": "^14.0.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "react-docgen": "^5.4.0",
+    "react-styleguidist": "^11.1.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+    "webpack": "^4.46.0"
   },
   "optionalDependencies": {
     "@babel/core": "7.14.0",

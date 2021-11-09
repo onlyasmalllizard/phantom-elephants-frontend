@@ -61,7 +61,7 @@ export default function Landing() {
           </div>
         </div>
 
-        <section className="pb-20 bg-gray-300 -mt-24">
+        <section className="pb-20 bg-indigo-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
               <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -118,12 +118,12 @@ export default function Landing() {
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
                   Seamless performance tracker
                 </h3>
-                <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-                  9 in 10 managers are not satisfied with their company’s
-                  employee performance evaluation system because of its obsolete
-                  methods. Performance review in performance management is the
-                  right way to approach to increase the productivity of the
-                  bootcampers and also the engagement rate.
+                <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-white">
+                  9 in 10 managers are not satisfied with their organisation's
+                  performance evaluation system because of its obsolete methods.
+                  Performance review and performance management is the right way
+                  to increase the productivity of the bootcampers and the
+                  engagement rate.
                 </p>
               </div>
 
@@ -192,7 +192,9 @@ export default function Landing() {
                   <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">Grow your company</h3>
+                  <h3 className="text-3xl font-semibold">
+                    Grow your company with Demeter
+                  </h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
                     Scaling a business means setting the stage to enable and
                     support growth in your company. It means having the ability
