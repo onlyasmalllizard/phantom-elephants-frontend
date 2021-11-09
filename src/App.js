@@ -15,16 +15,23 @@ import StudentPage from "./pages/StudentPage";
 import Upload from "./pages/Upload";
 import Loading from "components/Loading/Loading";
 import Settings from "./pages/Settings";
+import "react-notifications-component/dist/theme.css";
+import "semantic-ui-css/semantic.min.css";
+import "./index.css";
 // Tailwind CSS Style Sheet
 import "assets/styles/tailwind.css";
 import "@material-tailwind/react/tailwind.css";
 import { useHistory } from "react-router";
 import { UserProvider } from "./contexts/UserContext";
+import LoginButton from "./components/LoginButton/index";
+import LogoutButton from "components/LogoutButton";
+import LoggedInProfile from "components/UserLoggedInProfile";
 
 function App() {
   const [cohortData, setCohortData] = useState([]);
   const [defaultBootcamp, setBootcamp] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [pushRight, setPushRight] = useState(false);
 
   useEffect(() => {
     // place fetch request to API for bootcamp name
@@ -44,17 +51,20 @@ function App() {
     getData();
   }, []);
 
-  // console.log("post-massage: ", massage(cohortData));
+  console.log("pushRight:", pushRight);
 
   return isLoading ? (
     <Loading />
   ) : (
     <UserProvider>
-      <Sidebar />
-      <div className="md:ml-64">
+      <Sidebar setPushRight={setPushRight} pushRight={pushRight} />
+      <div className={`${pushRight ? "ml-64 " : ""} xl:ml-64`}>
         <Switch>
           <Route exact path="/">
-            <Dashboard massagedBackEndData={massage(cohortData)} />
+            <Dashboard
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
           </Route>
 
           <Route exact path="/tables">
@@ -62,11 +72,17 @@ function App() {
           </Route>
 
           <Route path="/student/:id">
-            <StudentPage massagedBackEndData={massage(cohortData)} />
+            <StudentPage
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
           </Route>
 
           <Route path="/student">
-            <StudentPage massagedBackEndData={massage(cohortData)} />
+            <StudentPage
+              massagedBackEndData={massage(cohortData)}
+              pushRight={pushRight}
+            />
           </Route>
 
           <Route path="/upload">
@@ -79,7 +95,6 @@ function App() {
 
           <Redirect from="*" to="/" />
         </Switch>
-
         <Footer />
       </div>
     </UserProvider>

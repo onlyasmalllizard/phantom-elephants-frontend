@@ -4,14 +4,20 @@ import AdminNavbar from "../AdminNavbar/index";
 import Icon from "@material-tailwind/react/Icon";
 import H6 from "@material-tailwind/react/Heading6";
 import Logo from "../Logo";
+import LogoutButton from "components/LogoutButton";
 
-export default function Sidebar() {
+export default function Sidebar({ setPushRight, pushRight }) {
   const [showSidebar, setShowSidebar] = useState("-left-64");
   return (
     <>
-      <AdminNavbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      <AdminNavbar
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+        setPushRight={setPushRight}
+        pushRight={pushRight}
+      />
       <div
-        className={`h-screen fixed top-0 md:left-0 ${showSidebar} overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 z-10 py-4 px-6 transition-all duration-300`}
+        className={`h-screen fixed top-0 xl:left-0 ${showSidebar} overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 z-10 py-4 px-6 transition-all duration-300`}
       >
         <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
           <a
@@ -81,6 +87,7 @@ export default function Sidebar() {
                 </NavLink>
               </li>
             </ul>
+            <LogoutButton />
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import bootcamps from "../dummyData";
 export const tableHeaders = [
   { display: "Bootcamper", id: "name" },
   { display: "Bootcamp", id: "bootcampId" },
-  { display: "Trend", id: "-" },
+  { display: "Region", id: "bootcampRegion" },
   { display: "Recap Tasks", id: "avgRecapScore" },
   { display: "Workshops", id: "avgWorkshopScore" },
   { display: "Quiz Avg %", id: "avgQuiz" },
