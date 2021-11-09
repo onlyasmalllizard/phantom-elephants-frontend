@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import "antd/dist/antd.css";
-import "./index.css";
-import { List, message, Avatar, Skeleton, Divider } from "antd";
-import Card from "@material-tailwind/react/Card";
-import CardHeader from "@material-tailwind/react/CardHeader";
-import CardBody from "@material-tailwind/react/CardBody";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fakeData } from "lib/allMassagedData";
-import bootcamps from "dummyData";
-import Dropdown from "../DropDown";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import React, { useState, useEffect } from 'react';
+import 'antd/dist/antd.css';
+import './index.css';
+import { List, message, Avatar, Skeleton, Divider } from 'antd';
+import Card from '@material-tailwind/react/Card';
+import CardHeader from '@material-tailwind/react/CardHeader';
+import CardBody from '@material-tailwind/react/CardBody';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fakeData } from 'lib/allMassagedData';
+import * as bootcamps from 'dummyData';
+import Dropdown from '../DropDown';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const StudentList = ({
   massagedBackEndData,
@@ -26,12 +26,12 @@ const StudentList = ({
 
   // checking for defualt bootcamp setting for dashboard line
   if (welcome) {
-    setDatasetId(+localStorage.getItem("defaultBootcamp"));
+    setDatasetId(+localStorage.getItem('defaultBootcamp'));
     setWelcome(false);
     setWatchlist([
       ...localStorage
-        .getItem("Watchlist")
-        .split(",")
+        .getItem('Watchlist')
+        .split(',')
         .map((el) => +el),
     ]);
   }
@@ -42,7 +42,7 @@ const StudentList = ({
     }
     setLoading(true);
     fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
+      'https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo'
     )
       .then((res) => res.json())
       .then((body) => {
@@ -64,7 +64,7 @@ const StudentList = ({
         color={headerColor}
         contentPosition="left"
         className="-h-10"
-        style={{ height: "10px" }}
+        style={{ height: '10px' }}
       >
         <div className="flex">
           <div>
@@ -75,7 +75,7 @@ const StudentList = ({
           </div>
           <div
             style={{
-              marginLeft: "1rem",
+              marginLeft: '1rem',
             }}
           >
             <Dropdown
@@ -83,11 +83,11 @@ const StudentList = ({
               setState={setDatasetId}
               label="Bootcamp"
               itemOptions={[
-                "All Bootcamps",
+                'All Bootcamps',
                 ...bootcamps.map((bootcamp) => {
-                  return bootcamp.id + ": " + bootcamp.region;
+                  return bootcamp.id + ': ' + bootcamp.region;
                 }),
-                "Watchlist",
+                'Watchlist',
               ]}
             />
           </div>
@@ -97,11 +97,11 @@ const StudentList = ({
         <div
           id="scrollableDiv"
           style={{
-            height: "40rem",
-            overflowY: "auto",
-            padding: "16px",
+            height: '40rem',
+            overflowY: 'auto',
+            padding: '16px',
             // border: "1px solid  rgba(140, 140, 140, 0.35)",
-            width: "max-content",
+            width: 'max-content',
           }}
         >
           <InfiniteScroll
@@ -114,8 +114,8 @@ const StudentList = ({
             }
             scrollableTarget="scrollableDiv"
             style={{
-              height: "auto",
-              width: "20rem",
+              height: 'auto',
+              width: '20rem',
             }}
           >
             <List
@@ -126,7 +126,7 @@ const StudentList = ({
                   (datasetId === 5 && watchlist.includes(dataset.id))
               )}
               style={{
-                marginLeft: "1rem",
+                marginLeft: '1rem',
               }}
               renderItem={(item) => {
                 return (
@@ -153,7 +153,7 @@ const StudentList = ({
                                 ...watchlist.slice(0, i),
                                 ...watchlist.slice(i + 1),
                               ]);
-                              localStorage.setItem("Watchlist", watchlist);
+                              localStorage.setItem('Watchlist', watchlist);
                             }}
                           />
                         </>
@@ -166,7 +166,7 @@ const StudentList = ({
                                 Array.from(new Set([...watchlist, item.id]))
                               );
 
-                              localStorage.setItem("Watchlist", watchlist);
+                              localStorage.setItem('Watchlist', watchlist);
                             }}
                           />
                         </>
