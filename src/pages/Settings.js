@@ -7,7 +7,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { CardProfile } from 'components/EditProfile';
 import Dropdown from '../components/DropDown';
-import * as bootcamps from 'dummyData';
+const bootcamps = require('../dummyData');
 
 export default function SettingsDashboard() {
   const [value, onChange] = useState(new Date());

@@ -7,8 +7,8 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import Dropdown from '../DropDown';
 import { fakeData } from 'lib/allMassagedData';
-import * as bootcamps from 'dummyData';
 import setRef from '@mui/utils/setRef';
+const bootcamps = require('../dummyData');
 
 const chartFilters = [
   // used for the first dropdown filter
