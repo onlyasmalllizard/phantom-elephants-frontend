@@ -24,16 +24,24 @@ export default function SettingsDashboard() {
   // console.log
   
   return (
-    <>
+ <>
+    <div className="flex justify-around"/>
     <Card>
         <CardBody>
-         <div className="w-full">
-          <Header as="h3" dividing>
-           User Settings
-         </Header>
-         </div>
-         <CardProfile />
-      <Dropdown
+           <CardProfile>
+             <div className="flex justify-around"/>
+              <Header as="h3" dividing>
+                User Settings
+              </Header>
+           </CardProfile>
+      </CardBody>
+  </Card> 
+
+
+  <Card>
+     <CardBody>
+     <div className="flex flex-col"/>
+     <Dropdown
         state={datasetId}
         setState={setDatasetId}
         label="Set Default Bootcamp"
@@ -48,20 +56,28 @@ export default function SettingsDashboard() {
         state={comparisonId}
         setState={setComparisionId}
         label="Set Comparision Period"
-        itemOptions={["1 Week", "2 Weeks", "1 Month", "2 Months"]} />
-      </CardBody>
-  </Card> 
+        itemOptions={["1 Week", "2 Weeks", "1 Month", "2 Months"]}/>
+        </CardBody>
+  </Card>
+
+
+
 
   <Card>
      <CardBody>
-     <div className="w-full">
+     <div className="flex flex-col">
        <Header as="h3" dividing>
                Calendar
        </Header>
       </div>
-         <Calendar onChange={onChange} value={value} />
+      <div className="flex flex-col">
+         <Calendar onChange={onChange} value={value}/>
+      </div>
        </CardBody>
-  </Card>
+   </Card>
+
       </>
 )};
 
+
+// w-full3
