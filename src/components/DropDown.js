@@ -14,11 +14,11 @@ function DropDown({ state, setState, label, itemOptions, width }) {
   return (
     <div>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
+        <InputLabel id="demo-simple-select-label" style={{ color: "black" }}>
           {label}
         </InputLabel>
         <Select
-          style={{ color: "white" }}
+          style={{ color: "black" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={state}
