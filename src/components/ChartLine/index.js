@@ -80,7 +80,7 @@ export default function ChartLine({
     } else {
       setDatasetId(id);
     }
-  }, [id, pushRight]);
+  }, [id, pushRight, data]);
 
   useEffect(() => {
     let config = {
@@ -189,7 +189,7 @@ export default function ChartLine({
     };
     var ctx = document.getElementById('line-chart').getContext('2d');
     window.myLine = new Chart(ctx, config);
-  }, [datasetId, chartId, dataset, isGroupData, pushRight, watchlist]);
+  }, [datasetId, chartId, dataset, isGroupData, pushRight, watchlist, data]);
 
   return (
     <Card key={uuid()}>

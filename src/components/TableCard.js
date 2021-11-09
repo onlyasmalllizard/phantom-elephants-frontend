@@ -1,4 +1,4 @@
-import { useEffect, useState, useReducer } from "react";
+import { useState } from "react";
 import uuid from "react-uuid";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
@@ -6,6 +6,8 @@ import CardBody from "@material-tailwind/react/CardBody";
 import Image from "@material-tailwind/react/Image";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import DropDown from "./DropDown";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import {
   filterOptions,
   filtationMethod,
@@ -28,6 +30,20 @@ export default function CardTable({ massagedBackEndData }) {
   const [isASC, setIsASC] = useState(true);
   // searchInput value state
   const [search, setSearch] = useState("");
+  // welcome state
+  const [welcome, setWelcome] = useState(true);
+  // watchlist state
+  const [watchlist, setWatchlist] = useState([]);
+
+  if (welcome) {
+    setWelcome(false);
+    setWatchlist([
+      ...localStorage
+        .getItem("Watchlist")
+        .split(",")
+        .map((el) => +el),
+    ]);
+  }
 
   const sortFunc = (heading, isASC) => (a, b) => {
     if (typeof a[heading] === "string" || a[heading] instanceof String) {
@@ -48,7 +64,7 @@ export default function CardTable({ massagedBackEndData }) {
       return isASC ? a[heading] - b[heading] : b[heading] - a[heading];
     }
   };
-
+  console.log(watchlist, filter);
   function toggleSort(e) {
     setHeading(e);
     setIsASC(!isASC);
@@ -108,10 +124,13 @@ export default function CardTable({ massagedBackEndData }) {
             <tbody>
               {data
                 .filter((student) => student.hasWork === true)
-                .filter((data) =>
-                  search.length > 0
-                    ? data.name.toUpperCase().includes(search.toUpperCase())
-                    : data[filterOptions[filter]] === filtationMethod[filter]
+                .filter(
+                  (data) =>
+                    (search.length > 0
+                      ? data.name.toUpperCase().includes(search.toUpperCase())
+                      : data[filterOptions[filter]] ===
+                        filtationMethod[filter]) ||
+                    (filter == 9 && watchlist.includes(+data.id))
                 )
                 .sort(sortFunc(heading, isASC))
                 .map((student) => {
@@ -134,6 +153,42 @@ export default function CardTable({ massagedBackEndData }) {
                       </td>
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                         {student.bootcampId}
+                      </td>
+                      <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                        <div className="mr-6 mb-1">
+                          {watchlist.includes(student.id) ? (
+                            <>
+                              <VisibilityIcon
+                                size="2xl"
+                                onClick={() => {
+                                  const i = watchlist.findIndex(
+                                    (el) => el === student.id
+                                  );
+                                  setWatchlist([
+                                    ...watchlist.slice(0, i),
+                                    ...watchlist.slice(i + 1),
+                                  ]);
+                                  localStorage.setItem("Watchlist", watchlist);
+                                }}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <VisibilityOffIcon
+                                size="2xl"
+                                onClick={() => {
+                                  setWatchlist(
+                                    Array.from(
+                                      new Set([...watchlist, student.id])
+                                    )
+                                  );
+
+                                  localStorage.setItem("Watchlist", watchlist);
+                                }}
+                              />
+                            </>
+                          )}
+                        </div>
                       </td>
 
                       <td className="font-light text-sm whitespace-nowrap px-2 py-4 text-left ">
