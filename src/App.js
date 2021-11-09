@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     async function getData() {
       setIsLoading(true);
-      const API_URL = process.env.REACT_APP_API_URL + 'records';
+      const API_URL = process.env.REACT_APP_API_URL + '/records';
       const response = await fetch(API_URL, {
         headers: { 'Content-Type': 'application/json' },
       });
