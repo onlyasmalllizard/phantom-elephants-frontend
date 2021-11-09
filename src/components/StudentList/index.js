@@ -104,6 +104,8 @@ const StudentList = ({
             padding: "16px",
             // border: "1px solid  rgba(140, 140, 140, 0.35)",
             width: "max-content",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           <InfiniteScroll
@@ -117,7 +119,7 @@ const StudentList = ({
             scrollableTarget="scrollableDiv"
             style={{
               height: "auto",
-              width: "20rem",
+              width: "24rem",
             }}
           >
             <List
