@@ -19,7 +19,7 @@ export default function Sidebar({ setPushRight, pushRight }) {
       <div
         className={`h-screen fixed top-0 xl:left-0 ${showSidebar} overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 z-10 py-4 px-6 transition-all duration-300`}
       >
-        <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
+        <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative ">
           <a
             href="https://material-tailwind.com?ref=mtd"
             target="_blank"
@@ -29,7 +29,10 @@ export default function Sidebar({ setPushRight, pushRight }) {
             {" "}
             <Logo />
           </a>
-          <div className="flex flex-col">
+          <div
+            className="flex flex-col min-h-full"
+            style={{ height: "60vh", overflow: "clip" }}
+          >
             <hr className="my-4 min-w-full" />
 
             <ul className="flex-col min-w-full flex list-none">
@@ -87,7 +90,18 @@ export default function Sidebar({ setPushRight, pushRight }) {
                 </NavLink>
               </li>
             </ul>
-            <LogoutButton />
+            <div className="h-full flex">
+              <div
+                className="flex h-10 w-full"
+                style={{
+                  alignSelf: "end",
+                  justifySelf: "end",
+                  width: "-webkit-fill-available",
+                }}
+              >
+                <LogoutButton />
+              </div>
+            </div>
           </div>
         </div>
       </div>
