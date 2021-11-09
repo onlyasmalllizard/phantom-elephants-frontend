@@ -1,5 +1,5 @@
 import { time } from "faker";
-import bootcamps from "../dummyData";
+import * as bootcamps from "../dummyData";
 import { listRecapTasks, tallyScores } from "../functions";
 
 export const fakeData = bootcamps
