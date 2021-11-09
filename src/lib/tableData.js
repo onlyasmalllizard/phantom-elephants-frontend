@@ -1,4 +1,4 @@
-const bootcamps = require('../dummyData');
+import bootcamps from '../dummyData';
 
 export const tableHeaders = [
   { display: 'Bootcamper', id: 'name' },

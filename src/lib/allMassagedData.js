@@ -1,6 +1,6 @@
 import { time } from 'faker';
 import { listRecapTasks, tallyScores } from '../functions';
-const bootcamps = require('../dummyData');
+import bootcamps from '../dummyData';
 
 export const fakeData = bootcamps
   .map((bootcamp) => {
