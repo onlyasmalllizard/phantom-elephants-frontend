@@ -1,6 +1,6 @@
-import React from "react";
-import css from "./style.module.css";
-import { useState } from "react";
+import React from 'react';
+import css from './style.module.css';
+import { useState } from 'react';
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor="photo-upload" className="custom-file-upload fas">
@@ -80,9 +80,8 @@ const Profile = ({ onSubmit, src, name, region, watchlist }) => (
       </label>
       <div className={css.card}>{name}</div>
       <div className={css.card}>{region}</div>
-      <div className={css.card}>{watchlist}</div>
       <button type="submit" className={`${css.edit} ${css.button}`}>
-        Edit Profile{" "}
+        Edit Profile{' '}
       </button>
     </form>
   </div>
@@ -96,24 +95,24 @@ const Edit = ({ onSubmit, children }) => (
       </h1>
       {children}
       <button type="submit" className={`${css.save} ${css.button}`}>
-        Save{" "}
+        Save{' '}
       </button>
     </form>
   </div>
 );
 
 function CardProfile(props) {
-  const [state, setState] = useState("");
+  const [state, setState] = useState('');
   const [files, setFiles] = useState({});
   const [previewImage, setPreviewImage] = useState(
-    "https://thumbs.dreamstime.com/b/user-icon-human-person-symbol-avatar-login-sign-vector-illustration-isolated-modern-background-user-icon-human-person-symbol-118096858.jpg"
+    'https://thumbs.dreamstime.com/b/user-icon-human-person-symbol-avatar-login-sign-vector-illustration-isolated-modern-background-user-icon-human-person-symbol-118096858.jpg'
   );
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   //   const [status, setStatus] = useState("");
-  const [active, setActive] = useState("edit");
-  const [region, setRegion] = useState("");
-  const [watchlist, setWatchlist] = useState("");
-  const [view, setView] = useState("profile");
+  const [active, setActive] = useState('edit');
+  const [region, setRegion] = useState('');
+  const [watchlist, setWatchlist] = useState('');
+  const [view, setView] = useState('profile');
 
   const photoUpload = (e) => {
     e.preventDefault();
@@ -141,7 +140,7 @@ function CardProfile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let activeP = active === "edit" ? "profile" : "edit";
+    let activeP = active === 'edit' ? 'profile' : 'edit';
     setActive(activeP);
   };
 
@@ -156,7 +155,7 @@ function CardProfile(props) {
 
   return (
     <div>
-      {active === "edit" ? (
+      {active === 'edit' ? (
         <Edit onSubmit={handleSubmit} className={css.body}>
           <ImgUpload
             onChange={photoUpload}
