@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import LoginButton from "../../../LoginButton/index";
+import React, { useState } from 'react';
+import LoginButton from '../../../LoginButton/index';
 
-import LandingPageFooter from "components/Footer";
+import LandingPageFooter from 'components/Footer';
 // import LandingPageLogo from "../../../LandingPageLogo/index"
 
 export default function Landing() {
@@ -12,7 +12,7 @@ export default function Landing() {
         <div
           className="relative pt-16 pb-32 flex content-center items-center justify-center"
           style={{
-            minHeight: "75vh",
+            minHeight: '75vh',
           }}
         >
           <div
@@ -42,7 +42,7 @@ export default function Landing() {
           </div>
           <div
             className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-            style={{ height: "70px" }}
+            style={{ height: '70px' }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -119,11 +119,10 @@ export default function Landing() {
                   Seamless performance tracker
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-white">
-                  9 in 10 managers are not satisfied with their organisation's
+                  9 in 10 teachers are not satisfied with their organisation's
                   performance evaluation system because of its obsolete methods.
-                  Performance review and performance management is the right way
-                  to increase the productivity of the bootcampers and the
-                  engagement rate.
+                  Performance review is invaluable in increasing the
+                  productivity and engagement of bootcampers.
                 </p>
               </div>
 
@@ -141,8 +140,8 @@ export default function Landing() {
                       viewBox="0 0 583 95"
                       className="absolute left-0 w-full block"
                       style={{
-                        height: "95px",
-                        top: "-94px",
+                        height: '95px',
+                        top: '-94px',
                       }}
                     >
                       <polygon
@@ -160,7 +159,7 @@ export default function Landing() {
         <section className="relative py-20">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-            style={{ height: "80px" }}
+            style={{ height: '80px' }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -193,13 +192,14 @@ export default function Landing() {
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
                   <h3 className="text-3xl font-semibold">
-                    Grow your company with Demeter
+                    Grow your bootcamp with Demeter
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    Scaling a business means setting the stage to enable and
-                    support growth in your company. It means having the ability
-                    to grow without being hampered. It requires planning, some
-                    funding and, most importantly, the right systems.
+                    Scaling a bootcamp means setting the stage to enable and
+                    support growth in your organisation. It means having the
+                    ability to grow without being hampered. It requires
+                    planning, some funding and, most importantly, the right
+                    systems.
                   </p>
                 </div>
               </div>
@@ -212,7 +212,7 @@ export default function Landing() {
             <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold">
-                  The Phantom Elephants Team:{" "}
+                  The Phantom Elephants Team:{' '}
                 </h2>
                 <p className="text-lg leading-relaxed m-4 text-gray-600">
                   Handcrafted with love.
@@ -226,7 +226,7 @@ export default function Landing() {
                     alt="..."
                     src="https://media-exp1.licdn.com/dms/image/C4E03AQHxLGLFJqSC3A/profile-displayphoto-shrink_400_400/0/1624458737059?e=1642032000&v=beta&t=QyIot0XPtmocREd-wHlJTSj23Q8Aam2YAOYMadUFkw0"
                     className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
+                    style={{ maxWidth: '120px' }}
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">James Perrett</h5>
@@ -260,7 +260,7 @@ export default function Landing() {
                     alt="..."
                     src="https://avatars.githubusercontent.com/u/87083323?v=4"
                     className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
+                    style={{ maxWidth: '120px' }}
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Mohit Sharma</h5>
@@ -294,7 +294,7 @@ export default function Landing() {
                     alt="..."
                     src="https://avatars.githubusercontent.com/u/30602046?v=4"
                     className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
+                    style={{ maxWidth: '120px' }}
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Lizard Morrow</h5>
@@ -328,7 +328,7 @@ export default function Landing() {
                     alt="..."
                     src="https://media-exp1.licdn.com/dms/image/C4E03AQGhK-YWiXw3uw/profile-displayphoto-shrink_400_400/0/1617920884347?e=1642032000&v=beta&t=59oCIWh-w2PkEUtZIX9srkZH2vE277T1-cO86MPZd_0"
                     className="shadow-lg rounded-full max-w-full mx-auto"
-                    style={{ maxWidth: "120px" }}
+                    style={{ maxWidth: '120px' }}
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Juweyriya Abdikadir</h5>
@@ -363,7 +363,7 @@ export default function Landing() {
         <section className="pb-20 relative block bg-gray-900">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-            style={{ height: "80px" }}
+            style={{ height: '80px' }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -388,7 +388,7 @@ export default function Landing() {
                   Build something
                 </h2>
                 <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-                  Take your business to the next level with a Phantom Elephants
+                  Take your bootcamp to the next level with a Phantom Elephants
                   Dashboard.
                 </p>
               </div>
@@ -407,7 +407,7 @@ export default function Landing() {
                   <i className="fas fa-poll text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Grow your market
+                  Empower your students
                 </h5>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
@@ -415,7 +415,7 @@ export default function Landing() {
                   <i className="fas fa-lightbulb text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Launch time
+                  Devote your time to what matters most 🐱 🍵
                 </h5>
               </div>
             </div>
@@ -445,7 +445,7 @@ export default function Landing() {
                         type="text"
                         className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Full Name"
-                        style={{ transition: "all .15s ease" }}
+                        style={{ transition: 'all .15s ease' }}
                       />
                     </div>
 
@@ -460,7 +460,7 @@ export default function Landing() {
                         type="email"
                         className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Email"
-                        style={{ transition: "all .15s ease" }}
+                        style={{ transition: 'all .15s ease' }}
                       />
                     </div>
 
@@ -482,7 +482,7 @@ export default function Landing() {
                       <button
                         className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                         type="button"
-                        style={{ transition: "all .15s ease" }}
+                        style={{ transition: 'all .15s ease' }}
                       >
                         Send Message
                       </button>
