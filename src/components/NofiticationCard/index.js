@@ -4,7 +4,6 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import { massage } from "../../lib/allMassagedData";
-import StudentList from "components/StudentList";
 
 export default function NotifactionCard({ plainData, headerColor }) {
   // for Notifications Period
@@ -41,8 +40,6 @@ export default function NotifactionCard({ plainData, headerColor }) {
   ).filter((student) => student.hasWork);
   console.log("currentPeriod:", currentPeriod, "lastPeriod:", lastperiod);
 
-  const colors = ["red", "amber", "green"];
-
   // Attendance Alerts!
   const absentConsequetiveDays = currentPeriod.map((student) => {
     const percentage = (
@@ -53,7 +50,14 @@ export default function NotifactionCard({ plainData, headerColor }) {
     return {
       name: student.name,
       percentage,
-      color: percentage < 50 ? "red" : percentage > 149 ? "green" : "orange",
+      color:
+        percentage < 50
+          ? "red"
+          : percentage > 149
+          ? "green"
+          : percentage > 100
+          ? "teal"
+          : "orange",
     };
   });
 
@@ -75,7 +79,13 @@ export default function NotifactionCard({ plainData, headerColor }) {
       lastperiod[i].avgExperience
     ).toFixed(0);
     const color =
-      percentage < 50 ? "red" : percentage > 149 ? "green" : "orange";
+      percentage < 50
+        ? "red"
+        : percentage > 149
+        ? "green"
+        : percentage > 100
+        ? "teal"
+        : "orange";
     return {
       name: student.name,
       percentage,
