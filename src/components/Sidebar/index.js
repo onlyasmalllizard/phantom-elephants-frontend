@@ -92,7 +92,7 @@ export default function Sidebar({ setPushRight, pushRight }) {
             </ul>
             <div className="h-full flex">
               <div
-                className="flex h-10 w-full"
+                className="flex h-10 w-full justify-center"
                 style={{
                   alignSelf: "end",
                   justifySelf: "end",
