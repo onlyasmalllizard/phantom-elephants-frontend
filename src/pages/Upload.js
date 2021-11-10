@@ -39,7 +39,7 @@ function Upload(props) {
           />
         </div>
       </div>
-      <div className="h-144 w-screen"></div>
+      <div className="h-144 w-screen" style={{ height: "48rem" }}></div>
     </>
   );
 }

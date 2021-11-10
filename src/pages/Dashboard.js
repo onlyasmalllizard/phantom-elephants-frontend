@@ -123,7 +123,7 @@ export default function Dashboard({
           </div>
         </div>
       </div>
-      <div className="h-196 w-screen"></div>
+      <div className="h-196 w-screen" style={{ height: "48rem" }}></div>
     </>
   );
 }
