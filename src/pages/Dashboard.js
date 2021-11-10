@@ -82,7 +82,7 @@ export default function Dashboard({
 
   return (
     <>
-      <div className="bg-light-blue-500 h-30 ">
+      <div className="bg-light-blue-500" style={{ height: "7.7rem" }}>
         <div className="flex  flex-row relative " style={{ zIndex: 5 }}>
           <div className="flex flex-row justify-evenly w-screen mt-8 ">
             <div classname="flex flex-col w-auto ">
@@ -123,7 +123,7 @@ export default function Dashboard({
           </div>
         </div>
       </div>
-      <div className="h-196 w-screen" style={{ height: "48rem" }}></div>
+      <div className="w-screen" style={{ height: "48rem" }}></div>
     </>
   );
 }
