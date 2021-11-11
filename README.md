@@ -1,14 +1,16 @@
 ## SOC Brief
 
-- Create an application which the coaches can use to monitor and track student progress over the course of the 12 weeks of teaching. As the School of Code is going national and taking on 192 bootcampers for their next cohort, they have challenged us to create an application which makes it easier for them to spot trends and also identify students who may need support all in one place.
+- Create an application which the coaches can use to monitor and track student progress over the course of the bootcamp. As the School of Code is going national and taking on 192 bootcampers for their next cohort, they have challenged us to create an application which makes it easier for them to spot trends and have an overview of the students performance all in one place.
 
 To read our full problem statement checkout:
 
 - phantom-elephants-frontend-1/public/problemStatement.png
 
-# DEMETER DASHBOARD API
+# DEMETER DASHBOARD API OVERVIEW
 
-Demeter is a platform which was created to as part of our final project at School of Code. The aim of our project was to create an app which the coaches at School of Code can use to keep track of the students in the cohort. The app will enable them to see information about students performance in one place. The data displayed on teh dashboard will
+Demeter is a platform which was created to as part of our final project at School of Code. The aim of our project was to create an app which the coaches at School of Code can use to keep track of student work submitted. The app will enable them to see an overview of the students performance all in one place.
+
+The data which will be displayed on the Demeter Dashboard includes:
 
 - Bootcamp
 - Region
@@ -19,10 +21,11 @@ Demeter is a platform which was created to as part of our final project at Schoo
 - Reflections
 - Mood based on their reflections
 
-We decided to use a dashboard from creative tim which used tailwind css. On this dashboard we decided to have 4 pages:
+We decided to use a dashboard from Creative Tim which used Tailwind CSS. On this dashboard we decided to have 4 pages:
+
 _*Main dashboard*_
 
-- On this page we have colour coordinated alerts which are placed on the main dashboard to make it more convenient for the coaches to identify students that are struggling as well as students tha are excelling.
+- On this page we have colour coordinated alerts which are placed on the main dashboard to make it more convenient for the coaches to identify students that are struggling as well as students that are excelling.
   We also have a :
 - Student watch list
 - overall view of experience and quiz scores
@@ -30,31 +33,44 @@ _*Main dashboard*_
 
 _*Cohort View*_
 
+- On this page there is a cohort table in which the students can be filtered based on the region of their bootcamp.
+- The list of students on the table can also be filtered by a watch list
+
 _*Individual Student View*_
+
+- This page enables the coaches to view the detailed progress of specific students as well as their attendance and contact details.
+- We also added a comments component which allows coaches to leave feedback for their colleagues that may visit that students page.
 
 _*File Upload*_
 
+- On this next page we have made it possible for the user to upload relevant files such as a new work completed by the students as well as files regarding new students or bootcamps that need to be added to the database.
+
 _*Settings*_
 
-- sections
+- On the last page we have a user settings page which allows the user to personalise their page by adding their name and region. It also gives them the option to upload a photo
+
+- Another feature which was implemented based on the user feedback received was the ability for the user to set a default bootcamp and set a comparison period, which is then reflected on the main dashboard.
+
+We have also implemented Auth0 because it provides user-specific dashboards for the bootcamp coaches based upon user logins and it helps maintain the privacy of the student data.
 
 ## STACK USED
 
-- AWS
 - REACT
 - MATERIAL TAILWIND
 - SEMANTIC UI
 - CREATIVE TIM
 
+Front-end deployed on AWS!
+
 ## STRATEGY
 
-Throughout this project all members of the Phantom Elephants worked on both the front end and backend.
-We worked in an agile m
+We aimed to work using a Agile methodology whilst keeping the app users as the main focus of development.
 
-- How we worked as a team
-- agile method
-- organisesation etc.
-- mvp
+Throughout this project all members of the Phantom Elephants worked on both the frontend and backend.
+
+We brain stormed a few ideas about what we thought our users (SOC coaches) would like to see on the Demeter Dashboard and then we asked a couple coaches to join us in a focus meeting which allowed us to further explore this. One of the feedback we received from the coaches included having a notification / or alert system which would help them see the progress of the students. We took on this feedback and made sure to include it in our application
+
+As a team we also decided to use Figma to create our wireframes this was beneficial as it allowed the team to visualise our application and it highlighted the different components needed for our app. We then used draw.io to map out all our components and break down our data structures.
 
 ## Meet Phantom Elephants
 
