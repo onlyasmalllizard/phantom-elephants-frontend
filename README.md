@@ -23,3 +23,19 @@ https://user-images.githubusercontent.com/84506758/141297904-0e54aa32-46c2-4c17-
 
 [Back-End API](https://shielded-springs-20982.herokuapp.com/)
 
+## Meet Phantom Elephants
+
+### Juweyriya Abdikadir
+
+### [Lizard Morrow](https://github.com/onlyasmalllizard)
+
+Fullstack developer who plays too many instruments 🎻
+
+### James Perrett
+Hi! I'm [James](https://github.com/PerrettJ4), I am a full stack Software Engineer with a Masters in mechanical Engingeering. Check out my [website!](https://perrettj4.netlify.app/)
+### Mohit Sharma
+Mohit, you knows it. 
+
+Click the link below to exit
+
+[Exit](https://github.com/Ratmsunny)
