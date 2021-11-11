@@ -1,14 +1,14 @@
-# Brief
+## SOC Brief
 
-- Create an application which the coaches can use to monitor and track student progress over the course of the 12 weeks of teaching. As the School of Code is taking on 192 bootcampers for their next cohort they have challenged us to create an application which makes it easier for them to see all the work which is submitted by the students in one place.
+- Create an application which the coaches can use to monitor and track student progress over the course of the 12 weeks of teaching. As the School of Code is going national and taking on 192 bootcampers for their next cohort, they have challenged us to create an application which makes it easier for them to spot trends and also identify students who may need support all in one place.
 
 To read our full problem statement checkout:
 
 - phantom-elephants-frontend-1/public/problemStatement.png
 
-# DEMETER
+# DEMETER DASHBOARD API
 
-Demeter is a platform which was created to as part of our final project at School of Code. The aim of this application was to create a dashboard which displays data regarding each student such as their:
+Demeter is a platform which was created to as part of our final project at School of Code. The aim of our project was to create an app which the coaches at School of Code can use to keep track of the students in the cohort. The app will enable them to see information about students performance in one place. The data displayed on teh dashboard will
 
 - Bootcamp
 - Region
@@ -30,6 +30,14 @@ _*Main dashboard*_
 
 _*Cohort View*_
 
+_*Individual Student View*_
+
+_*File Upload*_
+
+_*Settings*_
+
+- sections
+
 ## STACK USED
 
 - AWS
@@ -40,18 +48,17 @@ _*Cohort View*_
 
 ## STRATEGY
 
-Througout this project all members of the Phantom Elephants worked on bith the front end and backend.
+Throughout this project all members of the Phantom Elephants worked on both the front end and backend.
+We worked in an agile m
 
 - How we worked as a team
 - agile method
 - organisesation etc.
 - mvp
 
-##
-
 ## Meet Phantom Elephants
 
-### Juweyriya Abdikadir
+### [Juweyriya Abdikadir](https://github.com/Juweyriya)
 
 ### [Lizard Morrow](https://github.com/onlyasmalllizard)
 
