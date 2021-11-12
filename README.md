@@ -1,14 +1,15 @@
-## SOC Brief
+# DEMETER DASHBOARD OVERVIEW
 
-- Create an application which the coaches can use to monitor and track student progress over the course of the bootcamp. As the School of Code is going national and taking on 192 bootcampers for their next cohort, they have challenged us to create an application which makes it easier for them to spot trends and have an overview of the students performance all in one place.
+Demeter is a platform which was created to as part of our final project at School of Code. The aim of our project was to create an app which the coaches at [School of Code](https://www.schoolofcode.co.uk/) can use to keep track of student work submitted. The app will enable them to see an overview of the students performance all in one place.
 
-To read our full problem statement checkout:
+## Contents
 
-- phantom-elephants-frontend-1/public/problemStatement.png
+1. [Description of Demeter](#description-of-demeter)
+2. [Stack Used](#stack-used)
+3. [Strategy](#strategy)
+4. [Meet Phantom Elephants](#meet-phantom-elephants)
 
-# DEMETER DASHBOARD API OVERVIEW
-
-Demeter is a platform which was created to as part of our final project at School of Code. The aim of our project was to create an app which the coaches at School of Code can use to keep track of student work submitted. The app will enable them to see an overview of the students performance all in one place.
+## Description of Demeter
 
 The data which will be displayed on the Demeter Dashboard includes:
 
