@@ -121,8 +121,8 @@ export default function StudentPage({ massagedBackEndData, pushRight }) {
           </div>
         </div>
       </div>
-      <div className="h-196 w-screen"></div>
-      <div className="h-196 w-screen"></div>
+      <div className=" w-screen" style={{ height: "48rem" }}></div>
+      <div className=" w-screen" style={{ height: "56rem" }}></div>
     </>
   );
 }
