@@ -5,9 +5,10 @@ Demeter is a platform which was created to as part of our final project at Schoo
 ## Contents
 
 1. [Description of Demeter](#description-of-demeter)
-2. [Stack Used](#stack-used)
-3. [Strategy](#strategy)
-4. [Meet Phantom Elephants](#meet-phantom-elephants)
+2. [Strategy](#strategy)
+3. [Stack Used](#stack-used)
+4. [Application Architecture](#application-architecture)
+5. [Meet Phantom Elephants](#meet-phantom-elephants)
 
 ## Description of Demeter
 
@@ -54,15 +55,6 @@ _*Settings*_
 
 We have also implemented Auth0 because it provides user-specific dashboards for the bootcamp coaches based upon user logins and it helps maintain the privacy of the student data.
 
-## STACK USED
-
-- REACT
-- MATERIAL TAILWIND
-- SEMANTIC UI
-- CREATIVE TIM
-
-Front-end deployed on AWS!
-
 ## STRATEGY
 
 We aimed to work using a Agile methodology whilst keeping the app users as the main focus of development.
@@ -72,6 +64,19 @@ Throughout this project all members of the Phantom Elephants worked on both the 
 We brain stormed a few ideas about what we thought our users (SOC coaches) would like to see on the Demeter Dashboard and then we asked a couple coaches to join us in a focus meeting which allowed us to further explore this. One of the feedback we received from the coaches included having a notification / or alert system which would help them see the progress of the students. We took on this feedback and made sure to include it in our application
 
 As a team we also decided to use Figma to create our wireframes this was beneficial as it allowed the team to visualise our application and it highlighted the different components needed for our app. We then used draw.io to map out all our components and break down our data structures.
+
+## STACK USED
+
+- REACT
+- MATERIAL TAILWIND
+- SEMANTIC UI
+- CREATIVE TIM
+
+Front-end deployed on AWS Amplify!
+
+## Application Architecture
+
+![Diagram showing how each component relates to the others](./tree.svg)
 
 ## Meet Phantom Elephants
 
