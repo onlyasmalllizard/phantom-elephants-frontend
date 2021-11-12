@@ -9,7 +9,7 @@ https://user-images.githubusercontent.com/84506758/141297904-0e54aa32-46c2-4c17-
 ## Table of Contents
 
 -   [Component tree Diagram](#component-tree-diagram)
--   [Quick Start](#quick-start)
+-   [Meet Phantom Elephants](#Meet-Phantom-Elephants)
 
 ## Component tree Diagram
 ![Screenshot 2021-11-10 at 14 27 38](https://user-images.githubusercontent.com/84506758/141311087-43752afe-1b05-497f-80cc-bc4e8a999a59.png)
@@ -26,6 +26,7 @@ https://user-images.githubusercontent.com/84506758/141297904-0e54aa32-46c2-4c17-
 ## Meet Phantom Elephants
 
 ### Juweyriya Abdikadir
+Hi!👋 I'm Juweyriya a full stack developer.
 
 ### [Lizard Morrow](https://github.com/onlyasmalllizard)
 
