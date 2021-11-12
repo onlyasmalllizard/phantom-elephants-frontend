@@ -1,4 +1,4 @@
-# DEMETER DASHBOARD OVERVIEW
+# Demeter Dashboard
 
 Demeter is a platform which was created to as part of our final project at School of Code. The aim of our project was to create an app which the coaches at [School of Code](https://www.schoolofcode.co.uk/) can use to keep track of student work submitted. The app will enable them to see an overview of the students performance all in one place.
 
@@ -55,7 +55,7 @@ _*Settings*_
 
 We have also implemented Auth0 because it provides user-specific dashboards for the bootcamp coaches based upon user logins and it helps maintain the privacy of the student data.
 
-## STRATEGY
+## Strategy
 
 We aimed to work using a Agile methodology whilst keeping the app users as the main focus of development.
 
@@ -65,12 +65,11 @@ We brain stormed a few ideas about what we thought our users (SOC coaches) would
 
 As a team we also decided to use Figma to create our wireframes this was beneficial as it allowed the team to visualise our application and it highlighted the different components needed for our app. We then used draw.io to map out all our components and break down our data structures.
 
-## STACK USED
+## Stack Used
 
-- REACT
-- MATERIAL TAILWIND
-- SEMANTIC UI
-- CREATIVE TIM
+- React
+- Material Tailwind component library
+- Semantic UI
 
 Front-end deployed on AWS Amplify!
 
